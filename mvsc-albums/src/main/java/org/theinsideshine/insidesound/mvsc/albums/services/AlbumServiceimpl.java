@@ -1,0 +1,55 @@
+package org.theinsideshine.insidesound.mvsc.albums.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
+import org.theinsideshine.insidesound.mvsc.albums.repositories.AlbumRepository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@Service
+public class AlbumServiceimpl implements AlbumService{
+
+    @Autowired
+    private AlbumRepository albumRepository;
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Album> findAll() {
+        List<Album> albums = (List<Album>) albumRepository.findAll();
+        return albums;
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Album> findById(Long id) {
+        return albumRepository.findById(id);
+    }
+    @Override
+    @Transactional
+    public Album save(Album album) {
+        return albumRepository.save(album);
+    }
+    @Override
+    public Optional<Album> update(Album album, Long id) {
+        Optional<Album> o = albumRepository.findById(id);
+        Album albumOptional = null;
+        if (o.isPresent()) {
+            Album albumDb = o.orElseThrow();
+            albumDb.setTitle(album.getTitle());
+            albumDb.setArtist(album.getArtist());
+            albumDb.setAge(album.getAge());
+            albumOptional = albumRepository.save(albumDb);
+        }
+
+
+        return Optional.ofNullable(albumOptional);
+    }
+    @Override
+    @Transactional
+    public void remove(Long id) {
+        albumRepository.deleteById(id);
+    }
+}
