@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-users-app</module>
+        <module>msvs-security</module>
         <module>mvsc-albums</module>
         <module>eureka-server</module>
         <module>gateway</module>
