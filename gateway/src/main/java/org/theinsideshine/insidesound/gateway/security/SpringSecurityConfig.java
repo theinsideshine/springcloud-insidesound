@@ -10,14 +10,14 @@ import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.web.cors.reactive.CorsWebFilter;
-import org.theinsideshine.insidesound.gateway.security.filter.JwtAuthenticationFilter;
+import org.theinsideshine.insidesound.gateway.security.filter.JwtAuthorizationFilter;
 
 @Configuration
 @EnableWebFluxSecurity
 public class SpringSecurityConfig {
 
     @Autowired
-    private JwtAuthenticationFilter authenticationFilter;
+    private JwtAuthorizationFilter authorizationFilter;
 
     @Autowired
     private CorsWebFilter corsWebFilter;
@@ -33,7 +33,7 @@ public class SpringSecurityConfig {
                 .pathMatchers( HttpMethod.GET,"/msvc-albums/**").permitAll()
                 .anyExchange().authenticated()
                 .and()
-                .addFilterAt(authenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
+                .addFilterAt(authorizationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .addFilterAt(corsWebFilter, SecurityWebFiltersOrder.CORS)
                 .csrf().disable()
                 .build();

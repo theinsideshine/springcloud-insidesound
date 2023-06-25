@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add msvc-security , work with gateway">
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/AuthenticationManagerJwt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SimpleGrantedAuthorityJsonCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SpringSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/TokenJwtConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/SpringSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/SpringSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/TokenJwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/TokenJwtConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/filters/JwtValidationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SpringSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SpringSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/filter/JwtAuthorizationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/filters/JwtAuthenticationFilter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
