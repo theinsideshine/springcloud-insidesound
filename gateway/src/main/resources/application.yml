@@ -14,6 +14,7 @@ spring:
           enabled: true
           lower-case-service-id: true
 
+
 eureka:
   instance:
     prefer-ip-address: true
