@@ -30,7 +30,7 @@ public class SpringSecurityConfig {
                 .pathMatchers(HttpMethod.GET, "/msvc-security/users/{id}").hasAnyRole("USER", "ADMIN")
                 .pathMatchers(HttpMethod.POST, "/msvc-security/users").permitAll()
                 .pathMatchers("/msvc-security/users/**").hasRole("ADMIN")
-                .pathMatchers( HttpMethod.GET,"/msvc-albums/**").permitAll()
+                .pathMatchers( HttpMethod.GET,"/msvc-albums/**").permitAll() // ver permisos al final
                 .anyExchange().authenticated()
                 .and()
                 .addFilterAt(authorizationFilter, SecurityWebFiltersOrder.AUTHENTICATION)

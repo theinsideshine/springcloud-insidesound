@@ -20,6 +20,7 @@ public class AlbumServiceimpl implements AlbumService{
     @Transactional(readOnly = true)
     public List<Album> findAll() {
         List<Album> albums = (List<Album>) albumRepository.findAll();
+        //albums.forEach(album -> album.getTracks().clear());  // Saca los tracks de albums no esta funcionando el .LAZY
         return albums;
     }
     @Override
