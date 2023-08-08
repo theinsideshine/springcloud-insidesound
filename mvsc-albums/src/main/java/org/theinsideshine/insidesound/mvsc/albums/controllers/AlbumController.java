@@ -47,7 +47,7 @@ public class AlbumController {
     }
 
     @GetMapping("/img/{id}")
-    public ResponseEntity<?> showImage(@PathVariable Long id) {
+    public ResponseEntity<?> showImageAlbum(@PathVariable Long id) {
 
 
         Optional<Album> o = albumService.findById( id);
@@ -61,6 +61,8 @@ public class AlbumController {
                 .body(image);
 
     }
+
+
 
 
     @PostMapping
@@ -93,7 +95,7 @@ public class AlbumController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@Valid @ModelAttribute Album album, BindingResult result, @PathVariable Long id) {
+    public ResponseEntity<?> updateAlbum(@Valid @ModelAttribute Album album, BindingResult result, @PathVariable Long id) {
         if(result.hasErrors()){
             return validation(result);
         }
@@ -109,13 +111,33 @@ public class AlbumController {
         albumDb.setArtist(album.getArtist());
         albumDb.setAge(album.getAge());
         albumDb.setImage(album.getImage());
+        albumDb.setTracksId(album.getTracksId());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(albumService.save(albumDb));
+        Album savedAlbum = albumService.save(album);
+
+        // Obtener los IDs de los tracks desde el álbum
+        List<Long> trackIds = album.getTracksId();
+        if (trackIds != null && !trackIds.isEmpty()) {
+            for (Long trackId : trackIds) {
+                Optional<Track> trackOptional = trackService.findById(trackId);
+                if (trackOptional.isPresent()) {
+                    Track track = trackOptional.get();
+                    track.setAlbum(savedAlbum); // Establecer el álbum en cada track con el ID obtenido
+                    trackService.save(track); // Guardar el track con la referencia al álbum
+                } else {
+                    // Manejar el caso cuando un track con el ID dado no es encontrado
+                    // Puedes lanzar una excepción o mostrar un mensaje de error
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Track not found for ID: " + trackId);
+                }
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedAlbum);
     }
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<?> removeAlbum(@PathVariable Long id) {
         Optional<Album> o = albumService.findById(id);
 
         if (o.isPresent()) {

@@ -40,4 +40,10 @@ public class TrackServiceimpl implements TrackService {
     public Track save(Track track) {
         return trackRepository.save(track);
     }
+
+    @Override
+    @Transactional
+    public void remove(Long id) {
+        trackRepository.deleteById(id);
+    }
 }

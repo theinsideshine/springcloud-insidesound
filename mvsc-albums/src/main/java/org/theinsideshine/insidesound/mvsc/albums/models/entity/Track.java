@@ -15,26 +15,36 @@ public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String url;
+
+
+    private String username;
     private String title;
 
-    @ElementCollection
-    @CollectionTable(name = "tags", joinColumns = @JoinColumn(name = "track_id"))
-    @Column(name = "tag")
-    private List<String> tags;
+    @JsonIgnore
+    @Lob
+    @Column(length = 10485760)
+    private byte[]  image;
+
+    @JsonIgnore
+    @Lob
+    @Column(length =  10485760)
+    private byte[]  mp3;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id", referencedColumnName = "id")
     private Album album;
 
-    public Track(int id, String url, String title, List<String> tags) {
-        this.id = id;
-        this.url = url;
-        this.title = title;
-        this.tags = tags;
+    public Track() {
     }
 
-    public Track() {
+    public Track(int id, String username, String title, byte[] image, byte[] mp3, Album album) {
+        this.id = id;
+        this.username = username;
+        this.title = title;
+        this.image = image;
+        this.mp3 = mp3;
+        this.album = album;
     }
 
     public int getId() {
@@ -45,12 +55,12 @@ public class Track {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTitle() {
@@ -61,12 +71,20 @@ public class Track {
         this.title = title;
     }
 
-    public List<String> getTags() {
-        return tags;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setTags(List<String> tags) {
-        this.tags = tags;
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public byte[] getMp3() {
+        return mp3;
+    }
+
+    public void setMp3(byte[] mp3) {
+        this.mp3 = mp3;
     }
 
     public Album getAlbum() {
@@ -75,6 +93,14 @@ public class Track {
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+    public Integer getImageHashCode() {
+        return ( this.image != null ) ? this.image.hashCode() : null ;
+    }
+
+    public Integer getMp3HashCode() {
+        return ( this.mp3 != null ) ? this.mp3.hashCode() : null ;
     }
 }
 
