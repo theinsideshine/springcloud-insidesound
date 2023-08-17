@@ -14,6 +14,9 @@ public interface TrackService {
 
     List<Track> findByAlbumId(Long id);
 
+
+    List<Track> findByUsername(String username);
+
     Optional<Track> findById(Long id);
 
     public Track save(Track track);

@@ -43,6 +43,16 @@ public class TracksController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/by-username/{username}")
+    public ResponseEntity<?> showTrackByUsername(@PathVariable String username) {
+        List<Track> tracks = trackService.findByUsername(username);
+
+        if (tracks.size()>0 ){
+            return ResponseEntity.ok(tracks);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/img/{id}")
     public ResponseEntity<?> showImageTrack(@PathVariable Long id) {
 

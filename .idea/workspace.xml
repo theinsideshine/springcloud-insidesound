@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="ase agrego soporte para envio de album image se cambio modelos de datos">
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="soporte backend for crud album,tracks , image and mp3 ,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackServiceimpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691234237158</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="soporte backend for crud album,tracks , image and mp3 ,">
+      <created>1691498849995</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691498849995</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -169,7 +169,8 @@
     <MESSAGE value="microservices eureka-gateway-security-album work ok" />
     <MESSAGE value="add video security" />
     <MESSAGE value="ase agrego soporte para envio de album image se cambio modelos de datos" />
-    <option name="LAST_COMMIT_MESSAGE" value="ase agrego soporte para envio de album image se cambio modelos de datos" />
+    <MESSAGE value="soporte backend for crud album,tracks , image and mp3 ," />
+    <option name="LAST_COMMIT_MESSAGE" value="soporte backend for crud album,tracks , image and mp3 ," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

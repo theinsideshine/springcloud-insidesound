@@ -31,6 +31,12 @@ public class TrackServiceimpl implements TrackService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Track> findByUsername(String username) {
+        return trackRepository.findByUsername(username);
+    }
+
+    @Override
     public Optional<Track> findById(Long id) {
         return trackRepository.findById(id);
     }
