@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.theinsideshine.insidesound.mvsc.albums.models.dto.TrackRequestDTO;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
 import org.theinsideshine.insidesound.mvsc.albums.services.AlbumService;
@@ -43,8 +45,11 @@ public class TracksController {
         return ResponseEntity.notFound().build();
     }
 
+
+
+
     @GetMapping("/by-username/{username}")
-    public ResponseEntity<?> showTrackByUsername(@PathVariable String username) {
+    public ResponseEntity<?> showTracksByUsername(@PathVariable String username) {
         List<Track> tracks = trackService.findByUsername(username);
 
         if (tracks.size()>0 ){
@@ -59,7 +64,7 @@ public class TracksController {
 
         Optional<Track> o = trackService.findById( id);
 
-        if (o.isEmpty() || o.get().getImage() == null) {
+        if (o.isEmpty() || o.get().getImage()== null) {
             return ResponseEntity.notFound().build();
         }
         Resource image =  new ByteArrayResource(o.get().getImage());
@@ -72,7 +77,6 @@ public class TracksController {
     @GetMapping("/mp3/{id}")
     public ResponseEntity<?> showMp3Track(@PathVariable Long id) {
 
-
         Optional<Track> o = trackService.findById( id);
 
         if (o.isEmpty() || o.get().getImage() == null) {
@@ -82,48 +86,45 @@ public class TracksController {
         return  ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(mp3);
-
     }
 
     @PostMapping
     public ResponseEntity<?> createTrack(
-            @Valid @RequestParam("username") String username,
-            @Valid @RequestParam("title") String title,
-            @RequestPart("imageFile") MultipartFile imageFile,
-            @RequestPart("mp3File") MultipartFile mp3File
-    ) throws IOException {
-        if (imageFile.isEmpty() || mp3File.isEmpty()) {
-            return ResponseEntity.badRequest().body("Image or MP3 file is empty");
+            @Valid @ModelAttribute TrackRequestDTO trackRequest,
+            BindingResult result) throws IOException {
+
+        if (result.hasErrors()) {
+            return validationFormadata(trackRequest,result);
         }
 
-        byte[] imageBytes = imageFile.getBytes();
-        byte[] mp3Bytes = mp3File.getBytes();
+        byte[] imageBytes = trackRequest.getImageFile().getBytes();
+        byte[] mp3Bytes = trackRequest.getMp3File().getBytes();
 
         Track trackDb = new Track();
-        trackDb.setUsername(username);
-        trackDb.setTitle(title);
+        trackDb.setUsername(trackRequest.getUsername());
+        trackDb.setTitle(trackRequest.getTitle());
         trackDb.setImage(imageBytes);
         trackDb.setMp3(mp3Bytes);
 
         Track savedTrack = trackService.save(trackDb);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTrack);
+
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateTrack(
-            @Valid @RequestParam("username") String username,
-            @Valid @RequestParam("title") String title,
-            @RequestPart("imageFile") MultipartFile imageFile,
-            @RequestPart("mp3File") MultipartFile mp3File,
-            @PathVariable Long id
-    ) throws IOException {
-        if (imageFile.isEmpty() || mp3File.isEmpty()) {
-            return ResponseEntity.badRequest().body("Image or MP3 file is empty");
+            @Valid @ModelAttribute TrackRequestDTO trackRequest,
+            BindingResult result,
+            @PathVariable Long id) throws IOException {
+
+        if (result.hasErrors()) {
+            return validationFormadata(trackRequest,result);
         }
 
-        byte[] imageBytes = imageFile.getBytes();
-        byte[] mp3Bytes = mp3File.getBytes();
+        byte[] imageBytes = trackRequest.getImageFile().getBytes();
+        byte[] mp3Bytes = trackRequest.getMp3File().getBytes();
 
         Optional<Track> o = trackService.findById(id);
 
@@ -132,8 +133,8 @@ public class TracksController {
         }
 
         Track trackDb = o.get();
-        trackDb.setUsername(username);
-        trackDb.setTitle(title);
+        trackDb.setUsername(trackRequest.getUsername());
+        trackDb.setTitle(trackRequest.getTitle());
         trackDb.setImage(imageBytes);
         trackDb.setMp3(mp3Bytes);
 
@@ -141,7 +142,6 @@ public class TracksController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTrack);
     }
-
 
 
     @DeleteMapping("/{id}")
@@ -155,13 +155,22 @@ public class TracksController {
         return ResponseEntity.notFound().build();
     }
 
-    private ResponseEntity<?> validation(BindingResult result) {
-        Map<String, String> errors = new HashMap<>();
-
-        result.getFieldErrors().forEach(err -> {
-            errors.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
-        });
-        return ResponseEntity.badRequest().body(errors);
+    private ResponseEntity<?> validationFormadata(TrackRequestDTO trackRequest,BindingResult result) {
+     /*
+        La logica de validacion esta escrita para el envio desde React,
+        en postman se comporta diferente. UFF!!
+        */
+            Map<String, String> errors = new HashMap<>();
+            for (FieldError error : result.getFieldErrors()) {
+                errors.put(error.getField(), error.getDefaultMessage());
+            }
+            if (trackRequest.getImageFile() == null || trackRequest.getImageFile().isEmpty()) {
+                errors.put("imageFile", "El archivo no puede estar vacio.");
+            }
+            if (trackRequest.getMp3File() == null || trackRequest.getMp3File().isEmpty()) {
+                errors.put("mp3File", "El archivo no puede estar vacio.");
+            }
+      return ResponseEntity.badRequest().body(errors);
     }
 
 }

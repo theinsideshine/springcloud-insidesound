@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
+import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
 import org.theinsideshine.insidesound.mvsc.albums.repositories.AlbumRepository;
 
 import java.util.List;
@@ -27,6 +28,13 @@ public class AlbumServiceimpl implements AlbumService{
     @Transactional(readOnly = true)
     public Optional<Album> findById(Long id) {
         return albumRepository.findById(id);
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Album> findByUsername(String username) {
+        return albumRepository.findByUsername(username);
     }
     @Override
     @Transactional

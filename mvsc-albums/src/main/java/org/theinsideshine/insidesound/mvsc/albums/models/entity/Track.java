@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -16,15 +19,22 @@ public class Track {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
+    @NotBlank
+    @Size(min = 4, max = 8)
     private String username;
+
+    @NotBlank
+    @Size(min = 4, max = 20)
+    @Column(unique = true)
     private String title;
 
+    @NotEmpty
     @JsonIgnore
     @Lob
     @Column(length = 10485760)
     private byte[]  image;
 
+    @NotEmpty
     @JsonIgnore
     @Lob
     @Column(length =  10485760)

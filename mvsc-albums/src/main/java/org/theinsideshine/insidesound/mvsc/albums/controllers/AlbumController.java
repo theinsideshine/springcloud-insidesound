@@ -46,6 +46,16 @@ public class AlbumController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/by-username/{username}")
+    public ResponseEntity<?> showAlbumsByUsername(@PathVariable String username) {
+        List<Album> albums = albumService.findByUsername(username);
+
+        if (albums.size()>0 ){
+            return ResponseEntity.ok(albums);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/img/{id}")
     public ResponseEntity<?> showImageAlbum(@PathVariable Long id) {
 
