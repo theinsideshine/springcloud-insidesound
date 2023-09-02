@@ -30,27 +30,41 @@ public class Album {
     private String artist;
     private String age;
 
+    private boolean albumprivate;
+
+
     @NotEmpty
     @JsonIgnore
     @Lob
     @Column(length = 1048576)
     private byte[]  image;
 
-    @ElementCollection
+    /*@ElementCollection
     @CollectionTable(name = "album_tracks", joinColumns = @JoinColumn(name = "album_id"))
     @Column(name = "track_id")
-    private List<Long> tracksId;
+    private List<Long> tracksId;*/
     public Album() {
     }
 
-    public Album(Long id, String username, String title, String artist, String age, byte[] image, List<Long> tracksId) {
+    /*public Album(Long id, String username, String title, String artist, String age, boolean albumprivate, byte[] image, List<Long> tracksId) {
         this.id = id;
         this.username = username;
         this.title = title;
         this.artist = artist;
         this.age = age;
+        this.albumprivate = albumprivate;
         this.image = image;
         this.tracksId = tracksId;
+    }*/
+
+    public Album(Long id, String username, String title, String artist, String age, boolean albumprivate, @NotEmpty byte[] image) {
+        this.id = id;
+        this.username = username;
+        this.title = title;
+        this.artist = artist;
+        this.age = age;
+        this.albumprivate = albumprivate;
+        this.image = image;
     }
 
     public Long getId() {
@@ -95,6 +109,13 @@ public class Album {
         this.age = age;
     }
 
+    public boolean isAlbumprivate() {
+        return albumprivate;
+    }
+
+    public void setAlbumprivate(boolean albumprivate) {
+        this.albumprivate = albumprivate;
+    }
 
     public byte[] getImage() {
         return image;
@@ -104,13 +125,13 @@ public class Album {
         this.image = image;
     }
 
-    public List<Long> getTracksId() {
+/*    public List<Long> getTracksId() {
         return tracksId;
     }
 
     public void setTracksId(List<Long> tracksId) {
         this.tracksId = tracksId;
-    }
+    }*/
 
     public Integer getImageHashCode() {
         return ( this.image != null ) ? this.image.hashCode() : null ;

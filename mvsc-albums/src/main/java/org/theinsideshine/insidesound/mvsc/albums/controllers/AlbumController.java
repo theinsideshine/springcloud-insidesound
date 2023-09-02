@@ -9,8 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.theinsideshine.insidesound.mvsc.albums.models.dto.AlbumRequestDTO;
+import org.theinsideshine.insidesound.mvsc.albums.models.dto.TrackRequestDTO;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
 import org.theinsideshine.insidesound.mvsc.albums.services.AlbumService;
@@ -75,7 +78,7 @@ public class AlbumController {
 
 
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<?> createAlbum(@Valid @ModelAttribute Album album, BindingResult result) {
         if (result.hasErrors()) {
             return validation(result);
@@ -102,9 +105,35 @@ public class AlbumController {
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAlbum);
+    }*/
+
+    @PostMapping
+    public ResponseEntity<?> createAlbum(
+            @Valid @ModelAttribute AlbumRequestDTO albumRequest,
+            BindingResult result) throws IOException {
+
+        if (result.hasErrors()) {
+            return validationFormadata(albumRequest,result);
+        }
+
+        byte[] imageBytes = albumRequest.getImageFile().getBytes();
+
+
+        Album albumDb = new Album();
+        albumDb.setUsername(albumRequest.getUsername());
+        albumDb.setTitle(albumRequest.getTitle());
+        albumDb.setArtist(albumRequest.getArtist());
+        albumDb.setAge(albumRequest.getAge());
+        albumDb.setAlbumprivate(albumRequest.isAlbumprivate());
+        albumDb.setImage(imageBytes);
+
+        Album savedAlbum = albumService.save(albumDb);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedAlbum);
+
     }
 
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     public ResponseEntity<?> updateAlbum(@Valid @ModelAttribute Album album, BindingResult result, @PathVariable Long id) {
         if(result.hasErrors()){
             return validation(result);
@@ -121,12 +150,12 @@ public class AlbumController {
         albumDb.setArtist(album.getArtist());
         albumDb.setAge(album.getAge());
         albumDb.setImage(album.getImage());
-        albumDb.setTracksId(album.getTracksId());
+       // albumDb.setTracksId(album.getTracksId());
 
         Album savedAlbum = albumService.save(album);
 
         // Obtener los IDs de los tracks desde el álbum
-        List<Long> trackIds = album.getTracksId();
+       *//* List<Long> trackIds = album.getTracksId();
         if (trackIds != null && !trackIds.isEmpty()) {
             for (Long trackId : trackIds) {
                 Optional<Track> trackOptional = trackService.findById(trackId);
@@ -140,11 +169,44 @@ public class AlbumController {
                     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Track not found for ID: " + trackId);
                 }
             }
+        }*//*
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedAlbum);
+    }*/
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateAlbum(
+            @Valid @ModelAttribute AlbumRequestDTO albumRequest,
+            BindingResult result,
+            @PathVariable Long id) throws IOException {
+
+        if (result.hasErrors()) {
+            return validationFormadata(albumRequest,result);
         }
+
+        byte[] imageBytes = albumRequest.getImageFile().getBytes();
+
+
+        Optional<Album> o = albumService.findById(id);
+
+        if (o.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Album albumDb = o.get();
+        albumDb.setUsername(albumRequest.getUsername());
+        albumDb.setTitle(albumRequest.getTitle());
+        albumDb.setArtist(albumRequest.getArtist());
+        albumDb.setAge(albumRequest.getAge());
+        albumDb.setAlbumprivate(albumRequest.isAlbumprivate());
+        albumDb.setImage(imageBytes);
+
+
+        Album savedAlbum = albumService.save(albumDb);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAlbum);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removeAlbum(@PathVariable Long id) {
@@ -163,6 +225,22 @@ public class AlbumController {
         result.getFieldErrors().forEach(err -> {
             errors.put(err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage());
         });
+        return ResponseEntity.badRequest().body(errors);
+    }
+
+    private ResponseEntity<?> validationFormadata(AlbumRequestDTO trackRequest, BindingResult result) {
+     /*
+        La logica de validacion esta escrita para el envio desde React,
+        en postman se comporta diferente. UFF!!
+        */
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : result.getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+        if (trackRequest.getImageFile() == null || trackRequest.getImageFile().isEmpty()) {
+            errors.put("imageFile", "El archivo no puede estar vacio.");
+        }
+
         return ResponseEntity.badRequest().body(errors);
     }
 

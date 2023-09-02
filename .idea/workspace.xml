@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add support for list tracks by user">
-      <change afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/TrackRequestDTO.java" afterDir="false" />
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add video capture">
+      <change afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/AlbumRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/AlbumRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/AlbumRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumServiceimpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,14 +59,14 @@
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\spring-users-app\src\main\resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.theinsideshine.insidesound.mvsc.albums.models.dto" />
       <recent name="org.theinsideshine.insidesound.mvsc.albums.services" />
       <recent name="org.theinsideshine.insidesound.mvsc.albums.repositories" />
       <recent name="org.theinsideshine.insidesound.mvsc.albums.controllers" />
       <recent name="org.theinsideshine.insidesound.mvsc.albums.models.entity" />
-      <recent name="org.theinsideshine.insidesound.gateway.security" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GatewayApplication">
+  <component name="RunManager" selected="Application.MvscAlbumsApplication">
     <configuration name="EurekaServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.theinsideshine.insidesound.eureka.server.EurekaServerApplication" />
       <module name="eureka-server" />
@@ -133,9 +129,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MvscAlbumsApplication" />
         <item itemvalue="Application.GatewayApplication" />
         <item itemvalue="Application.UsersAppApplication" />
-        <item itemvalue="Application.MvscAlbumsApplication" />
         <item itemvalue="Application.EurekaServerApplication" />
         <item itemvalue="JUnit.All in mvsc-albums" />
       </list>
@@ -185,7 +181,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692277448444</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add support crud track">
+      <created>1693051420916</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693051420916</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add video capture">
+      <created>1693051636185</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1693051636185</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -195,25 +205,22 @@
     <MESSAGE value="ase agrego soporte para envio de album image se cambio modelos de datos" />
     <MESSAGE value="soporte backend for crud album,tracks , image and mp3 ," />
     <MESSAGE value="add support for list tracks by user" />
-    <option name="LAST_COMMIT_MESSAGE" value="add support for list tracks by user" />
+    <MESSAGE value="add support crud track" />
+    <MESSAGE value="add video capture" />
+    <option name="LAST_COMMIT_MESSAGE" value="add video capture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java</url>
+          <line>172</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java</url>
-          <line>169</line>
-          <option name="timeStamp" value="22" />
+          <line>98</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

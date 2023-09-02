@@ -39,9 +39,11 @@ public class TracksController {
     public ResponseEntity<?> showTrackByAlbumId(@PathVariable Long id) {
         List<Track> tracks = trackService.findByAlbumId(id);
 
-        if (tracks.size()>0 ){
+        // Se devuelve ok si no hay ninguno asi el front puede poner no hay canciones disponibles
+        if (tracks.size()>=0 ){
             return ResponseEntity.ok(tracks);
         }
+
         return ResponseEntity.notFound().build();
     }
 
@@ -52,7 +54,8 @@ public class TracksController {
     public ResponseEntity<?> showTracksByUsername(@PathVariable String username) {
         List<Track> tracks = trackService.findByUsername(username);
 
-        if (tracks.size()>0 ){
+        // Se devuelve ok si no hay ninguno asi el front puede poner no hay canciones disponibles
+        if (tracks.size()>=0 ){
             return ResponseEntity.ok(tracks);
         }
         return ResponseEntity.notFound().build();
