@@ -2,19 +2,22 @@ package org.theinsideshine.insidesound.mvsc.albums.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
 public class TrackRequestDTO {
     @NotBlank
+    @Size(min = 4, max = 8)
     private String username;
 
     @NotBlank
+    @Size(min = 4, max = 30)
     private String title;
 
-
+    //No se pusieron Validacion para generar la estrateguia actual de manejo de errores
     private MultipartFile imageFile;
 
-
+    //No se pusieron Validacion para generar la estrateguia actual de manejo de errores
     private MultipartFile mp3File;
 
     public TrackRequestDTO() {

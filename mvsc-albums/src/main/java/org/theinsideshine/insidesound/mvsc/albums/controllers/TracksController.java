@@ -47,6 +47,18 @@ public class TracksController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/{trackId}/album")
+    public ResponseEntity<Integer> getAlbumIdByTrackId(@PathVariable Long trackId) {
+
+        Integer albumId = trackService.getAlbumIdByTrackId(trackId);
+
+        if (albumId != null) {
+            return ResponseEntity.ok(albumId);
+        } else {
+            return ResponseEntity.ok(0);
+        }
+    }
+
 
 
 
@@ -144,6 +156,22 @@ public class TracksController {
         Track savedTrack = trackService.save(trackDb);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTrack);
+    }
+
+    // Endpoint para asociar un álbum a una pista
+        @PostMapping("/{trackId}/associateAlbum")
+    public ResponseEntity<String> associateAlbumToTrack(
+            @PathVariable Long trackId,
+            @RequestParam Long albumId) {
+
+        // Lógica para asociar el álbum al track usando trackId y albumId
+        try {
+            trackService.associateAlbumToTrack(trackId, albumId);
+            return ResponseEntity.ok("Álbum asociado exitosamente a la pista.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al asociar el álbum a la pista: " + e.getMessage());
+        }
     }
 
 

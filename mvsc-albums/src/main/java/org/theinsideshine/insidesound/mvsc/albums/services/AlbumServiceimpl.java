@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
 import org.theinsideshine.insidesound.mvsc.albums.repositories.AlbumRepository;
+import org.theinsideshine.insidesound.mvsc.albums.repositories.TrackRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,9 @@ public class AlbumServiceimpl implements AlbumService{
 
     @Autowired
     private AlbumRepository albumRepository;
+
+    @Autowired
+    private TrackRepository trackRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -59,6 +63,8 @@ public class AlbumServiceimpl implements AlbumService{
     @Override
     @Transactional
     public void remove(Long id) {
+
+        trackRepository.removeTracksByAlbumId(id);
         albumRepository.deleteById(id);
     }
 }

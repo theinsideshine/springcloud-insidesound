@@ -5,11 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add video capture">
-      <change afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/AlbumRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/ImageController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/AlbumRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/AlbumRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/TrackRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/TrackRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Album.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Image.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/ImageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/TrackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/TrackRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumServiceimpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/ImageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/ImageServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackServiceimpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +78,7 @@
       <recent name="org.theinsideshine.insidesound.mvsc.albums.models.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MvscAlbumsApplication">
+  <component name="RunManager" selected="Application.GatewayApplication">
     <configuration name="EurekaServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.theinsideshine.insidesound.eureka.server.EurekaServerApplication" />
       <module name="eureka-server" />
@@ -129,9 +141,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MvscAlbumsApplication" />
         <item itemvalue="Application.GatewayApplication" />
         <item itemvalue="Application.UsersAppApplication" />
+        <item itemvalue="Application.MvscAlbumsApplication" />
         <item itemvalue="Application.EurekaServerApplication" />
         <item itemvalue="JUnit.All in mvsc-albums" />
       </list>
@@ -214,13 +226,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java</url>
-          <line>172</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="24" />
+          <line>193</line>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

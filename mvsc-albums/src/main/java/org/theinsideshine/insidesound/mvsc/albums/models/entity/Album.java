@@ -26,8 +26,10 @@ public class Album {
     @Column(unique = true)
     private String title;
     @NotBlank
-    @Size(min = 4, max = 20)
+    @Size(min = 4, max = 23)
     private String artist;
+
+    @Size(min = 3, max = 4)
     private String age;
 
     private boolean albumprivate;

@@ -213,7 +213,9 @@ public class AlbumController {
         Optional<Album> o = albumService.findById(id);
 
         if (o.isPresent()) {
-            albumService.remove(id);
+            Long albumId = o.get().getId();//
+
+            albumService.remove(id); //
             return ResponseEntity.noContent().build(); // 204
         }
         return ResponseEntity.notFound().build();

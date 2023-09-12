@@ -1,5 +1,6 @@
 package org.theinsideshine.insidesound.mvsc.albums.services;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,8 @@ import java.util.Optional;
 @Service
 public class TrackServiceimpl implements TrackService {
 
+    @Autowired
+    private AlbumRepository albumRepository;
     @Autowired
     private TrackRepository trackRepository;
 
@@ -39,6 +42,32 @@ public class TrackServiceimpl implements TrackService {
     @Override
     public Optional<Track> findById(Long id) {
         return trackRepository.findById(id);
+    }
+
+    public Integer getAlbumIdByTrackId(Long trackId) {
+        Optional<Track> optionalTrack = trackRepository.findById(trackId);
+        if (optionalTrack.isPresent()) {
+            Track track = optionalTrack.get();
+            if (track.getAlbum() != null) {
+                return Math.toIntExact(track.getAlbum().getId());
+            }
+        }
+        return null;
+    }
+
+    @Transactional
+    public void associateAlbumToTrack(Long trackId, Long albumId) {
+        Track track = trackRepository.findById(trackId)
+                .orElseThrow(() -> new EntityNotFoundException("Pista no encontrada"));
+
+        Album album = albumRepository.findById(albumId)
+                .orElseThrow(() -> new EntityNotFoundException("Álbum no encontrado"));
+
+        // Asocia el álbum a la pista desde el lado de la pista
+        track.setAlbum(album);
+
+        // Guarda los cambios en la base de datos
+        trackRepository.save(track);
     }
 
     @Override

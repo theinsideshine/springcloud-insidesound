@@ -19,6 +19,10 @@ public interface TrackService {
 
     Optional<Track> findById(Long id);
 
+    public Integer getAlbumIdByTrackId(Long trackId);
+
+    public void associateAlbumToTrack(Long albumId, Long trackId);
+
     public Track save(Track track);
 
 

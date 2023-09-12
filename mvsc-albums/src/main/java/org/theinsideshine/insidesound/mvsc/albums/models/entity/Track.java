@@ -24,7 +24,7 @@ public class Track {
     private String username;
 
     @NotBlank
-    @Size(min = 4, max = 20)
+    @Size(min = 4, max = 30)
     @Column(unique = true)
     private String title;
 

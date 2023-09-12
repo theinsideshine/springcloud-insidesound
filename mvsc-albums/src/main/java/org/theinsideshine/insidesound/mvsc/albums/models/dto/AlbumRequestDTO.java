@@ -1,23 +1,28 @@
 package org.theinsideshine.insidesound.mvsc.albums.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AlbumRequestDTO {
     @NotBlank
+    @Size(min = 4, max = 8)
     private String username;
 
     @NotBlank
+    @Size(min = 4, max = 20)
     private String title;
 
     @NotBlank
+    @Size(min = 4, max = 23)
     private String artist;
 
+    @Size(min = 3, max = 4)
     private String age;
 
     private boolean albumprivate;
 
-
+    //No se pusieron Validacion para generar la estrateguia actual de manejo de errores
     private MultipartFile imageFile;
 
     public AlbumRequestDTO() {
