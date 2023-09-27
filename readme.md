@@ -8,6 +8,13 @@ Spring Security and Spring Cloud Gateway
 Springsecurity implementation notes
 [notes](doc/noteImpl.pdf)
 
+ErrorSystem
+[![ErrorSystem](images/video-errors.png)](https://youtu.be/BDVQ2RtpvLg)
+
+Demo-stage1
+[![Demo-stage1](images/video-demo1.png)](https://youtu.be/uy-X84YQUQM)
+
+
 
 
 FrontEnd repository: https://github.com/theinsideshine/react-insideSound

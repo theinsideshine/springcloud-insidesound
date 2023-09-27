@@ -41,23 +41,9 @@ public class Album {
     @Column(length = 1048576)
     private byte[]  image;
 
-    /*@ElementCollection
-    @CollectionTable(name = "album_tracks", joinColumns = @JoinColumn(name = "album_id"))
-    @Column(name = "track_id")
-    private List<Long> tracksId;*/
     public Album() {
     }
 
-    /*public Album(Long id, String username, String title, String artist, String age, boolean albumprivate, byte[] image, List<Long> tracksId) {
-        this.id = id;
-        this.username = username;
-        this.title = title;
-        this.artist = artist;
-        this.age = age;
-        this.albumprivate = albumprivate;
-        this.image = image;
-        this.tracksId = tracksId;
-    }*/
 
     public Album(Long id, String username, String title, String artist, String age, boolean albumprivate, @NotEmpty byte[] image) {
         this.id = id;

@@ -40,6 +40,12 @@ public class AlbumServiceimpl implements AlbumService{
     public List<Album> findByUsername(String username) {
         return albumRepository.findByUsername(username);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Album> findPublicAlbumsByUsername(String username) {
+        return albumRepository.findByUsernameAndAlbumprivateFalse(username);
+    }
     @Override
     @Transactional
     public Album save(Album album) {

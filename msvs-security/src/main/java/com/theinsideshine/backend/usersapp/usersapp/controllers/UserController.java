@@ -57,6 +57,12 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/usernames")
+    public List<String> getAllUsernames() {
+        return service.getAllUsernames();
+    }
+
     
     @PostMapping
     public ResponseEntity<?> create(@Valid @RequestBody User user, BindingResult result) {

@@ -26,6 +26,7 @@ public class SpringSecurityConfig {
     public SecurityWebFilterChain configure(ServerHttpSecurity http) {
         return http.authorizeExchange()
                 .pathMatchers("/msvc-security/login").permitAll()
+                .pathMatchers(HttpMethod.GET, "/msvc-security/users/usernames").permitAll()
                 .pathMatchers(HttpMethod.GET, "/msvc-security/users","/msvc-security/users/page/{page}").permitAll()
                 .pathMatchers(HttpMethod.GET, "/msvc-security/users/{id}").hasAnyRole("USER", "ADMIN")
                 .pathMatchers(HttpMethod.POST, "/msvc-security/users").permitAll()

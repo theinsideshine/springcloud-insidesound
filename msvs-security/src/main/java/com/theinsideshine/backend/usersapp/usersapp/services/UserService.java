@@ -17,6 +17,8 @@ public interface UserService {
 
     Optional<UserDto> findById(Long id);
 
+    public List<String> getAllUsernames() ;
+
     UserDto save(User user);
     Optional<UserDto> update(UserRequest user, Long id);
 

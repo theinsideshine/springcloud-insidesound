@@ -17,6 +17,8 @@ public interface AlbumService {
     Optional<Album> findById(Long id);
 
     List<Album> findByUsername(String username);
+
+    public List<Album> findPublicAlbumsByUsername(String username);
     Album save(Album album);
     Optional<Album> update(Album album, Long id);
 

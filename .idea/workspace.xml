@@ -4,24 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add video capture">
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="addtrack to album">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SpringSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SpringSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/msvs-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/services/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/ImageController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/AlbumRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/AlbumRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/TrackRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/TrackRequestDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Image.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/ImageRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/TrackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/TrackRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/AlbumRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/AlbumRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumServiceimpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/ImageService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/ImageServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/TrackServiceimpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693051636185</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="addtrack to album">
+      <created>1694518408503</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1694518408503</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -219,18 +219,10 @@
     <MESSAGE value="add support for list tracks by user" />
     <MESSAGE value="add support crud track" />
     <MESSAGE value="add video capture" />
-    <option name="LAST_COMMIT_MESSAGE" value="add video capture" />
+    <MESSAGE value="addtrack to album" />
+    <option name="LAST_COMMIT_MESSAGE" value="addtrack to album" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/mvsc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/TracksController.java</url>
-          <line>193</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.springframework.validation.BeanPropertyBindingResult" memberName="messageCodesResolver" />

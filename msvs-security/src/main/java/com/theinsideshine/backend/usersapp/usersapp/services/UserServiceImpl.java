@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 
 
 import org.springframework.data.domain.Page;
@@ -61,6 +63,16 @@ public class UserServiceImpl implements UserService {
                 .setUser(u)
                 .build());
 
+    }
+
+    public List<String> getAllUsernames() {
+        Iterable<User> usersIterable = repository.findAll();
+        List<User> usersList = StreamSupport.stream(usersIterable.spliterator(), false)
+                .collect(Collectors.toList());
+
+        return usersList.stream()
+                .map(User::getUsername)
+                .collect(Collectors.toList());
     }
 
     @Override
