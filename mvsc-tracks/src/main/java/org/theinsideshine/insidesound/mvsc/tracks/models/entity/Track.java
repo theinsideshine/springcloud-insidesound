@@ -1,6 +1,6 @@
-package org.theinsideshine.insidesound.mvsc.albums.models.entity;
+package org.theinsideshine.insidesound.mvsc.tracks.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -8,16 +8,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-import java.util.List;
+
 
 @Entity
 @Table(name = "tracks")
-@JsonIgnoreProperties({"album"})
 public class Track {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotBlank
     @Size(min = 4, max = 8)
@@ -41,27 +40,26 @@ public class Track {
     private byte[]  mp3;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "album_id", referencedColumnName = "id")
-    private Album album;
+    @Column(name = "album_id", columnDefinition = "BIGINT default 0")
+    private Long album_id;
 
     public Track() {
     }
 
-    public Track(int id, String username, String title, byte[] image, byte[] mp3, Album album) {
+    public Track(Long id, String username, String title, byte[] image, byte[] mp3, Long album_id) {
         this.id = id;
         this.username = username;
         this.title = title;
         this.image = image;
         this.mp3 = mp3;
-        this.album = album;
+        this.album_id = album_id;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -97,12 +95,12 @@ public class Track {
         this.mp3 = mp3;
     }
 
-    public Album getAlbum() {
-        return album;
+    public Long getAlbum_id() {
+        return album_id;
     }
 
-    public void setAlbum(Album album) {
-        this.album = album;
+    public void setAlbum_id(Long album_id) {
+        this.album_id = album_id;
     }
 
     public Integer getImageHashCode() {

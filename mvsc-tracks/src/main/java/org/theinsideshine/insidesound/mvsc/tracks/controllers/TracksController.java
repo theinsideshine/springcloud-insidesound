@@ -1,4 +1,4 @@
-package org.theinsideshine.insidesound.mvsc.albums.controllers;
+package org.theinsideshine.insidesound.mvsc.tracks.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.theinsideshine.insidesound.mvsc.albums.models.dto.TrackRequestDTO;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
-import org.theinsideshine.insidesound.mvsc.albums.services.AlbumService;
-import org.theinsideshine.insidesound.mvsc.albums.services.TrackService;
+
+import org.theinsideshine.insidesound.mvsc.tracks.models.dto.TrackRequestDTO;
+import org.theinsideshine.insidesound.mvsc.tracks.models.entity.Track;
+import org.theinsideshine.insidesound.mvsc.tracks.services.TrackService;
+
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,7 +23,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/tracks")
+@RequestMapping("/")
 public class TracksController {
 
     @Autowired
@@ -40,7 +39,7 @@ public class TracksController {
         List<Track> tracks = trackService.findByAlbumId(id);
 
         // Se devuelve ok si no hay ninguno asi el front puede poner no hay canciones disponibles
-        if (tracks.size()>=0 ){
+        if (tracks.size() >= 0) {
             return ResponseEntity.ok(tracks);
         }
 
@@ -48,18 +47,16 @@ public class TracksController {
     }
 
     @GetMapping("/{trackId}/album")
-    public ResponseEntity<Integer> getAlbumIdByTrackId(@PathVariable Long trackId) {
+    public ResponseEntity<Long> getAlbumIdByTrackId(@PathVariable Long trackId) {
 
-        Integer albumId = trackService.getAlbumIdByTrackId(trackId);
+        Long albumId = trackService.getAlbumIdByTrackId(trackId);
 
         if (albumId != null) {
             return ResponseEntity.ok(albumId);
         } else {
-            return ResponseEntity.ok(0);
+            return ResponseEntity.ok(0L);
         }
     }
-
-
 
 
     @GetMapping("/by-username/{username}")
@@ -67,7 +64,7 @@ public class TracksController {
         List<Track> tracks = trackService.findByUsername(username);
 
         // Se devuelve ok si no hay ninguno asi el front puede poner no hay canciones disponibles
-        if (tracks.size()>=0 ){
+        if (tracks.size() >= 0) {
             return ResponseEntity.ok(tracks);
         }
         return ResponseEntity.notFound().build();
@@ -77,13 +74,13 @@ public class TracksController {
     public ResponseEntity<?> showImageTrack(@PathVariable Long id) {
 
 
-        Optional<Track> o = trackService.findById( id);
+        Optional<Track> o = trackService.findById(id);
 
-        if (o.isEmpty() || o.get().getImage()== null) {
+        if (o.isEmpty() || o.get().getImage() == null) {
             return ResponseEntity.notFound().build();
         }
-        Resource image =  new ByteArrayResource(o.get().getImage());
-        return  ResponseEntity.ok()
+        Resource image = new ByteArrayResource(o.get().getImage());
+        return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(image);
 
@@ -92,13 +89,13 @@ public class TracksController {
     @GetMapping("/mp3/{id}")
     public ResponseEntity<?> showMp3Track(@PathVariable Long id) {
 
-        Optional<Track> o = trackService.findById( id);
+        Optional<Track> o = trackService.findById(id);
 
         if (o.isEmpty() || o.get().getImage() == null) {
             return ResponseEntity.notFound().build();
         }
-        Resource mp3 =  new ByteArrayResource(o.get().getMp3());
-        return  ResponseEntity.ok()
+        Resource mp3 = new ByteArrayResource(o.get().getMp3());
+        return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(mp3);
     }
@@ -109,7 +106,7 @@ public class TracksController {
             BindingResult result) throws IOException {
 
         if (result.hasErrors()) {
-            return validationFormadata(trackRequest,result);
+            return validationFormadata(trackRequest, result);
         }
 
         byte[] imageBytes = trackRequest.getImageFile().getBytes();
@@ -120,6 +117,7 @@ public class TracksController {
         trackDb.setTitle(trackRequest.getTitle());
         trackDb.setImage(imageBytes);
         trackDb.setMp3(mp3Bytes);
+        trackDb.setAlbum_id(0L);
 
         Track savedTrack = trackService.save(trackDb);
 
@@ -135,7 +133,7 @@ public class TracksController {
             @PathVariable Long id) throws IOException {
 
         if (result.hasErrors()) {
-            return validationFormadata(trackRequest,result);
+            return validationFormadata(trackRequest, result);
         }
 
         byte[] imageBytes = trackRequest.getImageFile().getBytes();
@@ -147,11 +145,12 @@ public class TracksController {
             return ResponseEntity.notFound().build();
         }
 
-        Track trackDb = o.get();
+        Track trackDb = o.get(); // Mantiene el album_id
         trackDb.setUsername(trackRequest.getUsername());
         trackDb.setTitle(trackRequest.getTitle());
         trackDb.setImage(imageBytes);
         trackDb.setMp3(mp3Bytes);
+
 
         Track savedTrack = trackService.save(trackDb);
 
@@ -159,7 +158,7 @@ public class TracksController {
     }
 
     // Endpoint para asociar un álbum a una pista
-        @PostMapping("/{trackId}/associateAlbum")
+    @PostMapping("/{trackId}/associateAlbum")
     public ResponseEntity<String> associateAlbumToTrack(
             @PathVariable Long trackId,
             @RequestParam Long albumId) {
@@ -186,22 +185,52 @@ public class TracksController {
         return ResponseEntity.notFound().build();
     }
 
-    private ResponseEntity<?> validationFormadata(TrackRequestDTO trackRequest,BindingResult result) {
+    @DeleteMapping("username/{username}")
+    public ResponseEntity<?> removeTracksByUsername(@PathVariable String username) {
+        List<Track> tracks = trackService.findByUsername(username);
+
+        if (!tracks.isEmpty()) {
+            try {
+                tracks.stream()
+                        .map(Track::getId)
+                        .forEach(trackService::remove);
+                return ResponseEntity.ok(new ApiResponse("Tracks eliminados exitosamente."));
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error al eliminar tracks."));
+            }
+        } else {
+            return ResponseEntity.ok(new ApiResponse("No hay Tracks para eliminar."));
+        }
+    }
+
+
+    @PostMapping("/removeTracksByAlbumId/{albumId}")
+    public ResponseEntity<?> removeTracksByAlbumId(@PathVariable Long albumId) {
+        try {
+            trackService.removeTracksByAlbumId(albumId);
+            return ResponseEntity.ok(new ApiResponse("Pistas actualizadas exitosamente."));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error al actualizar pistas."+e.getMessage()));
+        }
+    }
+
+
+    private ResponseEntity<?> validationFormadata(TrackRequestDTO trackRequest, BindingResult result) {
      /*
         La logica de validacion esta escrita para el envio desde React,
         en postman se comporta diferente. UFF!!
         */
-            Map<String, String> errors = new HashMap<>();
-            for (FieldError error : result.getFieldErrors()) {
-                errors.put(error.getField(), error.getDefaultMessage());
-            }
-            if (trackRequest.getImageFile() == null || trackRequest.getImageFile().isEmpty()) {
-                errors.put("imageFile", "El archivo no puede estar vacio.");
-            }
-            if (trackRequest.getMp3File() == null || trackRequest.getMp3File().isEmpty()) {
-                errors.put("mp3File", "El archivo no puede estar vacio.");
-            }
-      return ResponseEntity.badRequest().body(errors);
+        Map<String, String> errors = new HashMap<>();
+        for (FieldError error : result.getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+        if (trackRequest.getImageFile() == null || trackRequest.getImageFile().isEmpty()) {
+            errors.put("imageFile", "El archivo no puede estar vacio.");
+        }
+        if (trackRequest.getMp3File() == null || trackRequest.getMp3File().isEmpty()) {
+            errors.put("mp3File", "El archivo no puede estar vacio.");
+        }
+        return ResponseEntity.badRequest().body(errors);
     }
 
 }

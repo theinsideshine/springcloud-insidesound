@@ -90,9 +90,16 @@ public class UserController {
     public ResponseEntity<?> remove(@PathVariable Long id) {
         Optional<UserDto> o = service.findById(id);
 
+
         if (o.isPresent()) {
-            service.remove(id);
-            return ResponseEntity.noContent().build(); // 204
+
+            try {
+                service.remove(id, o.get().getUsername()); //
+                return ResponseEntity.noContent().build(); // 204
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("Error al borrar: "+e.getMessage());
+            }
         }
         return ResponseEntity.notFound().build();
     }

@@ -1,9 +1,13 @@
 server:
-  port: 8081
+  port: 8082
+
+
+
+
 
 spring:
   application:
-    name: msvc-albums
+    name: msvc-tracks
 
 eureka:
   instance:

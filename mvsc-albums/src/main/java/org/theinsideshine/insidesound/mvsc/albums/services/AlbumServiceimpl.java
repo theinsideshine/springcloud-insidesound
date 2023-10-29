@@ -1,16 +1,16 @@
 package org.theinsideshine.insidesound.mvsc.albums.services;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.theinsideshine.insidesound.mvsc.albums.clients.TrackClientRest;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
 import org.theinsideshine.insidesound.mvsc.albums.repositories.AlbumRepository;
-import org.theinsideshine.insidesound.mvsc.albums.repositories.TrackRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class AlbumServiceimpl implements AlbumService{
@@ -18,14 +18,16 @@ public class AlbumServiceimpl implements AlbumService{
     @Autowired
     private AlbumRepository albumRepository;
 
+
     @Autowired
-    private TrackRepository trackRepository;
+    private TrackClientRest trackClientRest;
+
 
     @Override
     @Transactional(readOnly = true)
     public List<Album> findAll() {
+
         List<Album> albums = (List<Album>) albumRepository.findAll();
-        //albums.forEach(album -> album.getTracks().clear());  // Saca los tracks de albums no esta funcionando el .LAZY
         return albums;
     }
     @Override
@@ -66,11 +68,31 @@ public class AlbumServiceimpl implements AlbumService{
 
         return Optional.ofNullable(albumOptional);
     }
+
     @Override
     @Transactional
     public void remove(Long id) {
 
-        trackRepository.removeTracksByAlbumId(id);
+        // Luego, elimina el álbum
+        albumRepository.deleteById(id);
+
+        // Llama al cliente Feign de "tracks" para poner es cero la referencia de las pistas asociadas al álbum por su ID
+         ResponseEntity<?> trackResponse = trackClientRest.removeTracksByAlbumId(id);;
+
+        if (trackResponse.getStatusCode().is5xxServerError()) {
+
+              throw new EntityNotFoundException(); // Hubo error en el servidor
+        }
+
+    }
+
+    // Este end point se llama cuando se borra un usuario en msvc-security
+    // En el controler busca los id del username borrado
+    @Override
+    @Transactional
+    public void removeAlbumByUsername(Long id) {
+
+        // Luego, elimina el álbum
         albumRepository.deleteById(id);
     }
 }

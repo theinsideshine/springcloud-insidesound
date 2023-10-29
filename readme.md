@@ -11,6 +11,10 @@ Springsecurity implementation notes
 ErrorSystem
 [![ErrorSystem](images/video-errors.png)](https://youtu.be/BDVQ2RtpvLg)
 
+
+DataModel
+[![DataModel](images/video-datamodel.png)](https://youtu.be/ZpaCve0QHP4)
+
 Demo-stage1
 [![Demo-stage1](images/video-demo1.png)](https://youtu.be/uy-X84YQUQM)
 

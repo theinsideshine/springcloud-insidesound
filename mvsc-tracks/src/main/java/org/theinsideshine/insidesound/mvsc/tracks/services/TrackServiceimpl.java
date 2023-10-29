@@ -1,13 +1,16 @@
-package org.theinsideshine.insidesound.mvsc.albums.services;
+package org.theinsideshine.insidesound.mvsc.tracks.services;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
-import org.theinsideshine.insidesound.mvsc.albums.repositories.AlbumRepository;
-import org.theinsideshine.insidesound.mvsc.albums.repositories.TrackRepository;
+import org.theinsideshine.insidesound.mvsc.tracks.clients.AlbumClientRest;
+import org.theinsideshine.insidesound.mvsc.tracks.models.Album;
+import org.theinsideshine.insidesound.mvsc.tracks.models.entity.Track;
+import org.theinsideshine.insidesound.mvsc.tracks.repositories.TrackRepository;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +18,12 @@ import java.util.Optional;
 @Service
 public class TrackServiceimpl implements TrackService {
 
-    @Autowired
-    private AlbumRepository albumRepository;
+
     @Autowired
     private TrackRepository trackRepository;
+
+    @Autowired
+    private  AlbumClientRest albumClientRest;
 
     @Override
     @Transactional(readOnly = true)
@@ -44,12 +49,12 @@ public class TrackServiceimpl implements TrackService {
         return trackRepository.findById(id);
     }
 
-    public Integer getAlbumIdByTrackId(Long trackId) {
+    public Long getAlbumIdByTrackId(Long trackId) {
         Optional<Track> optionalTrack = trackRepository.findById(trackId);
         if (optionalTrack.isPresent()) {
             Track track = optionalTrack.get();
-            if (track.getAlbum() != null) {
-                return Math.toIntExact(track.getAlbum().getId());
+            if (track.getAlbum_id() != 0) {
+                return (track.getAlbum_id());
             }
         }
         return null;
@@ -60,14 +65,20 @@ public class TrackServiceimpl implements TrackService {
         Track track = trackRepository.findById(trackId)
                 .orElseThrow(() -> new EntityNotFoundException("Pista no encontrada"));
 
-        Album album = albumRepository.findById(albumId)
-                .orElseThrow(() -> new EntityNotFoundException("Álbum no encontrado"));
+        // Utiliza el cliente Feign para obtener el álbum por su ID
+        ResponseEntity<Album> albumResponse = albumClientRest.getAlbumById(albumId);
 
-        // Asocia el álbum a la pista desde el lado de la pista
-        track.setAlbum(album);
+        if (albumResponse.getStatusCode().is2xxSuccessful()) {
+            Album album = albumResponse.getBody();
 
-        // Guarda los cambios en la base de datos
-        trackRepository.save(track);
+            // Asocia el álbum a la pista desde el lado de la pista
+            track.setAlbum_id(album.getId());
+
+            // Guarda los cambios en la base de datos
+            trackRepository.save(track);
+        } else {
+            throw new EntityNotFoundException("Álbum no encontrado");
+        }
     }
 
     @Override
@@ -80,5 +91,11 @@ public class TrackServiceimpl implements TrackService {
     @Transactional
     public void remove(Long id) {
         trackRepository.deleteById(id);
+    }
+
+    @Modifying
+    @Transactional
+    public void removeTracksByAlbumId(Long albumId) {
+        trackRepository.removeTracksByAlbumId(albumId);
     }
 }

@@ -1,7 +1,8 @@
 package org.theinsideshine.insidesound.mvsc.albums.controllers;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -11,31 +12,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.theinsideshine.insidesound.mvsc.albums.models.dto.AlbumRequestDTO;
-import org.theinsideshine.insidesound.mvsc.albums.models.dto.TrackRequestDTO;
 import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
 import org.theinsideshine.insidesound.mvsc.albums.services.AlbumService;
 
 import java.io.IOException;
 import java.util.*;
 
 import jakarta.validation.Valid;
-import org.theinsideshine.insidesound.mvsc.albums.services.TrackService;
 
 @RestController
-@RequestMapping("/albums")
+@RequestMapping("/")
 public class AlbumController {
 
     @Autowired
     private AlbumService albumService;
 
-    @Autowired
-    private TrackService trackService;
+    private static final Logger log = LoggerFactory.getLogger(AlbumController.class);
+
 
     @GetMapping
     public List<Album> list() {
+        log.info("Got a request");
         return albumService.findAll();
     }
 
@@ -139,25 +137,55 @@ public class AlbumController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAlbum);
     }
 
+    /*
+     La operacion se considera correcta si borra el album ,sin errores de servidor al intentar buscar
+        album_id en tracks que contengan el album a borrar( si encuentra album_id=0)
+
+
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removeAlbum(@PathVariable Long id) {
         Optional<Album> o = albumService.findById(id);
 
         if (o.isPresent()) {
-            Long albumId = o.get().getId();//
 
-            albumService.remove(id); //
-            return ResponseEntity.noContent().build(); // 204
+            try {
+                albumService.remove(id); //
+                return ResponseEntity.noContent().build(); // 204
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("Error al borrar albumes: Error en la query de update de album_id "+e.getMessage());
+            }
+
         }
         return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("username/{username}")
+    public ResponseEntity<?> removeAlbumsByUsername(@PathVariable String username) {
+        List<Album> albums = albumService.findByUsername(username);
+
+        if (!albums.isEmpty()) {
+            try {
+                albums.stream()
+                        .map(Album::getId)
+                        .forEach(albumService::remove);
+                return ResponseEntity.ok(new ApiResponse("Albums eliminados exitosamente."));
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error al eliminar Albums."));
+            }
+        } else {
+            return ResponseEntity.ok(new ApiResponse("No hay Albums para eliminar ."));
+        }
+    }
+
 
     private ResponseEntity<?> validationFormadata(AlbumRequestDTO trackRequest, BindingResult result) {
      /*
         La logica de validacion esta escrita para el envio desde React,
         en postman se comporta diferente. UFF!!
         */
-        Map<String, String> errors = new HashMap<>();
+            Map<String, String> errors = new HashMap<>();
         for (FieldError error : result.getFieldErrors()) {
             errors.put(error.getField(), error.getDefaultMessage());
         }

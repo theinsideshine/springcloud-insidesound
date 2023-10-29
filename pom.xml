@@ -18,6 +18,7 @@
     <modules>
         <module>msvs-security</module>
         <module>mvsc-albums</module>
+        <module>mvsc-tracks</module>
         <module>eureka-server</module>
         <module>gateway</module>
     </modules>

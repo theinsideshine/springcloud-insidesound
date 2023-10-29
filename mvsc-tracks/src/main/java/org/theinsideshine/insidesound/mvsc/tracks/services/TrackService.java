@@ -1,8 +1,8 @@
-package org.theinsideshine.insidesound.mvsc.albums.services;
+package org.theinsideshine.insidesound.mvsc.tracks.services;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
+import org.theinsideshine.insidesound.mvsc.tracks.models.entity.Track;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +19,7 @@ public interface TrackService {
 
     Optional<Track> findById(Long id);
 
-    public Integer getAlbumIdByTrackId(Long trackId);
+    public Long getAlbumIdByTrackId(Long trackId);
 
     public void associateAlbumToTrack(Long albumId, Long trackId);
 
@@ -27,6 +27,8 @@ public interface TrackService {
 
 
     public void remove(Long id);
+
+    public void removeTracksByAlbumId(Long albumId);
 
 
 }

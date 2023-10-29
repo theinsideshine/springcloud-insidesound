@@ -1,18 +1,18 @@
-package org.theinsideshine.insidesound.mvsc.albums.repositories;
+package org.theinsideshine.insidesound.mvsc.tracks.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Album;
-import org.theinsideshine.insidesound.mvsc.albums.models.entity.Track;
+import org.theinsideshine.insidesound.mvsc.tracks.models.entity.Track;
+
 
 import java.util.List;
 
 public interface TrackRepository extends JpaRepository<Track,Long> {
 
-    @Query("SELECT t FROM Track t WHERE t.album.id = :albumId")
+    @Query("SELECT t FROM Track t WHERE t.album_id = :albumId")
     List<Track> findByAlbumId(Long albumId);
 
 
@@ -24,6 +24,6 @@ public interface TrackRepository extends JpaRepository<Track,Long> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE Track t SET t.album = null WHERE t.album.id = ?1")
+    @Query("UPDATE Track t SET t.album_id = 0 WHERE t.album_id = ?1")
     void removeTracksByAlbumId(Long albumId);
 }

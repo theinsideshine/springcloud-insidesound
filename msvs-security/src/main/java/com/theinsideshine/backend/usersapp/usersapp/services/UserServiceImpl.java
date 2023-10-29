@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 
-
+import com.theinsideshine.backend.usersapp.usersapp.clients.AlbumClientRest;
+import com.theinsideshine.backend.usersapp.usersapp.clients.TrackClientRest;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +27,8 @@ import com.theinsideshine.backend.usersapp.usersapp.models.request.UserRequest;
 import com.theinsideshine.backend.usersapp.usersapp.repositories.RoleRepository;
 import com.theinsideshine.backend.usersapp.usersapp.repositories.UserRepository;
 
+import javax.sound.midi.Track;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,6 +41,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private TrackClientRest trackClientRest;
+
+    @Autowired
+    private AlbumClientRest albumClientRest;
 
     @Override
     @Transactional(readOnly = true)
@@ -100,8 +111,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void remove(Long id) {
+    public void remove(Long id,String username) {
         repository.deleteById(id);
+
+
+        // Llama al cliente Feign de "tracks" para poner borrar los track con el username
+        ResponseEntity<?> trackResponse = trackClientRest.removeTracksByUsername(username);;
+
+        if (trackResponse.getStatusCode().is5xxServerError()) {
+
+            throw new EntityNotFoundException("Error al borrar tracks con el username"); // Hubo error en el servidor
+        }
+
+        // Llama al cliente Feign de "album" para poner borrar los track con el username
+        ResponseEntity<?> albumResponse = albumClientRest.removeAlbumsByUsername(username);;
+
+        if (albumResponse.getStatusCode().is5xxServerError()) {
+
+            throw new EntityNotFoundException("Error al borrar albumes con el username"); // Hubo error en el servidor
+        }
+
     }
 
     private List<Role> getRoles(IUser user) {

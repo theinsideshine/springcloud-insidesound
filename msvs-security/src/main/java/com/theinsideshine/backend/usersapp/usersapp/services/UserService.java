@@ -22,5 +22,5 @@ public interface UserService {
     UserDto save(User user);
     Optional<UserDto> update(UserRequest user, Long id);
 
-    void remove(Long id);
+    void remove(Long id, String username);
 }
