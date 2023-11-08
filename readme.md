@@ -19,7 +19,7 @@ DataModel
 
 Construction of the containers of the microservices ecosystem of the InsideSound App, added environment variables, arguments,
 and images were uploaded to dockerHub built through layers in the Dockerfile
-[![Security](images/video-dcoker.png)](https://studio.youtube.com/video/Q9uCy-TE9lc/edit)
+[![Security](images/video-dcoker.png)](https://www.youtube.com/watch?v=Q9uCy-TE9lc)
 
 Docker implementation notes
 [notes](doc/insideSound-docker.pdf)
