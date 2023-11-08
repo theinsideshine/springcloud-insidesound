@@ -1,0 +1,85 @@
+version: "3.9"
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: educacionta/eureka-server:latest
+#    build:
+#      context: ./
+#      dockerfile: ./eureka-server/Dockerfile
+    ports:
+      - "8761:8761"
+    env_file: ./eureka-server/.env
+    networks:
+      - spring
+    restart: always
+
+  msvc-security:
+    container_name: msvc-security
+    image: educacionta/msvc-security:latest
+#    build:
+#      context: ./
+#      dockerfile: ./msvc-security/Dockerfile
+    ports:
+      - "9100:9100"
+    env_file:
+      - ./msvc-security/.env
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+    restart: always
+
+  msvc-albums:
+    container_name: msvc-albums
+    image: educacionta/msvc-albums:latest
+#    build:
+#      context: ./
+#      dockerfile: ./msvc-albums/Dockerfile
+    ports:
+      - "8081:8081"
+    env_file:
+      - ./msvc-albums/.env
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+    restart: always
+
+  msvc-tracks:
+    container_name: msvc-tracks
+    image: educacionta/msvc-tracks:latest
+#    build:
+#      context: ./
+#      dockerfile: ./msvc-tracks/Dockerfile
+    ports:
+      - "8082:8082"
+    env_file:
+      - ./msvc-tracks/.env
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+    restart: always
+
+  gateway:
+    container_name: gateway
+    image: educacionta/gateway:latest
+#    build:
+#      context: ./
+#      dockerfile: ./gateway/Dockerfile
+    ports:
+      - "8090:8090"
+    env_file:
+      - ./gateway/.env
+    networks:
+      - spring
+    depends_on:
+      - eureka-server
+      - msvc-security
+      - msvc-albums
+      - msvc-tracks
+    restart: always
+
+networks:
+  spring:
+    name: spring

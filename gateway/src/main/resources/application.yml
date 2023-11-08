@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: ${PORT:8090}
 
 spring:
   application:
@@ -13,12 +13,13 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-
 
 eureka:
-  instance:
-    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+
+#management:
+#  tracing:
+#    sampling:
+#      probability: 1.0

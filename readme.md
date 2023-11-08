@@ -15,6 +15,15 @@ ErrorSystem
 DataModel
 [![DataModel](images/video-datamodel.png)](https://youtu.be/ZpaCve0QHP4)
 
+
+
+Construction of the containers of the microservices ecosystem of the InsideSound App, added environment variables, arguments,
+and images were uploaded to dockerHub built through layers in the Dockerfile
+[![Security](images/video-dcoker.png)](https://studio.youtube.com/video/Q9uCy-TE9lc/edit)
+
+Docker implementation notes
+[notes](doc/insideSound-docker.pdf)
+
 Demo-stage1
 [![Demo-stage1](images/video-demo1.png)](https://youtu.be/uy-X84YQUQM)
 
