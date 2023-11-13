@@ -12,6 +12,9 @@ spring:
     url: jdbc:mysql://${DB_HOST:localhost:3306}/${DB_DATABASE:db_users_springboot}
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:sasa}
+#    url: jdbc:mysql://db-insidesound-aws.ctuv5cthsaol.us-east-1.rds.amazonaws.com:3306/db_users_springboot
+#    username: admin
+#    password: sasa4321
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect

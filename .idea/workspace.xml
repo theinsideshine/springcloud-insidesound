@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="dockerizacion">
-      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="dockerizacion-edit">
+      <change afterPath="$PROJECT_DIR$/docker-compose-eureka.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose-gateway.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-albums/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-albums/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-albums/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-security/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-security/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-security/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-tracks/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-tracks/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-tracks/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,24 +48,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/insideSound/spring-insidesound-msvc/gateway&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/proyectos/insideSound/spring-insidesound-msvc",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\proyectos\insideSound\spring-insidesound-msvc" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\gateway" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\mvsc-tracks" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\mvsc-albums" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\msvs-security" />
-      <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\eureka-server" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.theinsideshine.insidesound.mvsc.albums.controllers" />
@@ -147,8 +156,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.GatewayApplication" />
-        <item itemvalue="Application.MvscTracksApplication" />
         <item itemvalue="Application.UsersAppApplication" />
+        <item itemvalue="Application.MvscTracksApplication" />
         <item itemvalue="Application.MvscAlbumsApplication" />
         <item itemvalue="Application.EurekaServerApplication" />
       </list>
@@ -247,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699459148272</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="dockerizacion-edit">
+      <created>1699459272457</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1699459272457</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -263,7 +279,8 @@
     <MESSAGE value="add videos" />
     <MESSAGE value="create msvc-track add clientFeing, micrometer, zipkin" />
     <MESSAGE value="dockerizacion" />
-    <option name="LAST_COMMIT_MESSAGE" value="dockerizacion" />
+    <MESSAGE value="dockerizacion-edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="dockerizacion-edit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
