@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="dockerizacion-edit">
-      <change afterPath="$PROJECT_DIR$/docker-compose-eureka.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose-gateway.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-albums/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-albums/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-security/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-security/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-tracks/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-tracks/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add video deploy ec2 aws" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,17 +37,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/proyectos/insideSound/spring-insidesound-msvc",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.fileTypes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/insideSound/spring-insidesound-msvc&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc" />
@@ -263,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699459272457</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add video deploy ec2 aws">
+      <created>1699913202664</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699913202664</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -280,7 +276,8 @@
     <MESSAGE value="create msvc-track add clientFeing, micrometer, zipkin" />
     <MESSAGE value="dockerizacion" />
     <MESSAGE value="dockerizacion-edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="dockerizacion-edit" />
+    <MESSAGE value="add video deploy ec2 aws" />
+    <option name="LAST_COMMIT_MESSAGE" value="add video deploy ec2 aws" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
