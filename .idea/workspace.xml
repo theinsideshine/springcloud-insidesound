@@ -4,8 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add gitignore password">
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="delete eureka-server now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose-eureka.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose-gateway.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-albums/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-albums/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-albums/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-albums/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-albums/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-security/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-security/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-security/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-security/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-security/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-tracks/.env" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-tracks/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-tracks/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-tracks/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/msvc-tracks/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +35,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -268,7 +287,28 @@
       <option name="project" value="LOCAL" />
       <updated>1699911643608</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="delete eureka-server">
+      <created>1700092645845</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1700092645845</updated>
+    </task>
+    <task id="LOCAL-00017" summary="delete eureka-server">
+      <created>1700092724444</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1700092724444</updated>
+    </task>
+    <task id="LOCAL-00018" summary="delete eureka-server now">
+      <created>1700092802668</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1700092802668</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -287,7 +327,9 @@
     <MESSAGE value="dockerizacion-edit" />
     <MESSAGE value="add video deploy ec2 aws" />
     <MESSAGE value="add gitignore password" />
-    <option name="LAST_COMMIT_MESSAGE" value="add gitignore password" />
+    <MESSAGE value="delete eureka-server" />
+    <MESSAGE value="delete eureka-server now" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete eureka-server now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

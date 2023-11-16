@@ -1,19 +1,5 @@
 version: "3.9"
 services:
-  eureka-server:
-    container_name: eureka-server
-    image: educacionta/eureka-server:latest
-#    build:
-#      context: ./
-#      dockerfile: ./eureka-server/Dockerfile
-    ports:
-      - "8761:8761"
-#    env_file: ./eureka-server/.env
-    environment:
-      PORT: 8761
-    networks:
-      - spring
-    restart: always
 
   msvc-security:
     container_name: msvc-security
@@ -33,11 +19,8 @@ services:
       DB_DATABASE: db_users_springboot
       ALBUMS_URL: msvc-albums:8081
       TRACKS_URL: msvc-tracks:8082
-      EUREKA_URL: http://eureka-server:8761/eureka/
     networks:
       - spring
-    depends_on:
-      - eureka-server
     restart: always
 
   msvc-albums:
@@ -57,11 +40,8 @@ services:
       DB_PASSWORD: sasa4321
       DB_DATABASE: db_users_springboot
       TRACKS_URL: msvc-tracks:8082
-      EUREKA_URL: http://eureka-server:8761/eureka/
     networks:
       - spring
-    depends_on:
-      - eureka-server
     restart: always
 
   msvc-tracks:
@@ -81,34 +61,29 @@ services:
       DB_PASSWORD: sasa4321
       DB_DATABASE: db_users_springboot
       ALBUMS_URL: msvc-albums:8081
-      EUREKA_URL: http://eureka-server:8761/eureka/
     networks:
       - spring
-    depends_on:
-      - eureka-server
     restart: always
 
-  gateway:
-    container_name: gateway
-    image: educacionta/gateway:latest
+#  gateway:
+#    container_name: gateway
+##    image: educacionta/gateway:latest
 #    build:
 #      context: ./
 #      dockerfile: ./gateway/Dockerfile
-    ports:
-      - "8090:8090"
-#    env_file:
-#      - ./gateway/.env
-    environment:
-      PORT: 8090
-      EUREKA_URL: http://eureka-server:8761/eureka/
-    networks:
-      - spring
-    depends_on:
-      - eureka-server
-      - msvc-security
-      - msvc-albums
-      - msvc-tracks
-    restart: always
+#    ports:
+#      - "8090:8090"
+##    env_file:
+##      - ./gateway/.env
+#    environment:
+#      PORT: 8090
+#    networks:
+#      - spring
+#    depends_on:
+#      - msvc-security
+#      - msvc-albums
+#      - msvc-tracks
+#    restart: always
 
 networks:
   spring:
