@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "msvc-tracks", url = "${msvc.tracks.url}")
+@FeignClient(name = "msvc-tracks")
 public interface TrackClientRest {
 
     @PostMapping("/removeTracksByAlbumId/{albumId}")

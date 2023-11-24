@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: msvc-albums
+data:
+  port: "8081"
+  db_host: "db-insidesound-aws.ctuv5cthsaol.us-east-1.rds.amazonaws.com:3306"
+  db_database: db_users_springboot
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: msvc-tracks
+data:
+  port: "8082"
+  db_host: "db-insidesound-aws.ctuv5cthsaol.us-east-1.rds.amazonaws.com:3306"
+  db_database: db_users_springboot
+  albums_url: "msvc-albums:8081"
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: msvc-security
+data:
+  port: "9100"
+  db_host: "db-insidesound-aws.ctuv5cthsaol.us-east-1.rds.amazonaws.com:3306"
+  db_database: db_users_springboot
+  albums_url: "msvc-albums:8081"
+  tracks_url: "msvc-tracks:8082"
+
