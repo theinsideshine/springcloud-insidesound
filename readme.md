@@ -25,7 +25,7 @@ Docker implementation notes
 [notes](doc/insideSound-docker.pdf)
 
 Deployment of the inside sound app in aws
-[![Ec2-aws](images/video-ec2.png)](https://youtu.be/1-hhV5BuRaI)
+[![Ec2-aws](images/video-ec2.png)](https://youtu.be/asVS0Zw_jzY)
 
 Ec2 implementation notes
 [notes](doc/ec2-aws.pdf)
