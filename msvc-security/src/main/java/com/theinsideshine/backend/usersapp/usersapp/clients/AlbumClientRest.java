@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name="msvc-albums",url="${msvc.albums.url}")
+@FeignClient(name="msvc-albums")
 public interface AlbumClientRest {
 
 

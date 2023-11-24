@@ -16,7 +16,6 @@ data:
   port: "8082"
   db_host: "db-insidesound-aws.ctuv5cthsaol.us-east-1.rds.amazonaws.com:3306"
   db_database: db_users_springboot
-  albums_url: "msvc-albums:8081"
 
 ---
 apiVersion: v1
@@ -27,6 +26,4 @@ data:
   port: "9100"
   db_host: "db-insidesound-aws.ctuv5cthsaol.us-east-1.rds.amazonaws.com:3306"
   db_database: db_users_springboot
-  albums_url: "msvc-albums:8081"
-  tracks_url: "msvc-tracks:8082"
 

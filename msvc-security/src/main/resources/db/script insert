@@ -1,0 +1,6 @@
+INSERT INTO `db_users_springboot`.`users` (`id`, `email`, `password`, `username`) VALUES ('1', 'admin@gmail.com', '$2a$10$DFNwnmVaHMdt/nt8DrRsD.5VNxKjdy5JpTerebjJorTZiMDODAiJW', 'admin');
+INSERT INTO `db_users_springboot`.`users` (`id`, `email`, `password`, `username`) VALUES ('2', 'seru@gmail.com', '$2a$10$DFNwnmVaHMdt/nt8DrRsD.5VNxKjdy5JpTerebjJorTZiMDODAiJW', 'seru');
+
+INSERT INTO `db_users_springboot`.`roles` (`id`, `name`) VALUES ('1', 'ROLE_ADMIN');
+INSERT INTO `db_users_springboot`.`roles` (`id`, `name`) VALUES ('2', 'ROLE_USER');
+

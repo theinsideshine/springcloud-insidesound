@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.theinsideshine.insidesound.mvsc.tracks.models.Album;
 
-@FeignClient(name="msvc-albums",url="${msvc.albums.url}")
+@FeignClient(name="msvc-albums")
 public interface AlbumClientRest {
 
 

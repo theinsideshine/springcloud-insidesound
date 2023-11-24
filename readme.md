@@ -2,39 +2,12 @@ InsideSound is an application to create albums with songs to listen to. The fron
 
 
 
-Spring Security and Spring Cloud Gateway
-[![Security](images/video-security2.png)](https://www.youtube.com/watch?v=2DwEdIIFNcI)
-
-Springsecurity implementation notes
-[notes](doc/noteImpl.pdf)
-
-ErrorSystem
-[![ErrorSystem](images/video-errors.png)](https://youtu.be/BDVQ2RtpvLg)
+Deploy in minikube-part1
+[![minikube1|](images/minikube-part1.png)](https://www.youtube.com/watch?v=QfL5yNiFPJg)
 
 
-DataModel
-[![DataModel](images/video-datamodel.png)](https://youtu.be/ZpaCve0QHP4)
-
-
-
-Construction of the containers of the microservices ecosystem of the InsideSound App, added environment variables, arguments,
-and images were uploaded to dockerHub built through layers in the Dockerfile
-[![Docker](images/video-dcoker.png)](https://www.youtube.com/watch?v=Q9uCy-TE9lc)
-
-Docker implementation notes
-[notes](doc/insideSound-docker.pdf)
-
-Deployment of the inside sound app in aws
-[![Ec2-aws](images/video-ec2.png)](https://youtu.be/1-hhV5BuRaI)
-
-Ec2 implementation notes
-[notes](doc/ec2-aws.pdf)
-
-
-
-
-Demo-stage1
-[![Demo-stage1](images/video-demo1.png)](https://youtu.be/uy-X84YQUQM)
+Deploy in minikube-part2
+[![minikube1|](images/minikube-part2.png)](https://www.youtube.com/watch?v=1t2-CEmWSKY)
 
 
 
