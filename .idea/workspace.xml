@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="change url video ec2">
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="wihtout ec2 video deploy">
       <change afterPath="$PROJECT_DIR$/gateway.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/minikube-part1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/minikube-part2.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/msvc-security/src/main/resources/db/script insert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configmap.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configmap.yaml" afterDir="false" />
@@ -318,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700232323717</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="wihtout ec2 video deploy">
+      <created>1701206563525</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701206563525</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -340,7 +349,9 @@
     <MESSAGE value="delete eureka-server" />
     <MESSAGE value="delete eureka-server now" />
     <MESSAGE value="migracios de docker para el modelo de kubernetes" />
-    <option name="LAST_COMMIT_MESSAGE" value="migracios de docker para el modelo de kubernetes" />
+    <MESSAGE value="add spring clound kubernetes" />
+    <MESSAGE value="wihtout ec2 video deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="wihtout ec2 video deploy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
