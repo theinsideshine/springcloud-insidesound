@@ -11,16 +11,12 @@
     </parent>
 
     <groupId>org.theinsideshine</groupId>
-    <artifactId>springcloud-insidesound</artifactId>
+    <artifactId>monolithic-backend-insidesound</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>msvc-security</module>
-        <module>msvc-albums</module>
-        <module>msvc-tracks</module>
-        <module>eureka-server</module>
-        <module>gateway</module>
+        <module>insidesound</module>
     </modules>
 
     <properties>
