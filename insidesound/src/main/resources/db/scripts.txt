@@ -1,0 +1,7 @@
+ALTER TABLE `db_insidesound`.`users`;
+ALTER TABLE `db_insidesound`.`users` RENAME INDEX `UK_6dotkott2kjsp8vw4d0m25fb7` TO `UK_email`;
+ALTER TABLE `db_insidesound`.`users` ALTER INDEX `UK_email` VISIBLE;
+ALTER TABLE `db_insidesound`.`users` RENAME INDEX `UK_users` TO `UK_username`;
+ALTER TABLE `db_insidesound`.`users` ALTER INDEX `UK_username` VISIBLE;
+
+
