@@ -43,18 +43,6 @@ public class  SpringSecurityConfig {
     @Autowired
     private AuthenticationConfiguration authenticationConfiguration;
 
-    /*@Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests()
-
-                .anyRequest().permitAll()
-                .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationConfiguration.getAuthenticationManager()))
-                .csrf(config -> config.disable())
-                .sessionManagement(managment -> managment.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .build();
-
-    }*/
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

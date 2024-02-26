@@ -6,35 +6,33 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public record UserRequestDto(
+public record UserRequestDtoUpdate(
         Long id,
+
         @NotBlank
         @Size(min = 4, max = 8)
         String username,
 
-        @NotBlank
-        String password,
-
         @NotEmpty
         @Email
         String email,
+
+
         boolean admin
 ) {
-    public static UserRequestDto UserRequestDtoMapperEntityToDto(User user){
-        return new UserRequestDto(
+    public static UserRequestDtoUpdate UserRequestDtoUpdateMapperEntityToDto(User user){
+        return new UserRequestDtoUpdate(
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getPassword(),
                 user.isAdmin()
         );
     }
 
-    public static User UserRequestDtoMapperDtoToEntity(UserRequestDto userRequestDto){
+    public static User UserRequestDtoUpdateMapperDtoToEntity(UserRequestDtoUpdate userRequestDto){
         return new User(
                 userRequestDto.id(),
                 userRequestDto.username(),
-                userRequestDto.password(),
                 userRequestDto.email(),
                 userRequestDto.admin()
         );

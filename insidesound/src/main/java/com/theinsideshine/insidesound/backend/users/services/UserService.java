@@ -4,23 +4,23 @@ import java.util.List;
 import java.util.Optional;
 
 import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDto;
-import com.theinsideshine.insidesound.backend.users.models.entities.User;
-import com.theinsideshine.insidesound.backend.users.models.request.UserRequest;
+import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpdate;
+import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface UserService {
     
-    List<UserRequestDto> findAll();
+    List<UserResponseDto> findAll();
 
-    Page<UserRequestDto> findAll(Pageable pageable);
+    Page<UserResponseDto> findAll(Pageable pageable);
 
-    Optional<UserRequestDto> findById(Long id);
+    Optional<UserResponseDto> findById(Long id);
 
     public List<String> getAllUsernames() ;
 
-    UserRequestDto save(User user);
-    Optional<UserRequestDto> update(UserRequest user, Long id);
+    UserResponseDto save(UserRequestDto userRequestDto);
+    UserResponseDto update(UserRequestDtoUpdate userRequestDtoUpdate, Long id);
 
-    void remove(Long id, String username);
+    void remove(Long id);
 }

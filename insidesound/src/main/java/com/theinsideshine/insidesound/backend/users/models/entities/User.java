@@ -2,8 +2,6 @@ package com.theinsideshine.insidesound.backend.users.models.entities;
 
 import java.util.List;
 
-import com.theinsideshine.insidesound.backend.users.models.IUser;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +20,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name="users")
-public class User implements IUser {
+public class User  {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +49,27 @@ public class User implements IUser {
         inverseJoinColumns = @JoinColumn(name="role_id"),
         uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id", "role_id"})})
     private List<Role> roles;
+
+    public User() {
+
+    }
+
+    public User(Long id, String username, String password, String email, boolean admin) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.admin = admin;
+    }
+
+    public User(Long id, String username, String email, boolean admin) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.admin = admin;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -92,7 +111,6 @@ public class User implements IUser {
         this.roles = roles;
     }
 
-    @Override
     public boolean isAdmin() {
         return admin;
     }

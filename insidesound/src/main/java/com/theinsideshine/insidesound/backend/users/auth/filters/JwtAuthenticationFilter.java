@@ -1,6 +1,8 @@
 package com.theinsideshine.insidesound.backend.users.auth.filters;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
@@ -78,13 +80,16 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 claims.put("authorities", new ObjectMapper().writeValueAsString(roles));
                 claims.put("isAdmin", isAdmin);
                 claims.put("username", username);
+
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                LocalDateTime expirationDateTime = currentDateTime.plusHours(1);
         
                 String token = Jwts.builder()
                         .setClaims(claims)
                         .setSubject(username)
                         .signWith(SECRET_KEY)
-                        .setIssuedAt(new Date())
-                        .setExpiration(new Date(System.currentTimeMillis() + 3600000)) //1 hora
+                        .setIssuedAt(java.sql.Timestamp.valueOf(currentDateTime))
+                        .setExpiration(java.sql.Timestamp.valueOf(expirationDateTime))
                         .compact();
                 response.addHeader(HEADER_AUTHORIZATION, PREFIX_TOKEN + token);
         

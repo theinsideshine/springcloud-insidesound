@@ -1,40 +1,39 @@
 package com.theinsideshine.insidesound.backend.exceptions;
 
+import java.util.Map;
+
 public enum InsidesoundErrorCode {
 
-    NOT_EMPTY_HOTEL_ID(400,"Hotel ID cannot be null or empty."),
+    ID_USER_NOT_FOUND(400, Map.of("PUT", "El usuario a editar no existe.")),
 
-    INVALID_CHECK_OUT(400,"The checkout date must be later than the check-in date."),
+    ERR_UPDATING_USER(500, Map.of("PUT", "El usuario no se pudo editar.")),
 
-    NOT_EMPTY_CHECK_OUT(400,"The check-out date cannot be null or empty."),
+    ERR_USER_NULL(500, Map.of("User entity", "El usuario no puede ser nulo.")),
 
-    NOT_EMPTY_CHECK_IN(400,"The check-in date cannot be null or empty."),
 
-    CHECK_IN_EARLIER_TODAY(400,"The check-in date cannot be earlier than today."),
+    ERR_DEL_USER(500, Map.of("DELETE", "No se pudo borrar el usuario."));
 
-    CHECK_OUT_EARLIER_TODAY(400,"The check-out date cannot be earlier than today."),
 
-    INVALID_AGE (400, "Age must be greater than 0."),
 
-    EMPTY_AGES (400, "Ages list cannot be empty."),
 
-    INVALID_SEARCH_ID(400, "No search found with the provided Id."),
+    private final int errorCode;
+    private final Map<String, String> errorMap;
 
-    ERROR_SENDING_KAFKA(500, "Error sending message to Kafka");
-
-    private final int code;
-    private final String reason;
-
-    InsidesoundErrorCode(int code, String reason) {
-        this.code = code;
-        this.reason = reason;
+    InsidesoundErrorCode(int errorCode, Map<String, String> errorMap) {
+        this.errorCode = errorCode;
+        this.errorMap = errorMap;
     }
 
-    public int getCode() {
-        return code;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public String getReason() {
-        return reason;
+    public Map<String, String> getErrorMap() {
+        return errorMap;
+    }
+
+    public ErrorModel toErrorModel() {
+        return new ErrorModel(errorCode, errorMap);
     }
 }
+

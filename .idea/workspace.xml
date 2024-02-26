@@ -5,123 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="wihtout ec2 video deploy">
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ErrorModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/SpringSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/filters/JwtValidationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/IUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserRequestDtoUpdate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/resources/db/scripts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/java/org/theinsideshine/insidesound/eureka/server/EurekaServerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eureka-server/src/test/java/org/theinsideshine/insidesound/eureka/server/EurekaServerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/GatewayApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/AuthenticationManagerJwt.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/CorsConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SimpleGrantedAuthorityJsonCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/SimpleGrantedAuthorityJsonCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/SpringSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/TokenJwtConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/org/theinsideshine/insidesound/gateway/security/filter/JwtAuthorizationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/test/java/org/theinsideshine/insidesound/gateway/GatewayApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/MvscAlbumsApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/WebMvcConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/clients/TrackClientRest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/controllers/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/converter/MultipartFileToByteArrayConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/api/converter/MultipartFileToByteArrayConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/dto/AlbumRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/models/dto/AlbumRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/models/entity/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/models/entity/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/repositories/AlbumRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/repositories/AlbumRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/java/org/theinsideshine/insidesound/mvsc/albums/services/AlbumServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumServiceimpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-albums/src/test/java/org/theinsideshine/insidesound/mvsc/albums/MvscAlbumsApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/.env" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/HELP.md" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/HELP.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/doc/deploy aws-rds.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/doc/deploy aws-rds.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/doc/deploy-ec2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/doc/deploy-ec2.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/images/autenticacion.png" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/images/autenticacion.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/images/validation_.png" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/images/validation_.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/images/video-deploy.png" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/images/video-deploy.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/UsersAppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/InsidesoundAppApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/SimpleGrantedAuthorityJsonCreator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/SpringSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/TokenJwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/TokenJwtConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/auth/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/filters/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/clients/AlbumClientRest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/clients/TrackClientRest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/controllers/ApiResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/models/IUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/models/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/models/dto/mapper/DtoMapperUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/mapper/DtoMapperUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/models/entities/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/entities/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/models/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/models/request/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/request/UserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/repositories/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/repositories/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/services/JpaUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/JpaUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/java/com/theinsideshine/backend/usersapp/usersapp/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-security/src/test/java/com/theinsideshine/backend/usersapp/usersapp/UsersAppApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/test/java/com/theinsideshine/insidesound/backend/InsidesoundAppApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/MvscTracksApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/WebMvcConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/clients/AlbumClientRest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/controllers/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/controllers/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/controllers/TracksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/controllers/TracksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/converter/MultipartFileToByteArrayConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/models/Album.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/models/dto/TrackRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/models/dto/TrackRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/models/entity/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/models/entity/Track.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/repositories/TrackRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/repositories/TrackRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/services/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/java/org/theinsideshine/insidesound/mvsc/tracks/services/TrackServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackServiceimpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/msvc-tracks/src/test/java/org/theinsideshine/insidesound/mvsc/albums/MvscAlbumsApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ErrorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ErrorModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/filters/JwtValidationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/filters/JwtValidationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/IUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/mapper/DtoMapperUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/request/UserRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +65,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/insideSound/spring-insidesound-msvc/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/insideSound/data/springcloud-insidesound-master/springcloud-insidesound-master&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -180,11 +81,11 @@
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\mvsc-albums" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.theinsideshine.insidesound.backend.users.models.dto" />
       <recent name="com.theinsideshine.insidesound.backend.exceptions" />
       <recent name="com.theinsideshine.backend.usersapp.usersapp.auth.filters" />
       <recent name="org.theinsideshine.insidesound.mvsc.albums.controllers" />
       <recent name="com.theinsideshine.backend.usersapp.usersapp.controllers" />
-      <recent name="org.theinsideshine.insidesound.mvsc.tracks.models" />
     </key>
   </component>
   <component name="RunManager" selected="Application.com.theinsideshine.insidesound.backend.InsidesoundAppApplication">
@@ -422,8 +323,8 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumController.java</url>
-          <line>71</line>
+          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java</url>
+          <line>23</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
@@ -431,6 +332,7 @@
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.springframework.validation.BeanPropertyBindingResult" memberName="messageCodesResolver" />
+        <PinnedItemInfo parentTag="com.theinsideshine.insidesound.backend.users.models.entities.User" memberName="roles" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>

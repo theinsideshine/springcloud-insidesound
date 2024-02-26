@@ -1,31 +1,56 @@
 package com.theinsideshine.insidesound.backend.exceptions;
 
+import java.util.Iterator;
+import java.util.Map;
+
 public class InsidesoundException extends RuntimeException {
 
     private final int statusCode;
-    private final String errorMessage;
+    private final Map<String, String> errorMap;
 
-    public InsidesoundException(int statusCode, String errorMessage) {
-        super(errorMessage);
+    public InsidesoundException(int statusCode, Map<String, String> errorMap) {
+        super(errorMap.toString());
         this.statusCode = statusCode;
-        this.errorMessage = errorMessage;
+        this.errorMap = errorMap;
     }
 
     public InsidesoundException(InsidesoundErrorCode errorCode) {
-        super(errorCode.getReason());
-        this.statusCode = errorCode.getCode();
-        this.errorMessage = errorCode.getReason();
+        //super(errorCode.getErrorCode() + ": " + errorCode.getErrorMap().values().iterator().next());
+        super(buildErrorMessage(errorCode.getErrorMap()));
+        this.statusCode = errorCode.getErrorCode();
+        this.errorMap = errorCode.getErrorMap();
     }
-
 
     public int getStatusCode() {
         return statusCode;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public Map<String, String> getErrorMap() {
+        return errorMap;
     }
 
+    private static String buildErrorMessage(Map<String, String> errorMap) {
+        StringBuilder errorMessage = new StringBuilder();
 
+        errorMessage.append("{");
+
+        Iterator<Map.Entry<String, String>> iterator = errorMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = iterator.next();
+            errorMessage.append(entry.getKey())
+                    .append(": ")
+                    .append(entry.getValue());
+
+            if (iterator.hasNext()) {
+                errorMessage.append(", ");
+            }
+        }
+
+        errorMessage.append("}");
+
+        return errorMessage.toString();
+    }
 }
+
+
 

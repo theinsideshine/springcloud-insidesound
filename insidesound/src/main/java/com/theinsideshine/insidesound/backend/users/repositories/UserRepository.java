@@ -13,11 +13,11 @@ import com.theinsideshine.insidesound.backend.users.models.entities.User;
 public interface UserRepository
         extends CrudRepository<User, Long> {
 
-                Optional<User> findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
-        @Query("select u from User u where u.username=?1")
-        Optional<User> getUserByUsername(String username);
+    @Query("select u from User u where u.username=?1")
+    Optional<User> getUserByUsername(String username);
 
-        Page<User> findAll(Pageable pageable);
+    Page<User> findAll(Pageable pageable);
 
 }
