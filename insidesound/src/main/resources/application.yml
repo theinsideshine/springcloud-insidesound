@@ -22,5 +22,8 @@ logging:
       hibernate:
         SQL: debug
 
+pagination:
+  default-size: 5
+
 
 

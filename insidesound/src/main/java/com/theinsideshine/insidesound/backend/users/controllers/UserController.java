@@ -5,6 +5,7 @@ import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpd
 import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;
 import com.theinsideshine.insidesound.backend.users.services.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,12 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private final Integer defaultPageSize;
 
+    public UserController(UserService userService, @Value("${pagination.default-size}") Integer defaultPageSize) {
+        this.userService = userService;
+        this.defaultPageSize = defaultPageSize;
+    }
 
     @GetMapping
     public List<UserResponseDto> list() {
@@ -34,12 +37,12 @@ public class UserController {
     @GetMapping("/page/{page}")
     public Page<UserResponseDto> list(@PathVariable Integer page) {
 
-        return userService.findAll( PageRequest.of(page, 5));
+        return userService.findAll(PageRequest.of(page, defaultPageSize));
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> showw(@PathVariable Long id) {
+    public ResponseEntity<?> show(@PathVariable Long id) {
         Optional<UserResponseDto> userOptional = userService.findById(id);
         return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
