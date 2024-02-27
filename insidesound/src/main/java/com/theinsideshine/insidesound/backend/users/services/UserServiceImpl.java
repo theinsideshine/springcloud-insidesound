@@ -1,7 +1,7 @@
 package com.theinsideshine.insidesound.backend.users.services;
 
-import com.theinsideshine.insidesound.backend.exceptions.InsidesoundErrorCode;
-import com.theinsideshine.insidesound.backend.exceptions.InsidesoundException;
+import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
+import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDto;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpdate;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;

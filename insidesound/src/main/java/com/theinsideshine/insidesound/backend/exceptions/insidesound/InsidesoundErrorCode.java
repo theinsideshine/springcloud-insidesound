@@ -1,4 +1,6 @@
-package com.theinsideshine.insidesound.backend.exceptions;
+package com.theinsideshine.insidesound.backend.exceptions.insidesound;
+
+import com.theinsideshine.insidesound.backend.exceptions.ErrorModel;
 
 import java.util.Map;
 

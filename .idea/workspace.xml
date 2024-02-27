@@ -4,25 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="wihtout ec2 video deploy">
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserRequestDtoUpdate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/resources/db/scripts.txt" afterDir="false" />
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add url branch">
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ErrorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ErrorModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/filters/JwtValidationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/filters/JwtValidationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/IUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/UserRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/dto/mapper/DtoMapperUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/models/request/UserRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +51,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/insideSound/data/springcloud-insidesound-master/springcloud-insidesound-master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/insideSound/spring-insidesound-msvc/insidesound/doc&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -74,18 +60,21 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\insidesound\doc" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\insidesound\src\main\java\com\theinsideshine\insidesound\backend\exceptions" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\gateway" />
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\mvsc-tracks" />
-      <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\mvsc-albums" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\doc" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.theinsideshine.insidesound.backend.exceptions.argumentnotvalid" />
+      <recent name="com.theinsideshine.insidesound.backend.exceptions.data" />
       <recent name="com.theinsideshine.insidesound.backend.users.models.dto" />
       <recent name="com.theinsideshine.insidesound.backend.exceptions" />
       <recent name="com.theinsideshine.backend.usersapp.usersapp.auth.filters" />
-      <recent name="org.theinsideshine.insidesound.mvsc.albums.controllers" />
-      <recent name="com.theinsideshine.backend.usersapp.usersapp.controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Application.com.theinsideshine.insidesound.backend.InsidesoundAppApplication">
@@ -283,7 +272,56 @@
       <option name="project" value="LOCAL" />
       <updated>1699913202664</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="agregado de readme">
+      <created>1708977869750</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708977869750</updated>
+    </task>
+    <task id="LOCAL-00016" summary="agregado de readme">
+      <created>1708977886343</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708977886343</updated>
+    </task>
+    <task id="LOCAL-00017" summary="agregado de readmes">
+      <created>1708977941130</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708977941130</updated>
+    </task>
+    <task id="LOCAL-00018" summary="agregado de title">
+      <created>1708978066097</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1708978066097</updated>
+    </task>
+    <task id="LOCAL-00019" summary="agregado de title">
+      <created>1708978125472</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1708978125472</updated>
+    </task>
+    <task id="LOCAL-00020" summary="add name branch">
+      <created>1708978274208</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1708978274208</updated>
+    </task>
+    <task id="LOCAL-00021" summary="add url branch">
+      <created>1709043732199</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1709043732199</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,7 +350,14 @@
     <MESSAGE value="dockerizacion" />
     <MESSAGE value="dockerizacion-edit" />
     <MESSAGE value="add video deploy ec2 aws" />
-    <option name="LAST_COMMIT_MESSAGE" value="add video deploy ec2 aws" />
+    <MESSAGE value="wihtout ec2 video deploy" />
+    <MESSAGE value="Se agregaron cambio de excepciones y recomendaciones hasta uso de localDate" />
+    <MESSAGE value="agregado de readme" />
+    <MESSAGE value="agregado de readmes" />
+    <MESSAGE value="agregado de title" />
+    <MESSAGE value="add name branch" />
+    <MESSAGE value="add url branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="add url branch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -324,7 +369,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java</url>
-          <line>23</line>
+          <line>2</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

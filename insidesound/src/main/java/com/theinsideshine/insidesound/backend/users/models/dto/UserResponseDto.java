@@ -1,7 +1,7 @@
 package com.theinsideshine.insidesound.backend.users.models.dto;
 
-import com.theinsideshine.insidesound.backend.exceptions.InsidesoundErrorCode;
-import com.theinsideshine.insidesound.backend.exceptions.InsidesoundException;
+import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
+import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
 import com.theinsideshine.insidesound.backend.users.models.entities.User;
 
 public record UserResponseDto(
