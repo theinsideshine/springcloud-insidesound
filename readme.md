@@ -3,9 +3,11 @@
 InsideSound is an application to create albums with songs to listen to.
 
 The project is divided into the following parts:
-1) Evaluation of the graphical interface and ecosystems of uS -branch master
-2) Kubernetes deployment evaluation-branch K8s
-3) Migration of the ecosystems to a monolithic service that meets the design recommendations-branch monolithic-backend
+1) Evaluation of the graphical interface and ecosystems of uS
+    -branch master https://github.com/theinsideshine/springcloud-insidesound/tree/master
+3) Kubernetes deployment evaluation-branch K8s
+4) Migration of the ecosystems to a monolithic service that meets the design recommendations
+   -branch monolithic-backend https://github.com/theinsideshine/springcloud-insidesound/tree/monolithic_backend
 
 
 In each branch you will be able to see the progress of the stages in videos.
