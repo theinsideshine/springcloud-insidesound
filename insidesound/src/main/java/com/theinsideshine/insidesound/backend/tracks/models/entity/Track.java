@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-
+import org.hibernate.validator.constraints.Length;
 
 
 @Entity
@@ -29,13 +29,13 @@ public class Track {
     @NotEmpty
     @JsonIgnore
     @Lob
-    @Column(length = 10485760)
+    /*@Column(length = 1048576)*/
     private byte[]  image;
 
     @NotEmpty
     @JsonIgnore
     @Lob
-    @Column(length =  10485760)
+    /*@Column(length =  10485760)*/
     private byte[]  mp3;
 
 

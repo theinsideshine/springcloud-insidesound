@@ -30,6 +30,17 @@ import java.util.Arrays;
 @Configuration
 public class  SpringSecurityConfig {
 
+
+    private final AuthenticationConfiguration authenticationConfiguration;
+
+    public SpringSecurityConfig(AuthenticationConfiguration authenticationConfiguration) {
+        this.authenticationConfiguration = authenticationConfiguration;
+    }
+
+    @Autowired
+
+
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -40,8 +51,6 @@ public class  SpringSecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    @Autowired
-    private AuthenticationConfiguration authenticationConfiguration;
 
 
     @Bean

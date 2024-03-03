@@ -5,3 +5,11 @@ ALTER TABLE `db_insidesound`.`users` RENAME INDEX `UK_users` TO `UK_username`;
 ALTER TABLE `db_insidesound`.`users` ALTER INDEX `UK_username` VISIBLE;
 
 
+ALTER TABLE `db_insidesound`.`albums` ;
+ALTER TABLE `db_insidesound`.`albums` RENAME INDEX `UK_40nnyqh7eb1fbkboyivmhjqtn` TO `UK_title`;
+ALTER TABLE `db_insidesound`.`albums` ALTER INDEX `UK_title` VISIBLE;
+
+
+ALTER TABLE `db_insidesound`.`tracks`;
+ALTER TABLE `db_insidesound`.`tracks` RENAME INDEX `UK_p9fmf5shct7wu9wdni93lnjtx` TO `UK_title`;
+ALTER TABLE `db_insidesound`.`tracks` ALTER INDEX `UK_title` VISIBLE;

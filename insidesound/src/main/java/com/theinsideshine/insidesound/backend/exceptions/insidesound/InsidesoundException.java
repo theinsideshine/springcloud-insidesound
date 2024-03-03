@@ -17,7 +17,6 @@ public class InsidesoundException extends RuntimeException {
     }
 
     public InsidesoundException(InsidesoundErrorCode errorCode) {
-        //super(errorCode.getErrorCode() + ": " + errorCode.getErrorMap().values().iterator().next());
         super(buildErrorMessage(errorCode.getErrorMap()));
         this.statusCode = errorCode.getErrorCode();
         this.errorMap = errorCode.getErrorMap();

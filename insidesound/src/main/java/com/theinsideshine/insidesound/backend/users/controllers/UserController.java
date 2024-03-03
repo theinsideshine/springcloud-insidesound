@@ -5,6 +5,7 @@ import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpd
 import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;
 import com.theinsideshine.insidesound.backend.users.services.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +24,7 @@ public class UserController {
 
     private final Integer defaultPageSize;
 
+    @Autowired
     public UserController(UserService userService, @Value("${pagination.default-size}") Integer defaultPageSize) {
         this.userService = userService;
         this.defaultPageSize = defaultPageSize;
@@ -30,16 +32,8 @@ public class UserController {
 
     @GetMapping
     public List<UserResponseDto> list() {
-
         return userService.findAll();
     }
-
-    @GetMapping("/page/{page}")
-    public Page<UserResponseDto> list(@PathVariable Integer page) {
-
-        return userService.findAll(PageRequest.of(page, defaultPageSize));
-    }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
@@ -47,27 +41,24 @@ public class UserController {
         return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/page/{page}")
+    public Page<UserResponseDto> list(@PathVariable Integer page) {
+        return userService.findAll(PageRequest.of(page, defaultPageSize));
+    }
 
     @GetMapping("/usernames")
     public List<String> getAllUsernames() {
-
         return userService.getAllUsernames();
     }
 
-
     @PostMapping
     public ResponseEntity<UserResponseDto> create(@Valid @RequestBody UserRequestDto userRequestDto) {
-
         return ResponseEntity.ok(userService.save(userRequestDto));
-
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDto> update(@Valid @RequestBody UserRequestDtoUpdate userRequestDtoUpdate, @PathVariable Long id) {
-
         return ResponseEntity.ok(userService.update(userRequestDtoUpdate,id));
-
     }
 
     @DeleteMapping("/{id}")
@@ -75,5 +66,4 @@ public class UserController {
         userService.remove(id);
         return ResponseEntity.ok().build();
     }
-
 }

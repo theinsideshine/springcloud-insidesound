@@ -2,7 +2,10 @@ package com.theinsideshine.insidesound.backend.tracks.services;
 
 
 
+import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackRequestDto;
+import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackResponseDto;
 import com.theinsideshine.insidesound.backend.tracks.models.entity.Track;
+import org.springframework.core.io.Resource;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,12 +13,16 @@ import java.util.Optional;
 
 public interface TrackService {
 
-    List<Track> findAll();
+    public List<TrackResponseDto> findAll();
 
-    List<Track> findByAlbumId(Long id);
+    public List<TrackResponseDto> findByAlbumId(Long id);
+
+    public Resource findMp3ById(Long id);
+
+    public Resource findImageById(Long id);
 
 
-    List<Track> findByUsername(String username);
+    public List<TrackResponseDto> findByUsername(String username);
 
     Optional<Track> findById(Long id);
 
@@ -23,7 +30,7 @@ public interface TrackService {
 
     public void associateAlbumToTrack(Long albumId, Long trackId);
 
-    public Track save(Track track);
+    public TrackResponseDto save(TrackRequestDto trackRequestDto) ;
 
 
     public void remove(Long id);

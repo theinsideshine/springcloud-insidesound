@@ -1,25 +1,33 @@
 package com.theinsideshine.insidesound.backend.albums.services;
 
 
+import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumRequestDto;
+import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
 import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 
 public interface AlbumService {
 
-    List<Album> findAll();
+    List<AlbumResponseDto> findAll();
 
-    Optional<Album> findById(Long id);
+    public Optional<AlbumResponseDto> findById(Long id);
 
-    List<Album> findByUsername(String username);
 
-    public List<Album> findPublicAlbumsByUsername(String username);
-    Album save(Album album);
-    Optional<Album> update(Album album, Long id);
+    public Resource findImageById(Long id);
+
+    List<AlbumResponseDto> findByUsername(String username);
+
+    public List<AlbumResponseDto> findPublicAlbumsByUsername(String username);
+    public AlbumResponseDto save(AlbumRequestDto albumRequestDto);
+    public AlbumResponseDto update(AlbumRequestDto albumRequestDto, Long id);
 
     void remove(Long id);
 
-    public void removeAlbumByUsername(Long id);
+    public void removeAlbumByUsername(String username);
 }

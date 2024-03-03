@@ -31,6 +31,14 @@ public class DataIntegrityViolationExceptionHandler {
             } else if (errorMessage.contains("email")) {
                 errorMap.put("email", "El email ya existe");
             }
+        } else if (errorMessage.contains("albums") && errorMessage.contains(".UK_")) {
+            if (errorMessage.contains("title")) {
+                errorMap.put("title", "El titulo ya existe");
+            }
+        }else if (errorMessage.contains("tracks") && errorMessage.contains(".UK_")) {
+            if (errorMessage.contains("title")) {
+                errorMap.put("title", "El titulo ya existe");
+            }
         } else {
             errorMap.put("message", "Error de integridad de datos: " + errorMessage);
         }

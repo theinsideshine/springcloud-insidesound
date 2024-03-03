@@ -1,87 +1,152 @@
 package com.theinsideshine.insidesound.backend.albums.services;
 
+import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumRequestDto;
+import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
 import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
 import com.theinsideshine.insidesound.backend.albums.repositories.AlbumRepository;
+import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
+import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
 import com.theinsideshine.insidesound.backend.tracks.repositories.TrackRepository;
+import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDto;
+import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpdate;
+import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;
+import com.theinsideshine.insidesound.backend.users.models.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 ;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AlbumServiceimpl implements AlbumService{
 
-    @Autowired
-    private AlbumRepository albumRepository;
+
+    private final AlbumRepository albumRepository;
+
+    private final TrackRepository trackRepository;
 
     @Autowired
-    private TrackRepository trackRepository;
+    public AlbumServiceimpl(AlbumRepository albumRepository, TrackRepository trackRepository) {
+        this.albumRepository = albumRepository;
+        this.trackRepository = trackRepository;
+    }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Album> findAll() {
-
+    public List<AlbumResponseDto> findAll() {
         List<Album> albums = (List<Album>) albumRepository.findAll();
-        return albums;
-    }
-    @Override
-    @Transactional(readOnly = true)
-    public Optional<Album> findById(Long id) {
-        return albumRepository.findById(id);
-    }
-
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Album> findByUsername(String username) {
-        return albumRepository.findByUsername(username);
+        return albums.stream()
+                .map(AlbumResponseDto::albumResponseDtoMapperEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Album> findPublicAlbumsByUsername(String username) {
-        return albumRepository.findByUsernameAndAlbumprivateFalse(username);
+    public Optional<AlbumResponseDto> findById(Long id) {
+        return albumRepository.findById(id).map(AlbumResponseDto::albumResponseDtoMapperEntityToDto);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Resource findImageById(Long id)  {
+        Optional<Album> albumOptional = albumRepository.findById(id);
+        if (albumOptional.isEmpty() || albumOptional.get().getImage() == null) {
+            throw new InsidesoundException(InsidesoundErrorCode.IMG_ID_NOT_FOUND);
+        }
+        Resource image = new ByteArrayResource(albumOptional.get().getImage());
+        return image;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlbumResponseDto> findByUsername(String username) {
+        List<Album> albums = albumRepository.findByUsername(username);
+        if (albums.size() == 0){
+            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_NOT_FOUND);
+        }
+        return albums.stream()
+                .map(AlbumResponseDto::albumResponseDtoMapperEntityToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AlbumResponseDto> findPublicAlbumsByUsername(String username) {
+        List<Album> albums = albumRepository.findByUsernameAndAlbumprivateFalse(username);
+        if (albums.size() == 0){
+            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_PUB_NOT_FOUND);
+        }
+        return albums.stream()
+                .map(AlbumResponseDto::albumResponseDtoMapperEntityToDto)
+                .collect(Collectors.toList());
+    }
+
     @Override
     @Transactional
-    public Album save(Album album) {
-        return albumRepository.save(album);
+    public AlbumResponseDto save(AlbumRequestDto albumRequestDto)  {
+         Album album =  AlbumRequestDto.AlbumRequestDtoMapperDtoToEntity(albumRequestDto);
+        Album saveAlbum = albumRepository.save(album);
+        return AlbumResponseDto.albumResponseDtoMapperEntityToDto(saveAlbum);
     }
+
     @Override
-    public Optional<Album> update(Album album, Long id) {
-        Optional<Album> o = albumRepository.findById(id);
-        Album albumOptional = null;
-        if (o.isPresent()) {
-            Album albumDb = o.orElseThrow();
-            albumDb.setTitle(album.getTitle());
-            albumDb.setArtist(album.getArtist());
-            albumDb.setAge(album.getAge());
-            albumOptional = albumRepository.save(albumDb);
+    @Transactional
+    public AlbumResponseDto update(AlbumRequestDto albumRequestDto, Long id) {
+        Album albumToUpdate = validateAlbumIdPost(id);
+        albumToUpdate = AlbumRequestDto.AlbumRequestDtoMapperDtoToEntity(albumRequestDto);
+        try {
+            Album updateAlbum = albumRepository.save(albumToUpdate);
+            return AlbumResponseDto.albumResponseDtoMapperEntityToDto(updateAlbum);
+        } catch (Exception e) {
+            throw new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_ALBUM);
         }
-
-
-        return Optional.ofNullable(albumOptional);
     }
 
     @Override
     @Transactional
     public void remove(Long id) {
-
-        albumRepository.deleteById(id);
-        trackRepository.removeTracksByAlbumId(id);
-
+        Optional<Album> o = albumRepository.findById(id);
+        if (o.isPresent()) {
+            try {
+                albumRepository.deleteById(id);
+            } catch (Exception e) {
+                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_ALBUM);
+            }
+            try {
+                trackRepository.removeTracksByAlbumId(id);
+            } catch (Exception e) {
+                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_TRACKS_BY_ALBUM_ID);
+            }
+        }
     }
 
-    // Este end point se llama cuando se borra un usuario en msvc-security
-    // En el controler busca los id del username borrado
     @Override
     @Transactional
-    public void removeAlbumByUsername(Long id) {
+    public void removeAlbumByUsername(String username) {
+        List<Album> albums = albumRepository.findByUsername(username);
+        if (!albums.isEmpty()) {
+            try {
+                albums.stream()
+                        .map(Album::getId)
+                        .forEach(albumId -> albumRepository.deleteById(albumId));
 
-        // Luego, elimina el álbum
-        albumRepository.deleteById(id);
+            } catch (Exception e) {
+                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_ALBUM_BY_USERNAME);
+            }
+        }
+    }
+
+    private Album validateAlbumIdPost(Long id) {
+        Optional<Album> optionalAlbum = albumRepository.findById(id);
+        if (optionalAlbum.isEmpty()) {
+            throw new InsidesoundException(InsidesoundErrorCode.ID_ALBUM_NOT_FOUND);
+        }
+        return optionalAlbum.get();
     }
 }

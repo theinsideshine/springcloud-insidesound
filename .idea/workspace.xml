@@ -4,11 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="add url branch">
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="Se reforma Albums y parte de tracks,">
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/models/dto/AlbumResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/multipartfile/MaxUploadSizeExceededExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/models/dto/TrackResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/utils/validations/MaxFileSize.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/utils/validations/MaxFileSizeValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/ApiResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/models/dto/AlbumRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/models/dto/AlbumRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/models/entity/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/models/entity/Album.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumServiceimpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/api/converter/MultipartFileToByteArrayConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/dataintegrity/DataIntegrityViolationExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/dataintegrity/DataIntegrityViolationExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/insidesound/InsidesoundErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/insidesound/InsidesoundErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/insidesound/InsidesoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/insidesound/InsidesoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/controllers/TracksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/controllers/TracksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/models/dto/TrackRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/models/dto/TrackRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/models/entity/Track.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/models/entity/Track.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackServiceimpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/SpringSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/SpringSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/JpaUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/services/JpaUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/resources/db/scripts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/resources/db/scripts.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +93,11 @@
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\doc" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.theinsideshine.insidesound.backend.tracks.models.dto" />
+      <recent name="com.theinsideshine.insidesound.backend.albums.models.dto" />
       <recent name="com.theinsideshine.insidesound.backend.exceptions.argumentnotvalid" />
       <recent name="com.theinsideshine.insidesound.backend.exceptions.data" />
       <recent name="com.theinsideshine.insidesound.backend.users.models.dto" />
-      <recent name="com.theinsideshine.insidesound.backend.exceptions" />
-      <recent name="com.theinsideshine.backend.usersapp.usersapp.auth.filters" />
     </key>
   </component>
   <component name="RunManager" selected="Application.com.theinsideshine.insidesound.backend.InsidesoundAppApplication">
@@ -321,7 +344,21 @@
       <option name="project" value="LOCAL" />
       <updated>1709043732199</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="se separo responsabilidad de clases en el sistema de manejo de excepciones">
+      <created>1709043676791</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1709043676791</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Consistencia con principios solid alid al package de users">
+      <created>1709046100021</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1709046100021</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -357,7 +394,10 @@
     <MESSAGE value="agregado de title" />
     <MESSAGE value="add name branch" />
     <MESSAGE value="add url branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="add url branch" />
+    <MESSAGE value="se separo responsabilidad de clases en el sistema de manejo de excepciones" />
+    <MESSAGE value="Consistencia con principios solid alid al package de users" />
+    <MESSAGE value="Se reforma Albums y parte de tracks," />
+    <option name="LAST_COMMIT_MESSAGE" value="Se reforma Albums y parte de tracks," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -368,9 +408,29 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/InsidesoundExceptionHandler.java</url>
+          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/insidesound/InsidesoundExceptionHandler.java</url>
           <line>2</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/dataintegrity/DataIntegrityViolationExceptionHandler.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/multipartfile/MaxUploadSizeExceededExceptionHandler.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/utils/validations/MaxFileSizeValidator.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/multipartfile/MaxUploadSizeExceededExceptionHandler.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -383,6 +443,7 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="((BeanPropertyBindingResult)result).errors" custom="org.springframework.validation.BeanPropertyBindingResult" />
+        <watch expression="fieldName" />
       </configuration>
     </watches-manager>
   </component>

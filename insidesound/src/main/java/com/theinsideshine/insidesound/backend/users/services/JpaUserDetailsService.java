@@ -18,8 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
 
+
+    private final UserRepository repository;
     @Autowired
-    private UserRepository repository;
+    public JpaUserDetailsService(UserRepository repository) {
+        this.repository = repository;
+    }
+
+
 
     @Override
     @Transactional(readOnly = true)

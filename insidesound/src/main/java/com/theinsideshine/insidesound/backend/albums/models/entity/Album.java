@@ -34,7 +34,6 @@ public class Album {
     @NotEmpty
     @JsonIgnore
     @Lob
-    @Column(length = 1048576)
     private byte[]  image;
 
     public Album() {
@@ -43,6 +42,17 @@ public class Album {
 
     public Album(Long id, String username, String title, String artist, String age, boolean albumprivate, @NotEmpty byte[] image) {
         this.id = id;
+        this.username = username;
+        this.title = title;
+        this.artist = artist;
+        this.age = age;
+        this.albumprivate = albumprivate;
+        this.image = image;
+    }
+
+
+    public Album(String username, String title, String artist, String age, boolean albumprivate, @NotEmpty byte[] image) {
+
         this.username = username;
         this.title = title;
         this.artist = artist;
