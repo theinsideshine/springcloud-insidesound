@@ -24,18 +24,21 @@ public interface TrackService {
 
     public List<TrackResponseDto> findByUsername(String username);
 
+
+    public TrackResponseDto save(TrackRequestDto trackRequestDto) ;
+
+    public TrackResponseDto update(TrackRequestDto trackRequestDto, Long id);
+
+    public void remove(Long id);
+
     Optional<Track> findById(Long id);
 
     public Long getAlbumIdByTrackId(Long trackId);
 
     public void associateAlbumToTrack(Long albumId, Long trackId);
 
-    public TrackResponseDto save(TrackRequestDto trackRequestDto) ;
 
 
-    public void remove(Long id);
-
-    public void removeTracksByAlbumId(Long albumId);
 
 
 }

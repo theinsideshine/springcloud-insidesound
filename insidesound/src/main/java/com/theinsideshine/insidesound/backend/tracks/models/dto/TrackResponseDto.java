@@ -1,6 +1,5 @@
 package com.theinsideshine.insidesound.backend.tracks.models.dto;
 
-import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
 import com.theinsideshine.insidesound.backend.tracks.models.entity.Track;
 
 public record TrackResponseDto(

@@ -7,21 +7,17 @@ import com.theinsideshine.insidesound.backend.albums.repositories.AlbumRepositor
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
 import com.theinsideshine.insidesound.backend.tracks.repositories.TrackRepository;
-import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDto;
-import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpdate;
-import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;
-import com.theinsideshine.insidesound.backend.users.models.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+;
 
 @Service
 public class AlbumServiceimpl implements AlbumService{
@@ -111,34 +107,27 @@ public class AlbumServiceimpl implements AlbumService{
     @Override
     @Transactional
     public void remove(Long id) {
-        Optional<Album> o = albumRepository.findById(id);
-        if (o.isPresent()) {
-            try {
-                albumRepository.deleteById(id);
-            } catch (Exception e) {
-                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_ALBUM);
-            }
-            try {
-                trackRepository.removeTracksByAlbumId(id);
-            } catch (Exception e) {
-                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_TRACKS_BY_ALBUM_ID);
-            }
+        Optional<Album> albumOptional = albumRepository.findById(id);
+        if (albumOptional.isPresent()) {
+            Album album = albumOptional.get();
+            removeAlbum(album);
+            removeTracksByAlbumId(album.getId());
         }
     }
 
-    @Override
-    @Transactional
-    public void removeAlbumByUsername(String username) {
-        List<Album> albums = albumRepository.findByUsername(username);
-        if (!albums.isEmpty()) {
-            try {
-                albums.stream()
-                        .map(Album::getId)
-                        .forEach(albumId -> albumRepository.deleteById(albumId));
+    private void removeAlbum(Album album) {
+        try {
+            albumRepository.deleteById(album.getId());
+        } catch (Exception e) {
+            throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_ALBUM);
+        }
+    }
 
-            } catch (Exception e) {
-                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_ALBUM_BY_USERNAME);
-            }
+    private void removeTracksByAlbumId(Long albumId) {
+        try {
+            trackRepository.removeTracksByAlbumId(albumId);
+        } catch (Exception e) {
+            throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_TRACKS_BY_ALBUM_ID);
         }
     }
 

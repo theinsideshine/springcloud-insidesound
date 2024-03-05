@@ -1,7 +1,5 @@
 package com.theinsideshine.insidesound.backend.exceptions.insidesound;
 
-import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
-
 import java.util.Iterator;
 import java.util.Map;
 

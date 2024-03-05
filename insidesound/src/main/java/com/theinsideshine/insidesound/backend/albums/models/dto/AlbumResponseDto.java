@@ -1,9 +1,6 @@
 package com.theinsideshine.insidesound.backend.albums.models.dto;
 
 import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
-import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
-import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
-import com.theinsideshine.insidesound.backend.users.models.entities.User;
 
 public record AlbumResponseDto(
          Long id,

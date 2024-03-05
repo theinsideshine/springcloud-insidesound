@@ -5,13 +5,8 @@ import com.theinsideshine.insidesound.backend.exceptions.insidesound.Insidesound
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
 import com.theinsideshine.insidesound.backend.utils.validations.MaxFileSize;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public record AlbumRequestDto(
 

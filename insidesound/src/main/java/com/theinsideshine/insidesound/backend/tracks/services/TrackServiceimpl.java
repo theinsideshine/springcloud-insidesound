@@ -9,15 +9,11 @@ import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackRequestDto;
 import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackResponseDto;
 import com.theinsideshine.insidesound.backend.tracks.models.entity.Track;
 import com.theinsideshine.insidesound.backend.tracks.repositories.TrackRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.jpa.repository.Modifying;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -26,10 +22,8 @@ import java.util.stream.Collectors;
 @Service
 public class TrackServiceimpl implements TrackService {
 
-
     @Autowired
     private final AlbumRepository albumRepository;
-
     private final TrackRepository trackRepository;
 
     @Autowired
@@ -37,9 +31,6 @@ public class TrackServiceimpl implements TrackService {
         this.albumRepository = albumRepository;
         this.trackRepository = trackRepository;
     }
-
-
-
 
     @Override
     @Transactional(readOnly = true)
@@ -72,7 +63,6 @@ public class TrackServiceimpl implements TrackService {
         return mp3;
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public List<TrackResponseDto> findByAlbumId(Long id) {
@@ -83,7 +73,6 @@ public class TrackServiceimpl implements TrackService {
         return tracks.stream()
                 .map(TrackResponseDto::trackResponseDtoMapperEntityToDto)
                 .collect(Collectors.toList());
-
     }
 
     public Long getAlbumIdByTrackId(Long trackId) {
@@ -106,9 +95,6 @@ public class TrackServiceimpl implements TrackService {
                 .collect(Collectors.toList());
     }
 
-
-
-
     @Override
     @Transactional
     public TrackResponseDto save(TrackRequestDto trackRequestDto)  {
@@ -118,41 +104,57 @@ public class TrackServiceimpl implements TrackService {
     }
 
     @Override
+    @Transactional
+    public TrackResponseDto update(TrackRequestDto trackRequestDto, Long id) {
+        Track trackToUpdate = validateTrackIdPost(id);
+        trackToUpdate = TrackRequestDto.TrackRequestDtoMapperDtoToEntity(trackRequestDto);
+        try {
+            Track updateTrack = trackRepository.save(trackToUpdate);
+            return TrackResponseDto.trackResponseDtoMapperEntityToDto(updateTrack);
+        } catch (Exception e) {
+            throw new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_TRACK);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void remove(Long id) {
+        Optional<Track> o = trackRepository.findById(id);
+        if (o.isPresent()) {
+            try {
+                trackRepository.deleteById(id);
+            } catch (Exception e) {
+                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_TRACK);
+            }
+        }
+    }
+
+    @Override
     public Optional<Track> findById(Long id) {
         return trackRepository.findById(id);
     }
 
 
-
     @Transactional
     public void associateAlbumToTrack(Long trackId, Long albumId) {
         Track track = trackRepository.findById(trackId)
-                .orElseThrow(() -> new EntityNotFoundException("Pista no encontrada"));
-
-
+                .orElseThrow(() -> new InsidesoundException(InsidesoundErrorCode.TRACK_NOT_FOUND));
         Album album = albumRepository.findById(albumId)
-                .orElseThrow(() -> new EntityNotFoundException("Album no encontrada"));
-
-
+                .orElseThrow(() -> new InsidesoundException(InsidesoundErrorCode.ALBUM_NOT_FOUND));
         // Asocia el álbum a la pista desde el lado de la pista
         track.setAlbum_id(album.getId());
-
-        // Guarda los cambios en la base de datos
-        trackRepository.save(track);
+        try {
+            trackRepository.save(track);
+        } catch (Exception e) {
+            throw  new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_TRACK);
+        }
 
     }
-
-
-
-    @Override
-    @Transactional
-    public void remove(Long id) {
-        trackRepository.deleteById(id);
-    }
-
-    @Modifying
-    @Transactional
-    public void removeTracksByAlbumId(Long albumId) {
-        trackRepository.removeTracksByAlbumId(albumId);
+    private Track validateTrackIdPost(Long id) {
+        Optional<Track> optionalTrack= trackRepository.findById(id);
+        if (optionalTrack.isEmpty()) {
+            throw new InsidesoundException(InsidesoundErrorCode.ID_TRACK_NOT_FOUND);
+        }
+        return optionalTrack.get();
     }
 }

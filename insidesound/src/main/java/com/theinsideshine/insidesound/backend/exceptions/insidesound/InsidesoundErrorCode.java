@@ -10,9 +10,13 @@ public enum InsidesoundErrorCode {
 
     ID_ALBUM_NOT_FOUND(400, Map.of("PUT", "El album a editar no existe.")),
 
+    ID_TRACK_NOT_FOUND(400, Map.of("PUT", "El track a editar no existe.")),
+
     ERR_UPDATING_USER(500, Map.of("PUT", "El usuario no se pudo editar.")),
 
     ERR_UPDATING_ALBUM(500, Map.of("PUT", "El album no se pudo editar.")),
+
+    ERR_UPDATING_TRACK(500, Map.of("PUT", "El track no se pudo editar.")),
 
     ERR_USER_NULL(500, Map.of("User entity", "El usuario no puede ser nulo.")),
 
@@ -36,10 +40,13 @@ public enum InsidesoundErrorCode {
     ERR_DEL_USER(500, Map.of("DELETE", "No se pudo borrar el usuario.")),
 
     ERR_DEL_ALBUM(500, Map.of("DELETE", "No se pudo borrar el album.")),
+
+    ERR_DEL_TRACK(500, Map.of("DELETE", "No se pudo borrar el track.")),
     ERR_DEL_TRACKS_BY_ALBUM_ID(500, Map.of("DELETE TRACKS BY ALBUM ID", "No se pudo borrar el track asociado al album.")),
 
     ERR_DEL_ALBUM_BY_USERNAME(500, Map.of("DELETE ALBUM BY USERNAME", "No se pudo borrar el album asociado al username.")),
 
+    ERR_DEL_TRACKS_BY_USERNAME(500, Map.of("DELETE TRACK BY USERNAME", "No se pudo borrar el track asociado al username.")),
 
     MAX_IMAGEFILE_EXCEEDED(500, Map.of("VALID IMAGE FILE", "El tamano del archivo no puede ser superior a 1MB"));
     private final int errorCode;

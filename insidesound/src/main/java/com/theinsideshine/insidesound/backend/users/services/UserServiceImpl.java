@@ -1,7 +1,11 @@
 package com.theinsideshine.insidesound.backend.users.services;
 
+import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
+import com.theinsideshine.insidesound.backend.albums.repositories.AlbumRepository;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
+import com.theinsideshine.insidesound.backend.tracks.models.entity.Track;
+import com.theinsideshine.insidesound.backend.tracks.repositories.TrackRepository;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDto;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpdate;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;
@@ -31,11 +35,23 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final AlbumRepository albumRepository;
+
+    private final TrackRepository trackRepository;
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(
+            UserRepository userRepository,
+            RoleRepository roleRepository,
+            PasswordEncoder passwordEncoder,
+            AlbumRepository albumRepository,
+            TrackRepository trackRepository
+    ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.albumRepository = albumRepository;
+        this.trackRepository = trackRepository;
     }
 
 
@@ -115,16 +131,43 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void remove(Long id) {
-
-        Optional<User> o = userRepository.findById(id);
-        if (o.isPresent()) {
-            try {
-                userRepository.deleteById(id);
-            } catch (Exception e) {
-                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_USER);
-            }
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            removeUser(user);
+            removeAlbumsByUser(user);
+            removeTracksByUser(user);
         }
+    }
 
+    private void removeUser(User user) {
+        try {
+            userRepository.deleteById(user.getId());
+        } catch (Exception e) {
+            throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_USER);
+        }
+    }
+
+    private void removeAlbumsByUser(User user) {
+        List<Album> albums = albumRepository.findByUsername(user.getUsername());
+        albums.forEach(album -> {
+            try {
+                albumRepository.deleteById(album.getId());
+            } catch (Exception e) {
+                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_ALBUM_BY_USERNAME);
+            }
+        });
+    }
+
+    private void removeTracksByUser(User user) {
+        List<Track> tracks = trackRepository.findByUsername(user.getUsername());
+        tracks.forEach(track -> {
+            try {
+                trackRepository.deleteById(track.getId());
+            } catch (Exception e) {
+                throw new InsidesoundException(InsidesoundErrorCode.ERR_DEL_TRACKS_BY_USERNAME);
+            }
+        });
     }
 
     private List<Role> getRoles(boolean isAdmin) {
