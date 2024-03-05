@@ -13,29 +13,29 @@ import java.util.Optional;
 
 public interface TrackService {
 
-    public List<TrackResponseDto> findAll();
+    List<TrackResponseDto> findAll();
 
-    public List<TrackResponseDto> findByAlbumId(Long id);
+    List<TrackResponseDto> findByAlbumId(Long id);
 
-    public Resource findMp3ById(Long id);
+    Resource findMp3ById(Long id);
 
-    public Resource findImageById(Long id);
-
-
-    public List<TrackResponseDto> findByUsername(String username);
+    Resource findImageById(Long id);
 
 
-    public TrackResponseDto save(TrackRequestDto trackRequestDto) ;
+    List<TrackResponseDto> findByUsername(String username);
 
-    public TrackResponseDto update(TrackRequestDto trackRequestDto, Long id);
 
-    public void remove(Long id);
+    TrackResponseDto save(TrackRequestDto trackRequestDto) ;
+
+    TrackResponseDto update(TrackRequestDto trackRequestDto, Long id);
+
+    void remove(Long id);
 
     Optional<Track> findById(Long id);
 
-    public Long getAlbumIdByTrackId(Long trackId);
+    Long getAlbumIdByTrackId(Long trackId);
 
-    public void associateAlbumToTrack(Long albumId, Long trackId);
+    void associateAlbumToTrack(Long albumId, Long trackId);
 
 
 

@@ -28,6 +28,18 @@ logging:
 pagination:
   default-size: 5
 
+errorMessages:
+  userExists: "El username ya existe"
+  emailExists: "El email ya existe"
+  titleExists: "El titulo ya existe"
+  integrityError: "Error de integridad de datos: %s"
+
+fileValidationMessages:
+  nullOrEmpty: "No puede ser nulo ni estar vacio"
+  sizeExceeded: "Excede su tamaño maximo de %s bytes"
+
+
+
 
 
 

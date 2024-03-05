@@ -119,14 +119,6 @@ public class Album {
         this.image = image;
     }
 
-/*    public List<Long> getTracksId() {
-        return tracksId;
-    }
-
-    public void setTracksId(List<Long> tracksId) {
-        this.tracksId = tracksId;
-    }*/
-
     public Integer getImageHashCode() {
         return ( this.image != null ) ? this.image.hashCode() : null ;
     }

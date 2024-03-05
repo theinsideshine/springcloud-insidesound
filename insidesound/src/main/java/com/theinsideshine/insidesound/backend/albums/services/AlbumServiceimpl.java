@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-;
-
 @Service
 public class AlbumServiceimpl implements AlbumService{
 
@@ -36,7 +34,7 @@ public class AlbumServiceimpl implements AlbumService{
     @Override
     @Transactional(readOnly = true)
     public List<AlbumResponseDto> findAll() {
-        List<Album> albums = (List<Album>) albumRepository.findAll();
+        List<Album> albums = albumRepository.findAll();
         return albums.stream()
                 .map(AlbumResponseDto::albumResponseDtoMapperEntityToDto)
                 .collect(Collectors.toList());
@@ -53,10 +51,9 @@ public class AlbumServiceimpl implements AlbumService{
     public Resource findImageById(Long id)  {
         Optional<Album> albumOptional = albumRepository.findById(id);
         if (albumOptional.isEmpty() || albumOptional.get().getImage() == null) {
-            throw new InsidesoundException(InsidesoundErrorCode.IMG_ID_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.IMG_ID_ALBUM_NOT_FOUND);
         }
-        Resource image = new ByteArrayResource(albumOptional.get().getImage());
-        return image;
+        return new ByteArrayResource(albumOptional.get().getImage());
     }
 
     @Override
@@ -76,7 +73,7 @@ public class AlbumServiceimpl implements AlbumService{
     public List<AlbumResponseDto> findPublicAlbumsByUsername(String username) {
         List<Album> albums = albumRepository.findByUsernameAndAlbumprivateFalse(username);
         if (albums.size() == 0){
-            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_PUB_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_PUBLIC_NOT_FOUND);
         }
         return albums.stream()
                 .map(AlbumResponseDto::albumResponseDtoMapperEntityToDto)
@@ -94,8 +91,8 @@ public class AlbumServiceimpl implements AlbumService{
     @Override
     @Transactional
     public AlbumResponseDto update(AlbumRequestDto albumRequestDto, Long id) {
-        Album albumToUpdate = validateAlbumIdPost(id);
-        albumToUpdate = AlbumRequestDto.AlbumRequestDtoMapperDtoToEntity(albumRequestDto);
+        validateAlbumIdPost(id);
+        Album albumToUpdate = AlbumRequestDto.AlbumRequestDtoMapperDtoToEntity(albumRequestDto);
         try {
             Album updateAlbum = albumRepository.save(albumToUpdate);
             return AlbumResponseDto.albumResponseDtoMapperEntityToDto(updateAlbum);
@@ -131,11 +128,10 @@ public class AlbumServiceimpl implements AlbumService{
         }
     }
 
-    private Album validateAlbumIdPost(Long id) {
+    private void validateAlbumIdPost(Long id) {
         Optional<Album> optionalAlbum = albumRepository.findById(id);
         if (optionalAlbum.isEmpty()) {
             throw new InsidesoundException(InsidesoundErrorCode.ID_ALBUM_NOT_FOUND);
         }
-        return optionalAlbum.get();
     }
 }

@@ -35,7 +35,7 @@ public class TrackServiceimpl implements TrackService {
     @Override
     @Transactional(readOnly = true)
     public List<TrackResponseDto> findAll() {
-        List<Track> tracks = (List<Track>) trackRepository.findAll();
+        List<Track> tracks =  trackRepository.findAll();
         return tracks.stream()
                 .map(TrackResponseDto::trackResponseDtoMapperEntityToDto)
                 .collect(Collectors.toList());
@@ -46,10 +46,9 @@ public class TrackServiceimpl implements TrackService {
     public Resource findImageById(Long id)  {
         Optional<Track> trackOptional = trackRepository.findById(id);
         if (trackOptional.isEmpty() || trackOptional.get().getImage() == null) {
-            throw new InsidesoundException(InsidesoundErrorCode.IMG_ID_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.IMG_ID_TRACK_NOT_FOUND);
         }
-        Resource image = new ByteArrayResource(trackOptional.get().getImage());
-        return image;
+        return new ByteArrayResource(trackOptional.get().getImage());
     }
 
     @Override
@@ -57,10 +56,9 @@ public class TrackServiceimpl implements TrackService {
     public Resource findMp3ById(Long id)  {
         Optional<Track> trackOptional = trackRepository.findById(id);
         if (trackOptional.isEmpty() || trackOptional.get().getImage() == null) {
-            throw new InsidesoundException(InsidesoundErrorCode.MP3_ID_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.MP3_ID_TRACK_NOT_FOUND);
         }
-        Resource mp3 = new ByteArrayResource(trackOptional.get().getMp3());
-        return mp3;
+        return new ByteArrayResource(trackOptional.get().getMp3());
     }
 
     @Override
@@ -106,8 +104,8 @@ public class TrackServiceimpl implements TrackService {
     @Override
     @Transactional
     public TrackResponseDto update(TrackRequestDto trackRequestDto, Long id) {
-        Track trackToUpdate = validateTrackIdPost(id);
-        trackToUpdate = TrackRequestDto.TrackRequestDtoMapperDtoToEntity(trackRequestDto);
+        validateTrackIdPost(id);
+        Track trackToUpdate = TrackRequestDto.TrackRequestDtoMapperDtoToEntity(trackRequestDto);
         try {
             Track updateTrack = trackRepository.save(trackToUpdate);
             return TrackResponseDto.trackResponseDtoMapperEntityToDto(updateTrack);
@@ -150,11 +148,11 @@ public class TrackServiceimpl implements TrackService {
         }
 
     }
-    private Track validateTrackIdPost(Long id) {
+    private void validateTrackIdPost(Long id) {
         Optional<Track> optionalTrack= trackRepository.findById(id);
         if (optionalTrack.isEmpty()) {
             throw new InsidesoundException(InsidesoundErrorCode.ID_TRACK_NOT_FOUND);
         }
-        return optionalTrack.get();
+
     }
 }

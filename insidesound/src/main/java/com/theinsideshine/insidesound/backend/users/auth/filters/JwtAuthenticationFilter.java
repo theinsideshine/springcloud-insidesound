@@ -28,7 +28,7 @@ import static com.theinsideshine.insidesound.backend.users.auth.TokenJwtConfig.*
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
