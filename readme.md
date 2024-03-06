@@ -21,7 +21,7 @@ Design guideline
    
 
 
-[Expections](doc/excepcionesjava.pdf)
+[Exceptions](doc/excepcionesjava.pdf)
 [Designguide](doc/Insidesound-Designguide.pdf)
 
 FrontEnd repository: https://github.com/theinsideshine/react-insideSound
