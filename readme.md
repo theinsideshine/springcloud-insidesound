@@ -25,7 +25,7 @@ Design guideline
 
 
 ISound.Migration of the ecosystems to a monolithic service that meets the design guidelines-Part 1
-[![Guidelines](images/viode-desigguide.png)](https://youtu.be/QD6uFNF494M?si=niWX05BwAiu5VMtg)
+[![Guidelines](images/viode-desigguide.png)](https://youtu.be/ka8ZUHc4C4k?si=B2_s_7J2PvbWeM_C)
 
 ISound.Migration of the ecosystems to a monolithic service that meets the design guidelines-Part 2
 [![exception system](images/video-exceptions.png)](https://youtu.be/QD6uFNF494M)
