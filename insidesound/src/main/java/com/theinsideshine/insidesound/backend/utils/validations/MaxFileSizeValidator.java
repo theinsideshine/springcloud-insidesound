@@ -43,7 +43,7 @@ public class MaxFileSizeValidator implements ConstraintValidator<MaxFileSize, Mu
 
         // Si pasa ambas validaciones, el archivo es válido
         return true;
-    }
+    }   
 }
 
 

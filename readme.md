@@ -17,11 +17,19 @@ Design guideline
 
    Use hexagonal architecture.
    Solid Alid Principles
-   DTO object has to be completely immutable.
-   
+   DTO object has to be completely immutable.   
 
 
 [Exceptions](doc/excepcionesjava.pdf)
 [Designguide](doc/Insidesound-Designguide.pdf)
+
+
+ISound.Migration of the ecosystems to a monolithic service that meets the design guidelines-Part 1
+[![Guidelines](images/viode-desigguide.png)](https://youtu.be/QD6uFNF494M?si=niWX05BwAiu5VMtg)
+
+ISound.Migration of the ecosystems to a monolithic service that meets the design guidelines-Part 2
+[![exception system](images/video-exceptions.png)](https://youtu.be/QD6uFNF494M)
+
+
 
 FrontEnd repository: https://github.com/theinsideshine/react-insideSound
