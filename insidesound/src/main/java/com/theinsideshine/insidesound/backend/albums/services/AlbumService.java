@@ -26,5 +26,5 @@ public interface AlbumService {
 
     void remove(Long id);
 
-  /*  public void removeAlbumByUsername(String username);*/
+
 }

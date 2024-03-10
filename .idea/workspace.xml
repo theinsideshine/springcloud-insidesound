@@ -9,9 +9,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="Se pasaron msj a application.yml">
+    <list default="true" id="b14efd66-20fe-4baf-8459-0d90af4caa79" name="Changes" comment="correct link video">
+      <change afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/configuration/SwaggerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/test/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/insidesound/src/test/java/com/theinsideshine/insidesound/backend/albums/controllers/FakeImageProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/ExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/albums/services/AlbumServiceimpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/insidesound/InsidesoundErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/exceptions/insidesound/InsidesoundErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/controllers/TracksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/controllers/TracksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/services/TrackServiceimpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/auth/SpringSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/configuration/SpringSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/users/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/insidesound/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/insidesound/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +34,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -53,18 +66,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/proyectos/insideSound/spring-insidesound-msvc/insidesound/doc&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "D:/desafios/desafiosAle/crypto/Tradehub-Service-main",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\insidesound\doc" />
@@ -76,99 +91,108 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\proyectos\insideSound\spring-insidesound-msvc\doc" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.theinsideshine.insidesound.backend.albums.controllers" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.theinsideshine.insidesound.backend.configuration" />
       <recent name="com.theinsideshine.insidesound.backend.tracks.models.dto" />
       <recent name="com.theinsideshine.insidesound.backend.albums.models.dto" />
       <recent name="com.theinsideshine.insidesound.backend.exceptions.argumentnotvalid" />
       <recent name="com.theinsideshine.insidesound.backend.exceptions.data" />
-      <recent name="com.theinsideshine.insidesound.backend.users.models.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.com.theinsideshine.insidesound.backend.InsidesoundAppApplication">
-    <configuration name="EurekaServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.theinsideshine.insidesound.eureka.server.EurekaServerApplication" />
-      <module name="eureka-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.theinsideshine.insidesound.eureka.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InsidesoundAppApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.theinsideshine.backend.usersapp.usersapp.InsidesoundAppApplication" />
+  <component name="RunManager" selected="JUnit.AlbumControllerTest.testCreateAlbum">
+    <configuration name="AlbumControllerTest.getPublicAlbumsByUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="insidesound" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.theinsideshine.backend.usersapp.usersapp.*" />
+          <option name="PATTERN" value="com.theinsideshine.insidesound.backend.albums.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
+      <option name="PACKAGE_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers.AlbumControllerTest" />
+      <option name="METHOD_NAME" value="getPublicAlbumsByUsername" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MvscAlbumsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.theinsideshine.insidesound.mvsc.albums.MvscAlbumsApplication" />
-      <module name="msvc-albums" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.theinsideshine.insidesound.mvsc.albums.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MvscTracksApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.theinsideshine.insidesound.mvsc.tracks.MvscTracksApplication" />
-      <module name="msvc-tracks" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.theinsideshine.insidesound.mvsc.tracks.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="com.theinsideshine.insidesound.backend.InsidesoundAppApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.theinsideshine.insidesound.backend.InsidesoundAppApplication" />
+    <configuration name="AlbumControllerTest.testCreateAlbum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="insidesound" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.theinsideshine.insidesound.backend.*" />
+          <option name="PATTERN" value="com.theinsideshine.insidesound.backend.albums.controllers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers.AlbumControllerTest" />
+      <option name="METHOD_NAME" value="testCreateAlbum" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AlbumControllerTest.testShowAlbumById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="insidesound" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.theinsideshine.insidesound.backend.albums.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers.AlbumControllerTest" />
+      <option name="METHOD_NAME" value="testShowAlbumById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AlbumControllerTest.testShowAlbumsByUsername" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="insidesound" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.theinsideshine.insidesound.backend.albums.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers.AlbumControllerTest" />
+      <option name="METHOD_NAME" value="testShowAlbumsByUsername" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AlbumControllerTest.testShowImageByAlbumId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="insidesound" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.theinsideshine.insidesound.backend.albums.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.theinsideshine.insidesound.backend.albums.controllers.AlbumControllerTest" />
+      <option name="METHOD_NAME" value="testShowImageByAlbumId" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.com.theinsideshine.insidesound.backend.InsidesoundAppApplication" />
-        <item itemvalue="Application.InsidesoundAppApplication" />
-        <item itemvalue="Application.EurekaServerApplication" />
-        <item itemvalue="Application.MvscTracksApplication" />
-        <item itemvalue="Application.MvscAlbumsApplication" />
+        <item itemvalue="JUnit.AlbumControllerTest.testCreateAlbum" />
+        <item itemvalue="JUnit.AlbumControllerTest.getPublicAlbumsByUsername" />
+        <item itemvalue="JUnit.AlbumControllerTest.testShowImageByAlbumId" />
+        <item itemvalue="JUnit.AlbumControllerTest.testShowAlbumsByUsername" />
+        <item itemvalue="JUnit.AlbumControllerTest.testShowAlbumById" />
       </list>
     </recent_temporary>
   </component>
@@ -363,7 +387,35 @@
       <option name="project" value="LOCAL" />
       <updated>1709645696201</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="add desig guidelines">
+      <created>1709748307797</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1709748307797</updated>
+    </task>
+    <task id="LOCAL-00028" summary="correct desig guidelines">
+      <created>1709748701704</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1709748701704</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add video">
+      <created>1709816547113</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1709816547113</updated>
+    </task>
+    <task id="LOCAL-00030" summary="correct link video">
+      <created>1709816996703</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1709816996703</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -378,10 +430,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="microservices eureka-gateway-security-album work ok" />
-    <MESSAGE value="add video security" />
-    <MESSAGE value="ase agrego soporte para envio de album image se cambio modelos de datos" />
-    <MESSAGE value="soporte backend for crud album,tracks , image and mp3 ," />
     <MESSAGE value="add support for list tracks by user" />
     <MESSAGE value="add support crud track" />
     <MESSAGE value="add video capture" />
@@ -403,7 +451,11 @@
     <MESSAGE value="Se reforma Albums y parte de tracks," />
     <MESSAGE value="Funcionando todos los cambios al nuevo modelo Hexagonal-solid-alid" />
     <MESSAGE value="Se pasaron msj a application.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Se pasaron msj a application.yml" />
+    <MESSAGE value="add desig guidelines" />
+    <MESSAGE value="correct desig guidelines" />
+    <MESSAGE value="add video" />
+    <MESSAGE value="correct link video" />
+    <option name="LAST_COMMIT_MESSAGE" value="correct link video" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -423,10 +475,14 @@
           <line>49</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/insidesound/src/main/java/com/theinsideshine/insidesound/backend/tracks/controllers/TracksController.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="22" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/insidesound/src/test/java/com/theinsideshine/insidesound/backend/albums/controllers/AlbumControllerTest.java</url>
+          <line>66</line>
+          <properties class="com.theinsideshine.insidesound.backend.albums.controllers.AlbumControllerTest" method="testShowList">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

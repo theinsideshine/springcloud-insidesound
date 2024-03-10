@@ -51,7 +51,7 @@ public class AlbumServiceimpl implements AlbumService{
     public Resource findImageById(Long id)  {
         Optional<Album> albumOptional = albumRepository.findById(id);
         if (albumOptional.isEmpty() || albumOptional.get().getImage() == null) {
-            throw new InsidesoundException(InsidesoundErrorCode.IMG_ID_ALBUM_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.IMG_NOT_FOUND_BY_ALBUM_ID);
         }
         return new ByteArrayResource(albumOptional.get().getImage());
     }
@@ -61,7 +61,7 @@ public class AlbumServiceimpl implements AlbumService{
     public List<AlbumResponseDto> findByUsername(String username) {
         List<Album> albums = albumRepository.findByUsername(username);
         if (albums.size() == 0){
-            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_NOT_FOUND_BY_USERNAME);
         }
         return albums.stream()
                 .map(AlbumResponseDto::albumResponseDtoMapperEntityToDto)
@@ -73,7 +73,7 @@ public class AlbumServiceimpl implements AlbumService{
     public List<AlbumResponseDto> findPublicAlbumsByUsername(String username) {
         List<Album> albums = albumRepository.findByUsernameAndAlbumprivateFalse(username);
         if (albums.size() == 0){
-            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_PUBLIC_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME);
         }
         return albums.stream()
                 .map(AlbumResponseDto::albumResponseDtoMapperEntityToDto)

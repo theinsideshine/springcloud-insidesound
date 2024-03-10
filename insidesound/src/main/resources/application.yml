@@ -28,6 +28,10 @@ logging:
 pagination:
   default-size: 5
 
+#http://localhost:${PORT:8081}/swagger-ui/index.html
+openapi:
+  version: v1.0
+
 errorMessages:
   userExists: "El username ya existe"
   emailExists: "El email ya existe"

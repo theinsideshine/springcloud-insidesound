@@ -46,7 +46,7 @@ public class TrackServiceimpl implements TrackService {
     public Resource findImageById(Long id)  {
         Optional<Track> trackOptional = trackRepository.findById(id);
         if (trackOptional.isEmpty() || trackOptional.get().getImage() == null) {
-            throw new InsidesoundException(InsidesoundErrorCode.IMG_ID_TRACK_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.IMG_NOT_FOUND_BY_TRACK_ID);
         }
         return new ByteArrayResource(trackOptional.get().getImage());
     }
@@ -56,7 +56,7 @@ public class TrackServiceimpl implements TrackService {
     public Resource findMp3ById(Long id)  {
         Optional<Track> trackOptional = trackRepository.findById(id);
         if (trackOptional.isEmpty() || trackOptional.get().getImage() == null) {
-            throw new InsidesoundException(InsidesoundErrorCode.MP3_ID_TRACK_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.MP3_NOT_FOUND_BY_TRACK_ID);
         }
         return new ByteArrayResource(trackOptional.get().getMp3());
     }
@@ -66,7 +66,7 @@ public class TrackServiceimpl implements TrackService {
     public List<TrackResponseDto> findByAlbumId(Long id) {
         List<Track> tracks = trackRepository.findByAlbumId (id);
         if (tracks.size() == 0){
-            throw new InsidesoundException(InsidesoundErrorCode.TRACK_NOT_FOUND);
+            throw new InsidesoundException(InsidesoundErrorCode.TRACK_NOT_FOUND_BY_ALBUM_ID);
         }
         return tracks.stream()
                 .map(TrackResponseDto::trackResponseDtoMapperEntityToDto)
@@ -136,9 +136,9 @@ public class TrackServiceimpl implements TrackService {
     @Transactional
     public void associateAlbumToTrack(Long trackId, Long albumId) {
         Track track = trackRepository.findById(trackId)
-                .orElseThrow(() -> new InsidesoundException(InsidesoundErrorCode.TRACK_NOT_FOUND));
+                .orElseThrow(() -> new InsidesoundException(InsidesoundErrorCode.TRACK_ID_NOT_FOUND));
         Album album = albumRepository.findById(albumId)
-                .orElseThrow(() -> new InsidesoundException(InsidesoundErrorCode.ALBUM_NOT_FOUND));
+                .orElseThrow(() -> new InsidesoundException(InsidesoundErrorCode.ALBUM_ID_NOT_FOUND));
         // Asocia el álbum a la pista desde el lado de la pista
         track.setAlbum_id(album.getId());
         try {

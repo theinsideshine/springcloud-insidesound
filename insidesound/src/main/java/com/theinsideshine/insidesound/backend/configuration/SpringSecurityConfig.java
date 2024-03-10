@@ -1,4 +1,4 @@
-package com.theinsideshine.insidesound.backend.users.auth;
+package com.theinsideshine.insidesound.backend.configuration;
 
 
 
@@ -65,6 +65,7 @@ public class  SpringSecurityConfig {
                 .requestMatchers("/users/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET,"/albums/**" ).permitAll()
                 .requestMatchers(HttpMethod.GET,"/tracks/**" ).permitAll()
+                .requestMatchers(HttpMethod.GET, "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationConfiguration.getAuthenticationManager()))

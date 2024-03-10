@@ -20,9 +20,11 @@ public enum InsidesoundErrorCode {
     /*
         Errores de album
      */
-    IMG_ID_ALBUM_NOT_FOUND(400, Map.of("GET IMAGES", "El id del album no tiene imagen.")),
-    ALBUM_NOT_FOUND(400, Map.of("GET ALBUMS BY USERNAME", "El username no tiene albums.")),
-    ALBUM_PUBLIC_NOT_FOUND(400, Map.of("GET ALBUMS BY USERNAME", "El username no tiene albums publicos.")),
+
+    ALBUM_ID_NOT_FOUND(400, Map.of("FIND ALBUM BY ID", "El id no tiene album.")),
+    IMG_NOT_FOUND_BY_ALBUM_ID(400, Map.of("GET IMAGES", "El id del album no tiene imagen.")),
+    ALBUM_NOT_FOUND_BY_USERNAME(400, Map.of("GET ALBUMS BY USERNAME", "El username no tiene albums.")),
+    ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME(400, Map.of("GET ALBUMS BY USERNAME", "El username no tiene albums publicos.")),
     ID_ALBUM_NOT_FOUND(400, Map.of("PUT", "El album a editar no existe.")),
     ERR_UPDATING_ALBUM(500, Map.of("PUT", "El album no se pudo editar.")),
     ERR_DEL_ALBUM(500, Map.of("DELETE", "No se pudo borrar el album.")),
@@ -31,9 +33,12 @@ public enum InsidesoundErrorCode {
     /*
         Errores de track
      */
-    MP3_ID_TRACK_NOT_FOUND(400, Map.of("GET MP3", "El id del track no tiene mp3.")),
-    TRACK_NOT_FOUND(400, Map.of("GET TRACK BY ALBUM_ID", "El album_id no tiene tracks.")),
-    IMG_ID_TRACK_NOT_FOUND(400, Map.of("GET IMAGES", "El id del track no tiene imagen.")),
+
+    TRACK_ID_NOT_FOUND(400, Map.of("FIND TRACK BY ID", "El id no tiene track.")),
+
+    TRACK_NOT_FOUND_BY_ALBUM_ID(400, Map.of("FIND TRACK BY ID", "No existe track con el albumId asociado.")),
+    IMG_NOT_FOUND_BY_TRACK_ID(400, Map.of("GET IMAGES", "El id del track no tiene imagen.")),
+    MP3_NOT_FOUND_BY_TRACK_ID(400, Map.of("GET MP3", "El id del track no tiene mp3.")),
     ID_TRACK_NOT_FOUND(400, Map.of("PUT", "El track a editar no existe.")),
     ERR_UPDATING_TRACK(500, Map.of("PUT", "El track no se pudo editar.")),
     ERR_DEL_TRACK(500, Map.of("DELETE", "No se pudo borrar el track.")),
