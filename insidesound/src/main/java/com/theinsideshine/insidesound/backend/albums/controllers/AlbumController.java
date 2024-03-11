@@ -118,4 +118,6 @@ public class AlbumController {
         albumService.remove(id);
         return ResponseEntity.ok().build();
     }
+
+
 }
