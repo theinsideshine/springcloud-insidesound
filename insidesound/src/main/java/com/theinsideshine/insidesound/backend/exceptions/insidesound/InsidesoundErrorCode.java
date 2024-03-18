@@ -26,6 +26,8 @@ public enum InsidesoundErrorCode {
     ALBUM_NOT_FOUND_BY_USERNAME(400, Map.of("GET ALBUMS BY USERNAME", "El username no tiene albums.")),
     ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME(400, Map.of("GET ALBUMS BY USERNAME", "El username no tiene albums publicos.")),
     ID_ALBUM_NOT_FOUND(400, Map.of("PUT", "El album a editar no existe.")),
+
+    ERR_CREATE_ALBUM(500, Map.of("POST", "El album no se pudo crear.")),
     ERR_UPDATING_ALBUM(500, Map.of("PUT", "El album no se pudo editar.")),
     ERR_DEL_ALBUM(500, Map.of("DELETE", "No se pudo borrar el album.")),
     ERR_DEL_TRACKS_BY_ALBUM_ID(500, Map.of("DELETE TRACKS BY ALBUM ID", "No se pudo borrar el track asociado al album.")),

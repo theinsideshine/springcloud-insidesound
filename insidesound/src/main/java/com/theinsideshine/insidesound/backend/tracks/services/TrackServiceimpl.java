@@ -1,6 +1,7 @@
 package com.theinsideshine.insidesound.backend.tracks.services;
 
 
+import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
 import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
 import com.theinsideshine.insidesound.backend.albums.repositories.AlbumRepository;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
@@ -113,7 +114,6 @@ public class TrackServiceimpl implements TrackService {
             throw new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_TRACK);
         }
     }
-
     @Override
     @Transactional
     public void remove(Long id) {
@@ -126,13 +126,6 @@ public class TrackServiceimpl implements TrackService {
             }
         }
     }
-
-    @Override
-    public Optional<Track> findById(Long id) {
-        return trackRepository.findById(id);
-    }
-
-
     @Transactional
     public void associateAlbumToTrack(Long trackId, Long albumId) {
         Track track = trackRepository.findById(trackId)
@@ -146,7 +139,6 @@ public class TrackServiceimpl implements TrackService {
         } catch (Exception e) {
             throw  new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_TRACK);
         }
-
     }
     private void validateTrackIdPost(Long id) {
         Optional<Track> optionalTrack= trackRepository.findById(id);

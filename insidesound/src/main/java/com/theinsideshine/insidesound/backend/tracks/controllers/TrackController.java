@@ -1,6 +1,5 @@
 package com.theinsideshine.insidesound.backend.tracks.controllers;
 
-import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
 import com.theinsideshine.insidesound.backend.exceptions.ErrorModel;
 import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackRequestDto;
 import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackResponseDto;
@@ -21,12 +20,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/tracks")
-public class TracksController {
+public class TrackController {
 
     private final TrackService trackService;
 
     @Autowired
-    public TracksController(TrackService trackService) {
+    public TrackController(TrackService trackService) {
         this.trackService = trackService;
     }
 
@@ -61,6 +60,19 @@ public class TracksController {
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM).body(mp3);
     }
 
+
+    /*
+     Siempre  devuelve ok ,y si no hay tracks el front puede poner: no hay canciones disponibles
+     */
+    @GetMapping("/by-username/{username}")
+    @Operation(summary = "Busca por username ", description = "Devuelve una lista de track ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = TrackResponseDto.class))),
+    })
+    public ResponseEntity<List<TrackResponseDto>> showTracksByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(trackService.findByUsername(username));
+    }
+
     @GetMapping("/by-album-id/{id}")
     @Operation(summary = "Busca todos los tracks que tiene asocidado albumId", description = "Devuelve una lista de tracks. ")
     @ApiResponses(value = {
@@ -86,17 +98,7 @@ public class TracksController {
         return ResponseEntity.ok(albumId != null ? albumId : 0L);
 
     }
-    /*
-     Siempre  devuelve ok ,y si no hay tracks el front puede poner: no hay canciones disponibles
-     */
-    @GetMapping("/by-username/{username}")
-    @Operation(summary = "Busca por username ", description = "Devuelve una lista de track ")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = TrackResponseDto.class))),
-    })
-    public ResponseEntity<List<TrackResponseDto>> showTracksByUsername(@PathVariable String username) {
-            return ResponseEntity.ok(trackService.findByUsername(username));
-    }
+
 
 
     @PostMapping
@@ -115,7 +117,7 @@ public class TracksController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = TrackResponseDto.class))),
             @ApiResponse(responseCode = "400", description = "El track a editar no existe." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "500", description = "El track no se pudo editar." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<TrackResponseDto> update(@Valid @ModelAttribute TrackRequestDto trackRequestDto, @PathVariable Long id) {
         return ResponseEntity.ok(trackService.update(trackRequestDto,id));

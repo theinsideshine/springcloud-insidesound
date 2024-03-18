@@ -28,6 +28,9 @@ public class InsidesoundException extends RuntimeException {
         return errorMap;
     }
 
+
+
+
     private static String buildErrorMessage(Map<String, String> errorMap) {
         StringBuilder errorMessage = new StringBuilder();
 
@@ -49,6 +52,9 @@ public class InsidesoundException extends RuntimeException {
 
         return errorMessage.toString();
     }
+
+
+
 }
 
 

@@ -100,7 +100,7 @@ public class AlbumController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = AlbumResponseDto.class))),
             @ApiResponse(responseCode = "400", description = "El album a editar no existe." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "500", description = "El album no se pudo editar." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<AlbumResponseDto> update(@Valid @ModelAttribute AlbumRequestDto albumRequestDto, @PathVariable Long id) {
         return ResponseEntity.ok(albumService.update(albumRequestDto,id));
@@ -112,7 +112,6 @@ public class AlbumController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "500", description = "No se pudo borrar el album." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
             @ApiResponse(responseCode = "500", description = "No se pudo borrar el track asociado al album." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
-
     })
     public ResponseEntity<?> remove(@PathVariable Long id) {
         albumService.remove(id);

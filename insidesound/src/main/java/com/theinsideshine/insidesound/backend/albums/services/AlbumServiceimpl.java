@@ -93,12 +93,8 @@ public class AlbumServiceimpl implements AlbumService{
     public AlbumResponseDto update(AlbumRequestDto albumRequestDto, Long id) {
         validateAlbumIdPost(id);
         Album albumToUpdate = AlbumRequestDto.AlbumRequestDtoMapperDtoToEntity(albumRequestDto);
-        try {
-            Album updateAlbum = albumRepository.save(albumToUpdate);
-            return AlbumResponseDto.albumResponseDtoMapperEntityToDto(updateAlbum);
-        } catch (Exception e) {
-            throw new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_ALBUM);
-        }
+        Album updateAlbum = albumRepository.save(albumToUpdate);
+        return AlbumResponseDto.albumResponseDtoMapperEntityToDto(updateAlbum);
     }
 
     @Override

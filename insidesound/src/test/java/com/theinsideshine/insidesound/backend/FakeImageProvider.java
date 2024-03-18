@@ -1,4 +1,4 @@
-package com.theinsideshine.insidesound.backend.albums.controllers;
+package com.theinsideshine.insidesound.backend;
 
 public class FakeImageProvider {
 
