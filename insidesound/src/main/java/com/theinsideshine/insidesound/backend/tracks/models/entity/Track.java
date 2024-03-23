@@ -29,13 +29,13 @@ public class Track {
     @JsonIgnore
     @Lob
     /*@Column(length = 1048576)*/
-    private byte[]  image;
+    private byte[] image;
 
     @NotEmpty
     @JsonIgnore
     @Lob
     /*@Column(length =  10485760)*/
-    private byte[]  mp3;
+    private byte[] mp3;
 
 
     @Column(name = "album_id", columnDefinition = "BIGINT default 0")
@@ -102,11 +102,11 @@ public class Track {
     }
 
     public Integer getImageHashCode() {
-        return ( this.image != null ) ? this.image.hashCode() : null ;
+        return (this.image != null) ? this.image.hashCode() : null;
     }
 
     public Integer getMp3HashCode() {
-        return ( this.mp3 != null ) ? this.mp3.hashCode() : null ;
+        return (this.mp3 != null) ? this.mp3.hashCode() : null;
     }
 }
 

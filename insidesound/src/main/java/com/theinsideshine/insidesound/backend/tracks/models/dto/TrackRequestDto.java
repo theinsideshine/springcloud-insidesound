@@ -8,30 +8,32 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
-public record TrackRequestDto (
+import java.io.IOException;
 
-    Long id,
+public record TrackRequestDto(
 
-    @NotBlank
-    @Size(min = 4, max = 8)
-    String username,
+        Long id,
 
-    @NotBlank
-    @Size(min = 4, max = 30)
-    String title,
+        @NotBlank
+        @Size(min = 4, max = 8)
+        String username,
 
-    @MaxFileSize(value = 1048576, message = "imageFile")
-    MultipartFile imageFile,
+        @NotBlank
+        @Size(min = 4, max = 30)
+        String title,
 
-    @MaxFileSize(value = 10485760, message = "mp3File")
-    MultipartFile mp3File,
+        @MaxFileSize(value = 1048576, message = "imageFile")
+        MultipartFile imageFile,
 
-    Long album_id
-){
-    public static Track TrackRequestDtoMapperDtoToEntity(TrackRequestDto trackRequestDto)  {
+        @MaxFileSize(value = 10485760, message = "mp3File")
+        MultipartFile mp3File,
+
+        Long album_id
+) {
+    public static Track TrackRequestDtoMapperDtoToEntity(TrackRequestDto trackRequestDto) {
         try {
-            byte[] imageBytes = trackRequestDto.imageFile().getBytes();
-            byte[] mp3Bytes   = trackRequestDto.mp3File().getBytes();
+            byte[] imageBytes = convertToBytes(trackRequestDto.imageFile());
+            byte[] mp3Bytes = convertToBytes(trackRequestDto.mp3File());
             return new Track(
                     trackRequestDto.id,
                     trackRequestDto.username,
@@ -44,6 +46,11 @@ public record TrackRequestDto (
             throw new InsidesoundException(InsidesoundErrorCode.ERR_CONV_MULTIPARTFILE);
         }
     }
+
+    public static byte[] convertToBytes(MultipartFile file) throws IOException {
+        return file.getBytes();
+    }
+
 }
 
 

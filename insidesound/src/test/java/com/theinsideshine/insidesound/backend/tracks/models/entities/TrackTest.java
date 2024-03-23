@@ -1,7 +1,5 @@
 package com.theinsideshine.insidesound.backend.tracks.models.entities;
 
-import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
-import com.theinsideshine.insidesound.backend.datas.AlbumData;
 import com.theinsideshine.insidesound.backend.datas.TrackData;
 import com.theinsideshine.insidesound.backend.tracks.models.entity.Track;
 import org.junit.jupiter.api.Test;
@@ -14,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TrackTest {
 
 
-
     @Test
-    void testConstructorTrack(){
+    void testConstructorTrack() {
         Track track =
-                new Track(1L, "German", "Abre",  getFakeImageBytes(), getFakeImageBytes(),0L );
-       assertNotNull(track.getId(), () -> "El Id no puede ser nula");
+                new Track(1L, "German", "Abre", getFakeImageBytes(), getFakeImageBytes(), 0L);
+        assertNotNull(track.getId(), () -> "El Id no puede ser nula");
     }
+
     @Test
     void testIdTrack() {
         Track track = TrackData.getTrack();
@@ -31,15 +29,15 @@ public class TrackTest {
         assertTrue(realId.equals(expectedId), () -> "Id debe ser igual a la expectedId");
     }
 
-        @Test
-        void testUsernameTrack() {
-            Track track = TrackData.getTrack();
-            String expectedUsername = "Sonia";
-            track.setUsername(expectedUsername);
-            String realUsername = track.getUsername();
-            assertNotNull(realUsername, () -> "El Username no puede ser nula");
-            assertTrue(realUsername.equals(expectedUsername), () -> "Username debe ser igual a la expectedUsername");
-        }
+    @Test
+    void testUsernameTrack() {
+        Track track = TrackData.getTrack();
+        String expectedUsername = "Sonia";
+        track.setUsername(expectedUsername);
+        String realUsername = track.getUsername();
+        assertNotNull(realUsername, () -> "El Username no puede ser nula");
+        assertTrue(realUsername.equals(expectedUsername), () -> "Username debe ser igual a la expectedUsername");
+    }
 
     @Test
     void testTitleTrack() {
@@ -56,7 +54,7 @@ public class TrackTest {
     void testImageAndMp3Track() {
         Track track = TrackData.getTrack();
         byte[] expectedImage = TrackData.getFakeImageBytes();
-        byte[] expectedMp3 = TrackData.getFakeImageBytes() ;
+        byte[] expectedMp3 = TrackData.getFakeImageBytes();
         track.setImage(expectedImage);
         track.setMp3(expectedMp3);
         byte[] realImage = track.getImage();
@@ -77,10 +75,11 @@ public class TrackTest {
         assertNotNull(realAlbumId, () -> "El AlbumId no puede ser nula");
         assertTrue(realAlbumId.equals(expectedAlbumId), () -> "AlbumId debe ser igual a la expectedId");
     }
+
     @Test
     void testImageHashcodeTrack() {
         Track track = TrackData.getTrack();
-        byte[] expectedImage = getFakeImageBytes() ;
+        byte[] expectedImage = getFakeImageBytes();
         track.setImage(expectedImage);
         Integer realImageHashcode = track.getImageHashCode();
         assertNotNull(realImageHashcode, () -> "El HashCode no puede ser nulo");
@@ -92,7 +91,7 @@ public class TrackTest {
     @Test
     void testMp3HashcodeTrack() {
         Track track = TrackData.getTrack();
-        byte[] expectedMp3 = getFakeImageBytes() ;
+        byte[] expectedMp3 = getFakeImageBytes();
         track.setMp3(expectedMp3);
         Integer realMp3Hashcode = track.getMp3HashCode();
         assertNotNull(realMp3Hashcode, () -> "El HashCode no puede ser nulo");

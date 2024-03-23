@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class AlbumServiceimpl implements AlbumService{
+public class AlbumServiceimpl implements AlbumService {
 
 
     private final AlbumRepository albumRepository;
@@ -48,7 +48,7 @@ public class AlbumServiceimpl implements AlbumService{
 
     @Override
     @Transactional(readOnly = true)
-    public Resource findImageById(Long id)  {
+    public Resource findImageById(Long id) {
         Optional<Album> albumOptional = albumRepository.findById(id);
         if (albumOptional.isEmpty() || albumOptional.get().getImage() == null) {
             throw new InsidesoundException(InsidesoundErrorCode.IMG_NOT_FOUND_BY_ALBUM_ID);
@@ -60,7 +60,7 @@ public class AlbumServiceimpl implements AlbumService{
     @Transactional(readOnly = true)
     public List<AlbumResponseDto> findByUsername(String username) {
         List<Album> albums = albumRepository.findByUsername(username);
-        if (albums.size() == 0){
+        if (albums.size() == 0) {
             throw new InsidesoundException(InsidesoundErrorCode.ALBUM_NOT_FOUND_BY_USERNAME);
         }
         return albums.stream()
@@ -72,7 +72,7 @@ public class AlbumServiceimpl implements AlbumService{
     @Transactional(readOnly = true)
     public List<AlbumResponseDto> findPublicAlbumsByUsername(String username) {
         List<Album> albums = albumRepository.findByUsernameAndAlbumprivateFalse(username);
-        if (albums.size() == 0){
+        if (albums.size() == 0) {
             throw new InsidesoundException(InsidesoundErrorCode.ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME);
         }
         return albums.stream()
@@ -82,8 +82,8 @@ public class AlbumServiceimpl implements AlbumService{
 
     @Override
     @Transactional
-    public AlbumResponseDto save(AlbumRequestDto albumRequestDto)  {
-         Album album =  AlbumRequestDto.AlbumRequestDtoMapperDtoToEntity(albumRequestDto);
+    public AlbumResponseDto save(AlbumRequestDto albumRequestDto) {
+        Album album = AlbumRequestDto.AlbumRequestDtoMapperDtoToEntity(albumRequestDto);
         Album saveAlbum = albumRepository.save(album);
         return AlbumResponseDto.albumResponseDtoMapperEntityToDto(saveAlbum);
     }

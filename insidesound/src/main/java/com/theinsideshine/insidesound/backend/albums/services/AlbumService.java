@@ -13,16 +13,18 @@ public interface AlbumService {
 
     List<AlbumResponseDto> findAll();
 
-     Optional<AlbumResponseDto> findById(Long id);
+    Optional<AlbumResponseDto> findById(Long id);
 
 
-     Resource findImageById(Long id);
+    Resource findImageById(Long id);
 
     List<AlbumResponseDto> findByUsername(String username);
 
-     List<AlbumResponseDto> findPublicAlbumsByUsername(String username);
-     AlbumResponseDto save(AlbumRequestDto albumRequestDto);
-     AlbumResponseDto update(AlbumRequestDto albumRequestDto, Long id);
+    List<AlbumResponseDto> findPublicAlbumsByUsername(String username);
+
+    AlbumResponseDto save(AlbumRequestDto albumRequestDto);
+
+    AlbumResponseDto update(AlbumRequestDto albumRequestDto, Long id);
 
     void remove(Long id);
 

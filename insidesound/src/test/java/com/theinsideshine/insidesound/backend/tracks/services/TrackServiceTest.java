@@ -1,12 +1,10 @@
 package com.theinsideshine.insidesound.backend.tracks.services;
 
 import com.theinsideshine.insidesound.backend.FakeImageProvider;
-import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumRequestDto;
-import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
 import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
 import com.theinsideshine.insidesound.backend.albums.repositories.AlbumRepository;
-import com.theinsideshine.insidesound.backend.albums.services.AlbumService;
 import com.theinsideshine.insidesound.backend.datas.AlbumData;
+import com.theinsideshine.insidesound.backend.datas.TrackData;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
 import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackRequestDto;
@@ -41,7 +39,6 @@ import static org.mockito.Mockito.*;
 public class TrackServiceTest {
     private List<TrackResponseDto> tracksResponseDto;
     private TrackRequestDto trackRequestDto;
-
     private List<Track> tracks;
     @Autowired
     private TrackService trackService;
@@ -50,11 +47,9 @@ public class TrackServiceTest {
     @MockBean
     private TrackRepository trackRepository;
 
-
     /*
         Aca usamos TrackData para poder probar la generacion del hashcode
      */
-
     @BeforeEach
     public void setup() {
         tracks = Arrays.asList(
@@ -72,7 +67,6 @@ public class TrackServiceTest {
 
     @Test
     public void testFindAll() {
-
         // Configurar el comportamiento del mock de trackRepository.findAll() para devolver las entidades de track
         given(trackRepository.findAll()).willReturn(tracks);
         // Llamar al método findAll() del servicio
@@ -85,7 +79,6 @@ public class TrackServiceTest {
         // Verificar que el método albumRepository.findAll() fue invocado exactamente una vez
         verify(trackRepository, times(1)).findAll();
     }
-
 
     @Test
     public void testFindImageById_ImageFound() {
@@ -119,7 +112,6 @@ public class TrackServiceTest {
         verify(trackRepository, times(1)).findById(id);
     }
 
-
     @Test
     public void testFindMp3ById_ImageFound() {
         // ID del álbum a buscar
@@ -136,6 +128,22 @@ public class TrackServiceTest {
         verify(trackRepository, times(1)).findById(id);
     }
 
+    @Test
+    public void testFindImageById_ImageBytesNull() {
+        // ID del álbum a buscar
+        Long id = tracks.get(0).getId();
+        tracks.get(0).setImage(null);
+        // Configurar el comportamiento del mock de trackRepository.findById() para devolver un track vacío con el ID dado
+        given(trackRepository.findById(id)).willReturn(Optional.of(tracks.get(0)));
+        // Verificar que al llamar al método findMp3ById() se lance la excepción esperada
+        InsidesoundException exception = assertThrows(InsidesoundException.class, () -> trackService.findImageById(id));
+        // Verificar que el código de estado de la excepción sea correcto
+        assertEquals(400, exception.getStatusCode());
+        // Verificar que el mensaje de la excepción contenga el segundo campo del Enum
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.IMG_NOT_FOUND_BY_TRACK_ID.getValueMapErrorMessage()));
+        // Verificar que el método trackRepository.findById() fue invocado exactamente una vez con el ID dado
+        verify(trackRepository, times(1)).findById(id);
+    }
 
     @Test
     public void testFindMp3ById_Mp3NotFound() {
@@ -148,11 +156,27 @@ public class TrackServiceTest {
         // Verificar que el código de estado de la excepción sea correcto
         assertEquals(400, exception.getStatusCode());
         // Verificar que el mensaje de la excepción contenga el segundo campo del Enum
-        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.MP3_NOT_FOUND_BY_TRACK_ID.getErrorMap().get("GET MP3")));
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.MP3_NOT_FOUND_BY_TRACK_ID.getValueMapErrorMessage()));
         // Verificar que el método trackRepository.findById() fue invocado exactamente una vez con el ID dado
         verify(trackRepository, times(1)).findById(id);
     }
 
+    @Test
+    public void testFindMp3ById_Mp3BytesNull() {
+        // ID del álbum a buscar
+        Long id = tracks.get(0).getId();
+        tracks.get(0).setMp3(null);
+        // Configurar el comportamiento del mock de trackRepository.findById() para devolver un track vacío con el ID dado
+        given(trackRepository.findById(id)).willReturn(Optional.of(tracks.get(0)));
+        // Verificar que al llamar al método findMp3ById() se lance la excepción esperada
+        InsidesoundException exception = assertThrows(InsidesoundException.class, () -> trackService.findMp3ById(id));
+        // Verificar que el código de estado de la excepción sea correcto
+        assertEquals(400, exception.getStatusCode());
+        // Verificar que el mensaje de la excepción contenga el segundo campo del Enum
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.MP3_NOT_FOUND_BY_TRACK_ID.getValueMapErrorMessage()));
+        // Verificar que el método trackRepository.findById() fue invocado exactamente una vez con el ID dado
+        verify(trackRepository, times(1)).findById(id);
+    }
 
     @Test
     public void testFindByAlbumId_TracksFound() {
@@ -186,7 +210,7 @@ public class TrackServiceTest {
         // Verificar que el código de estado de la excepción sea correcto
         assertEquals(400, exception.getStatusCode());
         // Verificar que el mensaje de la excepción contenga la descripción asociada en el enum para ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME
-        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.TRACK_NOT_FOUND_BY_ALBUM_ID.getErrorMap().get("FIND TRACK BY ID")));
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.TRACK_NOT_FOUND_BY_ALBUM_ID.getValueMapErrorMessage()));
         // Verificar que el método albumRepository.findByUsernameAndAlbumprivateFalse() fue invocado exactamente una vez con el nombre de usuario dado
         verify(trackRepository, times(1)).findByAlbumId(album_id);
     }
@@ -202,6 +226,12 @@ public class TrackServiceTest {
         //prueba trackService.getAlbumIdByTrackId
         Long realAlbumId = trackService.getAlbumIdByTrackId(trackId);
         assertEquals(expectedAlbumId, realAlbumId);
+        // Caso en el que se encuentra el track pero su album_id es 0
+        tracks.get(0).setAlbum_id(0L);
+        when(trackRepository.findById(trackId)).thenReturn(Optional.of(tracks.get(0)));
+        // Prueba trackService.getAlbumIdByTrackId cuando se encuentra el track pero su album_id es 0
+        Long realAlbumIdWhenAlbumIdIsZero = trackService.getAlbumIdByTrackId(trackId);
+        assertNull(realAlbumIdWhenAlbumIdIsZero);
     }
 
     @Test
@@ -310,6 +340,20 @@ public class TrackServiceTest {
     }
 
     @Test
+    public void testRemove_IdNotFound() {
+        // ID de un track que no existe
+        Long nonExistentId = 999L;
+        // Configurar el comportamiento del mock de trackRepository.findById() para devolver un Optional vacío
+        when(trackRepository.findById(nonExistentId)).thenReturn(Optional.empty());
+        // Llamar al método remove() del servicio
+        trackService.remove(nonExistentId);
+        // Verificar que el método trackRepository.findById() fue invocado exactamente una vez con el ID dado
+        verify(trackRepository, times(1)).findById(nonExistentId);
+        // Verificar que el método trackRepository.deleteById() no fue invocado
+        verify(trackRepository, never()).deleteById(any());
+    }
+
+    @Test
     public void testRemove_ThrowsException() {
         // ID del álbum a eliminar
         Long id = tracks.get(1).getId();
@@ -377,6 +421,32 @@ public class TrackServiceTest {
         // Verificar que el método trackRepository.save() fue invocado exactamente una vez con el objeto Track asociado al álbum
         verify(trackRepository, times(1)).save(track);
         // Verificar que se lanzó la excepción con el código de error esperado
-        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.ERR_UPDATING_TRACK.getErrorMap().get("PUT")));
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.ERR_UPDATING_TRACK.getValueMapErrorMessage()));
+    }
+
+    @Test
+    public void testAssociateAlbumToTrack_ExceptionTRACKIDNOTFOUND() {
+        // IDs de la track
+        Long trackId = 1L;
+        // Configurar el comportamiento del mock de albumRepository.findById() para devolver un Album existente
+        Album album = AlbumData.getAlbum();
+        given(albumRepository.findById(album.getId())).willReturn(Optional.of(album));
+        // Llamar al método associateAlbumToTrack() del servicio y verificar que lance la excepción InsidesoundException con el código correcto
+        InsidesoundException exception = assertThrows(InsidesoundException.class, () -> trackService.associateAlbumToTrack(trackId, album.getId()));
+        // Verificar que se lance la excepción con el código de error esperado
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.TRACK_ID_NOT_FOUND.getValueMapErrorMessage()));
+    }
+
+    @Test
+    public void testAssociateAlbumToTrack_ExceptionALBUMIDNOTFOUND() {
+        // IDs de la track
+        Long albumId = 1L;
+        // Configurar el comportamiento del mock de albumRepository.findById() para devolver un Album existente
+        Track track = TrackData.getTrack();
+        given(trackRepository.findById(track.getId())).willReturn(Optional.of(track));
+        // Llamar al método associateAlbumToTrack() del servicio y verificar que lance la excepción InsidesoundException con el código correcto
+        InsidesoundException exception = assertThrows(InsidesoundException.class, () -> trackService.associateAlbumToTrack(track.getId(), albumId));
+        // Verificar que se lance la excepción con el código de error esperado
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.ALBUM_ID_NOT_FOUND.getValueMapErrorMessage()));
     }
 }

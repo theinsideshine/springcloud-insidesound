@@ -1,14 +1,12 @@
 package com.theinsideshine.insidesound.backend.configuration;
 
 
-
-import com.theinsideshine.insidesound.backend.users.auth.filters.JwtValidationFilter;
 import com.theinsideshine.insidesound.backend.users.auth.filters.JwtAuthenticationFilter;
+import com.theinsideshine.insidesound.backend.users.auth.filters.JwtValidationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +14,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
@@ -29,7 +26,7 @@ import java.util.List;
 
 
 @Configuration
-public class  SpringSecurityConfig {
+public class SpringSecurityConfig {
 
 
     private final AuthenticationConfiguration authenticationConfiguration;
@@ -41,30 +38,28 @@ public class  SpringSecurityConfig {
     @Autowired
 
 
-
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @Bean
     AuthenticationManager authenticationManager() throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
 
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST,"/login").permitAll()
-                .requestMatchers(HttpMethod.GET,"/users/usernames" ).permitAll()
-                .requestMatchers(HttpMethod.GET, "/users","/users/page/{page}").permitAll()
+                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .requestMatchers(HttpMethod.GET, "/users/usernames").permitAll()
+                .requestMatchers(HttpMethod.GET, "/users", "/users/page/{page}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/users/{id}").hasAnyRole("USER", "ADMIN")
                 .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .requestMatchers("/users/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET,"/albums/**" ).permitAll()
-                .requestMatchers(HttpMethod.GET,"/tracks/**" ).permitAll()
+                .requestMatchers(HttpMethod.GET, "/albums/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/tracks/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

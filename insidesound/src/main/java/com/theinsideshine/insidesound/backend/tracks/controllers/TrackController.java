@@ -42,7 +42,7 @@ public class TrackController {
     @Operation(summary = "Obtener una imagen segun trackId", description = "Devuelve una imagen. ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "400", description = "El id del track no tiene imagen." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "El id del track no tiene imagen.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<?> showImagesByTrackId(@PathVariable Long id) {
         Resource image = trackService.findImageById(id);
@@ -53,7 +53,7 @@ public class TrackController {
     @Operation(summary = "Obtener una mp3 segun trackId", description = "Devuelve una mp3. ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "400", description = "El id del track no tiene mp3." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "El id del track no tiene mp3.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<?> showMp3ByTrackId(@PathVariable Long id) {
         Resource mp3 = trackService.findMp3ById(id);
@@ -77,10 +77,10 @@ public class TrackController {
     @Operation(summary = "Busca todos los tracks que tiene asocidado albumId", description = "Devuelve una lista de tracks. ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = TrackResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "No existe track con el albumId asociado." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "No existe track con el albumId asociado.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public List<TrackResponseDto> showTrackByAlbumId(@PathVariable Long id) {
-        return trackService.findByAlbumId( id );
+        return trackService.findByAlbumId(id);
     }
 
 
@@ -92,7 +92,7 @@ public class TrackController {
     @Operation(summary = "Busca por trackId", description = "Devuelve el albumId asociado al track, si no existe devuelve 0L ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            })
+    })
     public ResponseEntity<Long> getAlbumIdByTrackId(@PathVariable Long trackId) {
         Long albumId = trackService.getAlbumIdByTrackId(trackId);
         return ResponseEntity.ok(albumId != null ? albumId : 0L);
@@ -100,13 +100,12 @@ public class TrackController {
     }
 
 
-
     @PostMapping
     @Operation(summary = "Crea un track", description = "Devuelve el track creado.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = TrackResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "Argumentos no validos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "Argumentos no validos.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<TrackResponseDto> create(@Valid @ModelAttribute TrackRequestDto trackRequestDto) {
         return ResponseEntity.ok(trackService.save(trackRequestDto));
@@ -116,18 +115,18 @@ public class TrackController {
     @Operation(summary = "Edita un track", description = "Devuelve el track editado.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = TrackResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "El track a editar no existe." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "El track a editar no existe.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<TrackResponseDto> update(@Valid @ModelAttribute TrackRequestDto trackRequestDto, @PathVariable Long id) {
-        return ResponseEntity.ok(trackService.update(trackRequestDto,id));
+        return ResponseEntity.ok(trackService.update(trackRequestDto, id));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Borra un track", description = "Devuelve OK.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "500", description = "No se pudo borrar el track." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "500", description = "No se pudo borrar el track.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<?> remove(@PathVariable Long id) {
         trackService.remove(id);
@@ -139,9 +138,9 @@ public class TrackController {
     @Operation(summary = "Asocia un albumId a un track", description = "Devuelve OK.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = TrackResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "El id no tiene track." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "400", description = "El id no tiene album" ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "500", description = "El track no se pudo editar." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "El id no tiene track.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "400", description = "El id no tiene album", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "500", description = "El track no se pudo editar.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<String> associateAlbumToTrack(
             @PathVariable Long trackId,
@@ -149,7 +148,6 @@ public class TrackController {
         trackService.associateAlbumToTrack(trackId, albumId);
         return ResponseEntity.ok("Álbum asociado exitosamente a la pista.");
     }
-
 
 
 }

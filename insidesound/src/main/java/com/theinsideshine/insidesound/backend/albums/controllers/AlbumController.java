@@ -37,7 +37,7 @@ public class AlbumController {
     @Operation(summary = "Obtener lista de albumes", description = "Devuelve una lista con los albumes.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = AlbumResponseDto.class))),
-           })
+    })
     public List<AlbumResponseDto> showList() {
         return albumService.findAll();
     }
@@ -57,7 +57,7 @@ public class AlbumController {
     @Operation(summary = "Obtener una imagen segun albumId", description = "Devuelve una imagen.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "400", description = "El id del album no tiene imagen." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "El id del album no tiene imagen.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<?> showImageByAlbumId(@PathVariable Long id) {
         Resource image = albumService.findImageById(id);
@@ -68,17 +68,17 @@ public class AlbumController {
     @Operation(summary = "Obtener albumes segun username", description = "Devuelve una lista de album. ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = AlbumResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = " El username no tiene albums." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = " El username no tiene albums.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public List<AlbumResponseDto> showAlbumsByUsername(@PathVariable String username) {
-        return albumService.findByUsername( username);
+        return albumService.findByUsername(username);
     }
 
     @GetMapping("/public/by-username/{username}")
     @Operation(summary = "Obtener albumes publicos segun username", description = "Devuelve una lista de album. ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = AlbumResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = " El username no tiene albums publicos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = " El username no tiene albums publicos.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public List<AlbumResponseDto> getPublicAlbumsByUsername(@PathVariable String username) {
         return albumService.findPublicAlbumsByUsername(username);
@@ -88,8 +88,8 @@ public class AlbumController {
     @Operation(summary = "Crea un album", description = "Devuelve el album creado.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = AlbumResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "Argumentos no validos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "Argumentos no validos.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<AlbumResponseDto> create(@Valid @ModelAttribute AlbumRequestDto albumRequestDto) {
         return ResponseEntity.ok(albumService.save(albumRequestDto));
@@ -99,19 +99,19 @@ public class AlbumController {
     @Operation(summary = "Edita un album", description = "Devuelve el album editado.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = AlbumResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "El album a editar no existe." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "El album a editar no existe.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<AlbumResponseDto> update(@Valid @ModelAttribute AlbumRequestDto albumRequestDto, @PathVariable Long id) {
-        return ResponseEntity.ok(albumService.update(albumRequestDto,id));
+        return ResponseEntity.ok(albumService.update(albumRequestDto, id));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Borra un album y borra la relacion si tiene tracks asociados", description = "Devuelve OK.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "500", description = "No se pudo borrar el album." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "500", description = "No se pudo borrar el track asociado al album." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "500", description = "No se pudo borrar el album.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "500", description = "No se pudo borrar el track asociado al album.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<?> remove(@PathVariable Long id) {
         albumService.remove(id);

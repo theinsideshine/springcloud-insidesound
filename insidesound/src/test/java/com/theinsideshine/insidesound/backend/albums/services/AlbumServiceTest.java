@@ -16,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,8 +40,9 @@ public class AlbumServiceTest {
     private AlbumRepository albumRepository;
     @MockBean
     private TrackRepository trackRepository;
+
     /*
-        Aca usamos AlbumData para poder probar la generacion del hashcode
+        Aca no usamos AlbumData para poder probar la generacion del hashcode
      */
     @BeforeEach
     public void setup() {
@@ -71,6 +70,7 @@ public class AlbumServiceTest {
         // Verificar que el método albumRepository.findAll() fue invocado exactamente una vez
         verify(albumRepository, times(1)).findAll();
     }
+
     @Test
     public void testFindById() {
         // ID del álbum a buscar
@@ -85,6 +85,7 @@ public class AlbumServiceTest {
         // Verificar que el método albumRepository.findById() fue invocado exactamente una vez con el ID dado
         verify(albumRepository, times(1)).findById(id);
     }
+
     @Test
     public void testFindImageById_ImageFound() {
         // ID del álbum a buscar
@@ -100,6 +101,7 @@ public class AlbumServiceTest {
         // Verificar que el método albumRepository.findById() fue invocado exactamente una vez con el ID dado
         verify(albumRepository, times(1)).findById(id);
     }
+
     @Test
     public void testFindImageById_ImageNotFound() {
         // ID del álbum a buscar
@@ -110,11 +112,12 @@ public class AlbumServiceTest {
         InsidesoundException exception = assertThrows(InsidesoundException.class, () -> albumService.findImageById(id));
         // Verificar que el código de estado de la excepción sea correcto
         assertEquals(400, exception.getStatusCode());
-        // Verificar que el mensaje de la excepción contenga el segundo campo del Enum
-        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.IMG_NOT_FOUND_BY_ALBUM_ID.getErrorMap().get("GET IMAGES")));
+        // Verificar que el mensaje de la excepción  el valor del hashmap(clave:valor) en el enum asociado a IMG_NOT_FOUND_BY_ALBUM_ID
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.IMG_NOT_FOUND_BY_ALBUM_ID.getValueMapErrorMessage()));
         // Verificar que el método albumRepository.findById() fue invocado exactamente una vez con el ID dado
         verify(albumRepository, times(1)).findById(id);
     }
+
     @Test
     public void testFindPublicAlbumsByUsername_AlbumsFound() {
         // Nombre de usuario para buscar
@@ -148,12 +151,11 @@ public class AlbumServiceTest {
         InsidesoundException exception = assertThrows(InsidesoundException.class, () -> albumService.findPublicAlbumsByUsername(username));
         // Verificar que el código de estado de la excepción sea correcto
         assertEquals(400, exception.getStatusCode());
-        // Verificar que el mensaje de la excepción contenga la descripción asociada en el enum para ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME
-        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME.getErrorMap().get("GET ALBUMS BY USERNAME")));
+        // Verificar que el mensaje de la excepción contenga el valor del hashmap(clave:valor) en el enum para ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.ALBUM_PUBLIC_NOT_FOUND_BY_USERNAME.getValueMapErrorMessage()));
         // Verificar que el método albumRepository.findByUsernameAndAlbumprivateFalse() fue invocado exactamente una vez con el nombre de usuario dado
         verify(albumRepository, times(1)).findByUsernameAndAlbumprivateFalse(username);
     }
-
 
     @Test
     public void testFindByUsername_AlbumsFound() {
@@ -177,6 +179,7 @@ public class AlbumServiceTest {
         // Verificar que el método albumRepository.findByUsername() fue invocado exactamente una vez con el nombre de usuario dado
         verify(albumRepository, times(1)).findByUsername(username);
     }
+
     @Test
     public void testFindByUsername_AlbumsNotFound() {
         // Nombre de usuario para buscar
@@ -187,11 +190,12 @@ public class AlbumServiceTest {
         InsidesoundException exception = assertThrows(InsidesoundException.class, () -> albumService.findByUsername(username));
         // Verificar que el código de estado de la excepción sea correcto
         assertEquals(400, exception.getStatusCode());
-        // Verificar que el mensaje de la excepción contenga la descripción asociada en el enum para ALBUM_NOT_FOUND_BY_USERNAME
-        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.ALBUM_NOT_FOUND_BY_USERNAME.getErrorMap().get("GET ALBUMS BY USERNAME")));
+        // Verificar que el mensaje de la excepción contenga  el valor del hashmap(clave:valor) en el enum para ALBUM_NOT_FOUND_BY_USERNAME
+        assertTrue(exception.getMessage().contains(InsidesoundErrorCode.ALBUM_NOT_FOUND_BY_USERNAME.getValueMapErrorMessage()));
         // Verificar que el método albumRepository.findByUsername() fue invocado exactamente una vez con el nombre de usuario dado
         verify(albumRepository, times(1)).findByUsername(username);
     }
+
     @Test
     public void testSave() {
         // Crear un álbum ficticio y un DTO de respuesta de álbum correspondiente
@@ -208,6 +212,7 @@ public class AlbumServiceTest {
         // Verificar que el método albumRepository.save() fue invocado exactamente una vez con cualquier instancia de Album
         verify(albumRepository, times(1)).save(any(Album.class));
     }
+
     @Test
     public void testUpdate() {
         // ID del álbum a actualizar
@@ -216,7 +221,7 @@ public class AlbumServiceTest {
         Album albumToUpdate = albums.get(0);
         given(albumRepository.findById(id)).willReturn(Optional.of(albumToUpdate));
         // Configurar el comportamiento del mock de albumRepository.save() para devolver el álbum actualizado
-       // Album updatedAlbum = albums.get(0);
+        // Album updatedAlbum = albums.get(0);
         given(albumRepository.save(any(Album.class))).willReturn(albumToUpdate);
         // Llamar al método update() del servicio
         AlbumResponseDto result = albumService.update(albumRequestDto, id);
@@ -227,7 +232,22 @@ public class AlbumServiceTest {
         // Verificar que el método albumRepository.findById() fue invocado exactamente una vez con el ID dado
         verify(albumRepository, times(1)).findById(id);
         // Verificar que el método albumRepository.save() fue invocado exactamente una vez con cualquier instancia de Album
-        verify(albumRepository, times(1)).save(any(Album.class));    }
+        verify(albumRepository, times(1)).save(any(Album.class));
+    }
+
+    @Test
+    public void testUpdate_validateTrackIdPost() {
+        // ID del álbum a actualizar
+        Long id = albums.get(0).getId();
+        // Configurar el comportamiento del mock de trackRepository.findById() para devolver un Optional vacío
+        given(albumRepository.findById(id)).willReturn(Optional.empty());
+        // Llamar al método update() del servicio y verificar que se lance la excepción InsidesoundException
+        assertThrows(InsidesoundException.class, () -> albumService.update(albumRequestDto, id));
+        // Verificar que el método albumRepository.findById() fue invocado exactamente una vez con el ID dado
+        verify(albumRepository, times(1)).findById(id);
+        // Verificar que el método trackRepository.save() no fue invocado debido a que no se encontró ningún track
+        verify(albumRepository, never()).save(any(Album.class));
+    }
 
     @Test
     public void testRemove() {
@@ -245,6 +265,52 @@ public class AlbumServiceTest {
         // Verificar que el método albumRepository.deleteById() fue invocado exactamente una vez con el ID del álbum existente
         verify(albumRepository, times(1)).deleteById(id);
         // Verificar que el método trackRepository.removeTracksByAlbumId() fue invocado exactamente una vez con el ID del álbum existente
+        verify(trackRepository, times(1)).removeTracksByAlbumId(id);
+    }
+
+    @Test
+    public void testRemove_IdNotFound() {
+        // ID de un track que no existe
+        Long nonExistentId = 999L;
+        // Configurar el comportamiento del mock de trackRepository.findById() para devolver un Optional vacío
+        when(albumRepository.findById(nonExistentId)).thenReturn(Optional.empty());
+        // Llamar al método remove() del servicio
+        albumService.remove(nonExistentId);
+        // Verificar que el método trackRepository.findById() fue invocado exactamente una vez con el ID dado
+        verify(albumRepository, times(1)).findById(nonExistentId);
+        // Verificar que el método trackRepository.deleteById() no fue invocado
+        verify(albumRepository, never()).deleteById(any());
+        verify(trackRepository, never()).removeTracksByAlbumId(any());
+    }
+
+    @Test
+    public void testRemove_ThrowsExceptionALBUM() {
+        // ID del álbum a eliminar
+        Long id = albums.get(1).getId();
+        // Configurar el comportamiento del mock de albumRepository.findById() para devolver un álbum existente
+        Album existingAlbum = albums.get(1);
+        when(albumRepository.findById(id)).thenReturn(Optional.of(existingAlbum));
+        // Configurar el comportamiento del mock de trackRepository.deleteById() para lanzar una excepción al ser llamado con el ID dado
+        doThrow(new RuntimeException("Simulated delete error")).when(albumRepository).deleteById(id);
+        // Llamar al método remove() del servicio
+        assertThrows(InsidesoundException.class, () -> albumService.remove(id));
+        // Verificar que el método albumRepository.deleteById() fue invocado exactamente una vez con el ID del álbum existente
+        verify(albumRepository, times(1)).deleteById(id);
+    }
+
+    @Test
+    public void testRemove_ThrowsExceptionTRACK() {
+        // ID del álbum a eliminar
+        Long id = albums.get(1).getId();
+        // Configurar el comportamiento del mock de albumRepository.findById() para devolver un álbum existente
+        Album existingAlbum = albums.get(1);
+        when(albumRepository.findById(id)).thenReturn(Optional.of(existingAlbum));
+        // Configurar el comportamiento del mock de trackRepository.deleteById() para lanzar una excepción al ser llamado con el ID dado
+        doThrow(new RuntimeException("Simulated delete error")).when(trackRepository).removeTracksByAlbumId(id);
+        // Llamar al método remove() del servicio
+        assertThrows(InsidesoundException.class, () -> albumService.remove(id));
+        // Verificar que el método albumRepository.deleteById() fue invocado exactamente una vez con el ID del álbum existente
+        verify(albumRepository, times(1)).deleteById(id);
         verify(trackRepository, times(1)).removeTracksByAlbumId(id);
     }
 }

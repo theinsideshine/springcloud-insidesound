@@ -20,17 +20,17 @@ public record UserRequestDto(
         String email,
         boolean admin
 ) {
-    public static UserRequestDto UserRequestDtoMapperEntityToDto(User user){
+    public static UserRequestDto UserRequestDtoMapperEntityToDto(User user) {
         return new UserRequestDto(
                 user.getId(),
                 user.getUsername(),
-                user.getEmail(),
                 user.getPassword(),
+                user.getEmail(),
                 user.isAdmin()
         );
     }
 
-    public static User UserRequestDtoMapperDtoToEntity(UserRequestDto userRequestDto){
+    public static User UserRequestDtoMapperDtoToEntity(UserRequestDto userRequestDto) {
         return new User(
                 userRequestDto.id(),
                 userRequestDto.username(),

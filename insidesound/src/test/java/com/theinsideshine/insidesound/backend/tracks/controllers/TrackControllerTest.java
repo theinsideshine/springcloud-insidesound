@@ -2,11 +2,6 @@ package com.theinsideshine.insidesound.backend.tracks.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theinsideshine.insidesound.backend.FakeImageProvider;
-import com.theinsideshine.insidesound.backend.albums.controllers.AlbumController;
-import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumRequestDto;
-import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
-import com.theinsideshine.insidesound.backend.albums.services.AlbumService;
-import com.theinsideshine.insidesound.backend.datas.AlbumData;
 import com.theinsideshine.insidesound.backend.datas.TrackData;
 import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackRequestDto;
 import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackResponseDto;
@@ -25,7 +20,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -68,6 +62,7 @@ public class TrackControllerTest {
                 .andExpect(content().json(objectMapper.writeValueAsString(trackResponseDtoList)));
         verify(trackService, times(1)).findAll();
     }
+
     @Test
     public void testShowImageByTrackId() throws Exception {
         // ID válido para un track existente
@@ -140,7 +135,7 @@ public class TrackControllerTest {
     public void testGetAlbumIdByTrackId() throws Exception {
         // AlbumID válido para un trackId existente
         TrackResponseDto trackResponseDto = TrackData.getTrackResponseDto();
-        Long validTrackId    = trackResponseDto.id();
+        Long validTrackId = trackResponseDto.id();
         Long responseAlbumId = trackResponseDto.album_id();
         // Simulamos que el track con el TrackId válido para que devuelva albumId
         given(trackService.getAlbumIdByTrackId(validTrackId)).willReturn(responseAlbumId);
@@ -156,6 +151,7 @@ public class TrackControllerTest {
                 .andExpect(status().isOk());
         verify(trackService, times(2)).getAlbumIdByTrackId(validTrackId);
     }
+
     @Test
     public void testCreateTrack() throws Exception {
         MockMultipartFile multipartFileImage = TrackData.getMultipartFileImage();
@@ -173,7 +169,7 @@ public class TrackControllerTest {
                         .with(request -> {
                             request.setMethod("POST"); // Establecer el método HTTP como POST
                             return request;
-                        })                        )
+                        }))
                 .andExpect(status().isOk());
     }
 
@@ -208,4 +204,18 @@ public class TrackControllerTest {
         // Verificar que el método remove del servicio haya sido invocado con el ID correcto
         verify(trackService, times(1)).remove(trackId);
     }
+
+    @Test
+    public void testAssociateAlbumToTrack_Success() throws Exception {
+        // Configurar el comportamiento del servicio mock para el caso feliz
+        doNothing().when(trackService).associateAlbumToTrack(anyLong(), anyLong());
+
+        // Realizar la solicitud POST a la ruta correspondiente con los parámetros adecuados
+        mockMvc.perform(MockMvcRequestBuilders.post("/tracks/{trackId}/associateAlbum", 1L)
+                        .param("albumId", "1"))
+                .andExpect(status().isOk());// Se espera una respuesta exitosa con código 200
+
+    }
+
+
 }

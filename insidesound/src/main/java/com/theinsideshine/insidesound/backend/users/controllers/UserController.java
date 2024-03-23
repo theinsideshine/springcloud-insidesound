@@ -1,8 +1,6 @@
 package com.theinsideshine.insidesound.backend.users.controllers;
 
-import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
 import com.theinsideshine.insidesound.backend.exceptions.ErrorModel;
-import com.theinsideshine.insidesound.backend.tracks.models.dto.TrackResponseDto;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDto;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserRequestDtoUpdate;
 import com.theinsideshine.insidesound.backend.users.models.dto.UserResponseDto;
@@ -54,7 +52,8 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = UserResponseDto.class))),
     })
     public Page<UserResponseDto> showlistPageable(@PathVariable Integer page) {
-        return userService.findAll(PageRequest.of(page, defaultPageSize));
+        //int pageSize = defaultPageSize != null ? defaultPageSize : 5;
+        return userService.findAllPageable(PageRequest.of(page, 5));
     }
 
     @GetMapping("/{id}")
@@ -82,8 +81,8 @@ public class UserController {
     @Operation(summary = "Crea un usuario", description = "Devuelve el usuario creado.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = UserResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "Argumentos no validos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "Argumentos no validos.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "409", description = "Campo duplicado en base de datos.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<UserResponseDto> create(@Valid @RequestBody UserRequestDto userRequestDto) {
         return ResponseEntity.ok(userService.save(userRequestDto));
@@ -93,20 +92,20 @@ public class UserController {
     @Operation(summary = "Edita un usuario", description = "Devuelve el usuario editado.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = UserResponseDto.class))),
-            @ApiResponse(responseCode = "400", description = "El usuario a editar no existe." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "500", description = "El usuario no se pudo editar." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "400", description = "El usuario a editar no existe.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "500", description = "El usuario no se pudo editar.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<UserResponseDto> update(@Valid @RequestBody UserRequestDtoUpdate userRequestDtoUpdate, @PathVariable Long id) {
-        return ResponseEntity.ok(userService.update(userRequestDtoUpdate,id));
+        return ResponseEntity.ok(userService.update(userRequestDtoUpdate, id));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Borra un usuario y borra si tiene tracks y albumes asociados", description = "Devuelve OK.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "500", description = "No se pudo borrar el usuario." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "500", description = "No se pudo borrar el album asociado al username." ,content = @Content(schema = @Schema(implementation = ErrorModel.class))),
-            @ApiResponse(responseCode = "500", description = "No se pudo borrar el track asociado al username." ,content = @Content(schema = @Schema(implementation = ErrorModel.class)))
+            @ApiResponse(responseCode = "500", description = "No se pudo borrar el usuario.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "500", description = "No se pudo borrar el album asociado al username.", content = @Content(schema = @Schema(implementation = ErrorModel.class))),
+            @ApiResponse(responseCode = "500", description = "No se pudo borrar el track asociado al username.", content = @Content(schema = @Schema(implementation = ErrorModel.class)))
     })
     public ResponseEntity<?> remove(@PathVariable Long id) {
         userService.remove(id);

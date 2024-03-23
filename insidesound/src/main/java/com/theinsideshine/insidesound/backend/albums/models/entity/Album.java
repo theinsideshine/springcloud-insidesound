@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name="albums" )
+@Table(name = "albums")
 public class Album {
 
     @Id
@@ -34,7 +34,7 @@ public class Album {
     @NotEmpty
     @JsonIgnore
     @Lob
-    private byte[]  image;
+    private byte[] image;
 
     public Album() {
     }
@@ -120,6 +120,6 @@ public class Album {
     }
 
     public Integer getImageHashCode() {
-        return ( this.image != null ) ? this.image.hashCode() : null ;
+        return (this.image != null) ? this.image.hashCode() : null;
     }
 }

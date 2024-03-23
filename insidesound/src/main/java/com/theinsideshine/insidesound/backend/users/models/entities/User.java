@@ -1,27 +1,18 @@
 package com.theinsideshine.insidesound.backend.users.models.entities;
 
-import java.util.List;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name="users")
-public class User  {
-    
+@Table(name = "users")
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,18 +30,18 @@ public class User  {
     @Column(unique = true)
     private String email;
 
-    @Transient    
-    private boolean admin; 
+    @Transient
+    private boolean admin;
 
     @ManyToMany
     @JoinTable(
-        name = "users_roles",
-        joinColumns = @JoinColumn(name="user_id"),
-        inverseJoinColumns = @JoinColumn(name="role_id"),
-        uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id", "role_id"})})
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})})
     private List<Role> roles;
 
-    public User() {
+    /*public User() {
 
     }
 
@@ -60,7 +51,7 @@ public class User  {
         this.password = password;
         this.email = email;
         this.admin = admin;
-    }
+    }*/
 
     public User(Long id, String username, String email, boolean admin) {
         this.id = id;
@@ -69,6 +60,18 @@ public class User  {
         this.admin = admin;
     }
 
+    public User() {
+        this.roles = new ArrayList<>(); // Inicializar la lista en el constructor
+    }
+
+    public User(Long id, String username, String password, String email, boolean admin) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.admin = admin;
+        this.roles = new ArrayList<>(); // Inicializar la lista en el constructor
+    }
 
 
     public Long getId() {
@@ -119,6 +122,6 @@ public class User  {
         this.admin = admin;
     }
 
-    
+
 }
 

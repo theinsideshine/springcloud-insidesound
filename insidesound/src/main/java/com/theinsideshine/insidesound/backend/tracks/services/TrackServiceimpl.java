@@ -1,7 +1,6 @@
 package com.theinsideshine.insidesound.backend.tracks.services;
 
 
-import com.theinsideshine.insidesound.backend.albums.models.dto.AlbumResponseDto;
 import com.theinsideshine.insidesound.backend.albums.models.entity.Album;
 import com.theinsideshine.insidesound.backend.albums.repositories.AlbumRepository;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
@@ -36,7 +35,7 @@ public class TrackServiceimpl implements TrackService {
     @Override
     @Transactional(readOnly = true)
     public List<TrackResponseDto> findAll() {
-        List<Track> tracks =  trackRepository.findAll();
+        List<Track> tracks = trackRepository.findAll();
         return tracks.stream()
                 .map(TrackResponseDto::trackResponseDtoMapperEntityToDto)
                 .collect(Collectors.toList());
@@ -44,7 +43,7 @@ public class TrackServiceimpl implements TrackService {
 
     @Override
     @Transactional(readOnly = true)
-    public Resource findImageById(Long id)  {
+    public Resource findImageById(Long id) {
         Optional<Track> trackOptional = trackRepository.findById(id);
         if (trackOptional.isEmpty() || trackOptional.get().getImage() == null) {
             throw new InsidesoundException(InsidesoundErrorCode.IMG_NOT_FOUND_BY_TRACK_ID);
@@ -54,9 +53,9 @@ public class TrackServiceimpl implements TrackService {
 
     @Override
     @Transactional(readOnly = true)
-    public Resource findMp3ById(Long id)  {
+    public Resource findMp3ById(Long id) {
         Optional<Track> trackOptional = trackRepository.findById(id);
-        if (trackOptional.isEmpty() || trackOptional.get().getImage() == null) {
+        if (trackOptional.isEmpty() || trackOptional.get().getMp3() == null) {
             throw new InsidesoundException(InsidesoundErrorCode.MP3_NOT_FOUND_BY_TRACK_ID);
         }
         return new ByteArrayResource(trackOptional.get().getMp3());
@@ -65,8 +64,8 @@ public class TrackServiceimpl implements TrackService {
     @Override
     @Transactional(readOnly = true)
     public List<TrackResponseDto> findByAlbumId(Long id) {
-        List<Track> tracks = trackRepository.findByAlbumId (id);
-        if (tracks.size() == 0){
+        List<Track> tracks = trackRepository.findByAlbumId(id);
+        if (tracks.size() == 0) {
             throw new InsidesoundException(InsidesoundErrorCode.TRACK_NOT_FOUND_BY_ALBUM_ID);
         }
         return tracks.stream()
@@ -96,8 +95,8 @@ public class TrackServiceimpl implements TrackService {
 
     @Override
     @Transactional
-    public TrackResponseDto save(TrackRequestDto trackRequestDto)  {
-        Track track =  TrackRequestDto.TrackRequestDtoMapperDtoToEntity(trackRequestDto);
+    public TrackResponseDto save(TrackRequestDto trackRequestDto) {
+        Track track = TrackRequestDto.TrackRequestDtoMapperDtoToEntity(trackRequestDto);
         Track saveTrack = trackRepository.save(track);
         return TrackResponseDto.trackResponseDtoMapperEntityToDto(saveTrack);
     }
@@ -114,6 +113,7 @@ public class TrackServiceimpl implements TrackService {
             throw new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_TRACK);
         }
     }
+
     @Override
     @Transactional
     public void remove(Long id) {
@@ -126,6 +126,7 @@ public class TrackServiceimpl implements TrackService {
             }
         }
     }
+
     @Transactional
     public void associateAlbumToTrack(Long trackId, Long albumId) {
         Track track = trackRepository.findById(trackId)
@@ -137,11 +138,12 @@ public class TrackServiceimpl implements TrackService {
         try {
             trackRepository.save(track);
         } catch (Exception e) {
-            throw  new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_TRACK);
+            throw new InsidesoundException(InsidesoundErrorCode.ERR_UPDATING_TRACK);
         }
     }
+
     private void validateTrackIdPost(Long id) {
-        Optional<Track> optionalTrack= trackRepository.findById(id);
+        Optional<Track> optionalTrack = trackRepository.findById(id);
         if (optionalTrack.isEmpty()) {
             throw new InsidesoundException(InsidesoundErrorCode.ID_TRACK_NOT_FOUND);
         }

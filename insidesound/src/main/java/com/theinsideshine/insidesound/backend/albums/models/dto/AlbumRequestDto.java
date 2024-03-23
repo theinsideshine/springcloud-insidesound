@@ -8,31 +8,33 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 public record AlbumRequestDto(
 
-    Long id,
-    @NotBlank
-    @Size(min = 4, max = 8)
-    String username,
+        Long id,
+        @NotBlank
+        @Size(min = 4, max = 8)
+        String username,
 
-    @NotBlank
-    @Size(min = 4, max = 20)
-    String title,
+        @NotBlank
+        @Size(min = 4, max = 20)
+        String title,
 
-    @NotBlank
-    @Size(min = 4, max = 23)
-    String artist,
-    @Size(min = 3, max = 4)
-    String age,
+        @NotBlank
+        @Size(min = 4, max = 23)
+        String artist,
+        @Size(min = 3, max = 4)
+        String age,
 
-    boolean albumprivate,
+        boolean albumprivate,
 
-    @MaxFileSize(value = 1048576, message = "imageFile")
-    MultipartFile imageFile
-){
-    public static Album AlbumRequestDtoMapperDtoToEntity(AlbumRequestDto albumRequestDto)  {
+        @MaxFileSize(value = 1048576, message = "imageFile")
+        MultipartFile imageFile
+) {
+    public static Album AlbumRequestDtoMapperDtoToEntity(AlbumRequestDto albumRequestDto) {
         try {
-            byte[] imageBytes = albumRequestDto.imageFile().getBytes();
+            byte[] imageBytes = convertToBytes(albumRequestDto.imageFile());
             return new Album(
                     albumRequestDto.id,
                     albumRequestDto.username,
@@ -45,6 +47,10 @@ public record AlbumRequestDto(
         } catch (Exception e) {
             throw new InsidesoundException(InsidesoundErrorCode.ERR_CONV_IMAGE);
         }
+    }
+
+    public static byte[] convertToBytes(MultipartFile file) throws IOException {
+        return file.getBytes();
     }
 }
 

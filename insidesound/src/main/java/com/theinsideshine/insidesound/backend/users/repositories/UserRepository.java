@@ -1,14 +1,12 @@
 package com.theinsideshine.insidesound.backend.users.repositories;
 
-import java.util.Optional;
-
-
+import com.theinsideshine.insidesound.backend.users.models.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.theinsideshine.insidesound.backend.users.models.entities.User;
+import java.util.Optional;
 
 public interface UserRepository
         extends CrudRepository<User, Long> {

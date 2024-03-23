@@ -2,6 +2,7 @@ package com.theinsideshine.insidesound.backend.exceptions;
 
 import com.theinsideshine.insidesound.backend.albums.controllers.AlbumController;
 import com.theinsideshine.insidesound.backend.albums.services.AlbumService;
+import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundErrorCode;
 import com.theinsideshine.insidesound.backend.exceptions.insidesound.InsidesoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,13 +28,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(AlbumController.class)
 @ActiveProfiles("test")
 public class InsidesoundExceptionHandlerTest {
-
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
     private AlbumService albumService;
-
     @Autowired
     private WebApplicationContext webApplicationContext;
 
@@ -45,14 +43,9 @@ public class InsidesoundExceptionHandlerTest {
 
     @Test
     public void whenInvalidShowImageByAlbumId_thenErrorResponse() throws Exception {
-
         Long invalidId = 1L;
-
         given(albumService.findImageById(invalidId))
-                .willThrow(new InsidesoundException(HttpStatus.BAD_REQUEST.value(),  Map.of("GET IMAGES", "El id del album no tiene imagen.")));
-
-
-
+                .willThrow(new InsidesoundException(HttpStatus.BAD_REQUEST.value(), Map.of("GET IMAGES", "El id del album no tiene imagen.")));
         mockMvc.perform(get("/albums/img/{id}", invalidId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
@@ -67,17 +60,39 @@ public class InsidesoundExceptionHandlerTest {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("key1", "value1");
         errorMap.put("key2", "value2");
-
         // Act
         InsidesoundException exception = new InsidesoundException(expectedStatusCode, errorMap);
-
         // Assert
         assertEquals(expectedStatusCode, exception.getStatusCode());
         assertEquals("{key1=value1, key2=value2}", exception.getMessage());
         assertEquals(errorMap, exception.getErrorMap());
     }
 
+    @Test
+    public void testBuildErrorMessage() {
+        // Arrange
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("key1", "value1");
+        errorMap.put("key2", "value2");
+        // Act
+        String errorMessage = InsidesoundException.buildErrorMessage(errorMap);
+        // Assert
+        assertEquals("{key1: value1, key2: value2}", errorMessage);
+    }
 
+    @Test
+    public void testToErrorModel() {
+        // Arrange
+        Integer expectedErrorCode = 400;
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("PUT", "El usuario a editar no existe.");
+        ErrorModel expectedErrorModel = new ErrorModel(expectedErrorCode, errorMap);
+        // Act
+        ErrorModel errorModel = InsidesoundErrorCode.ID_USER_NOT_FOUND.toErrorModel();
+        // Assert
+        assertEquals(expectedErrorModel.errors(), errorModel.errors());
+        assertEquals(expectedErrorModel.errorCode(), errorModel.errorCode());
+    }
 
 
 }

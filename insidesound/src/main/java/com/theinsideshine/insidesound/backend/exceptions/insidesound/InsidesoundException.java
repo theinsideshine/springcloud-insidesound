@@ -28,10 +28,15 @@ public class InsidesoundException extends RuntimeException {
         return errorMap;
     }
 
+    public String getValueMapErrorMessage() {
+        if (errorMap != null && !errorMap.isEmpty()) {
+            return errorMap.values().iterator().next();
+        }
+        return null;
+    }
 
 
-
-    private static String buildErrorMessage(Map<String, String> errorMap) {
+    public static String buildErrorMessage(Map<String, String> errorMap) {
         StringBuilder errorMessage = new StringBuilder();
 
         errorMessage.append("{");
@@ -52,7 +57,6 @@ public class InsidesoundException extends RuntimeException {
 
         return errorMessage.toString();
     }
-
 
 
 }

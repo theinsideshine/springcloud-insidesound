@@ -20,7 +20,7 @@ public record UserRequestDtoUpdate(
 
         boolean admin
 ) {
-    public static UserRequestDtoUpdate UserRequestDtoUpdateMapperEntityToDto(User user){
+    public static UserRequestDtoUpdate UserRequestDtoUpdateMapperEntityToDto(User user) {
         return new UserRequestDtoUpdate(
                 user.getId(),
                 user.getUsername(),
@@ -29,7 +29,7 @@ public record UserRequestDtoUpdate(
         );
     }
 
-    public static User UserRequestDtoUpdateMapperDtoToEntity(UserRequestDtoUpdate userRequestDto){
+    public static User UserRequestDtoUpdateMapperDtoToEntity(UserRequestDtoUpdate userRequestDto) {
         return new User(
                 userRequestDto.id(),
                 userRequestDto.username(),

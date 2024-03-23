@@ -70,5 +70,12 @@ public enum InsidesoundErrorCode {
     public ErrorModel toErrorModel() {
         return new ErrorModel(errorCode, errorMap);
     }
+
+    public String getValueMapErrorMessage() {
+        if (!errorMap.isEmpty()) {
+            return errorMap.values().iterator().next();
+        }
+        return null; // O cualquier otro valor predeterminado que desees retornar
+    }
 }
 

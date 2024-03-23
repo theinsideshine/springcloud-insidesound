@@ -6,10 +6,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 
-public interface TrackRepository extends JpaRepository<Track,Long> {
+public interface TrackRepository extends JpaRepository<Track, Long> {
 
     @Query("SELECT t FROM Track t WHERE t.album_id = :albumId")
     List<Track> findByAlbumId(Long albumId);

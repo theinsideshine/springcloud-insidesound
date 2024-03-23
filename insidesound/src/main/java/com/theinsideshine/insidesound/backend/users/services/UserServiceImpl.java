@@ -30,13 +30,10 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-
     private final AlbumRepository albumRepository;
-
     private final TrackRepository trackRepository;
 
     @Autowired
@@ -67,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<UserResponseDto> findAll(Pageable pageable) {
+    public Page<UserResponseDto> findAllPageable(Pageable pageable) {
         Page<User> userPage = userRepository.findAll(pageable);
         List<UserResponseDto> userResponsesDtos = userPage.getContent()
                 .stream()
@@ -97,7 +94,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserResponseDto save(UserRequestDto userRequestDto) {
-
         User user = UserRequestDto.UserRequestDtoMapperDtoToEntity(userRequestDto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(getRoles(false));
@@ -105,19 +101,15 @@ public class UserServiceImpl implements UserService {
         return UserResponseDto.userResponseDtoMapperEntityToDto(savedUser);
     }
 
-
     @Override
     @Transactional
     public UserResponseDto update(UserRequestDtoUpdate userRequestDtoUpdate, Long id) {
         User userToUpdate = validateUserIdPost(id);
-
         // Actualizar los campos del usuario con los valores del DTO
         userToUpdate.setUsername(userRequestDtoUpdate.username());
         userToUpdate.setEmail(userRequestDtoUpdate.email());
-
         //Actualiza el rol con el DTO
         userToUpdate.setRoles(getRoles(userRequestDtoUpdate.admin()));
-
         // Guardar el usuario actualizado en la base de datos
         try {
             User updatedUser = userRepository.save(userToUpdate);
@@ -172,7 +164,6 @@ public class UserServiceImpl implements UserService {
 
     private List<Role> getRoles(boolean isAdmin) {
         List<Role> roles = new ArrayList<>();
-
         if (isAdmin) {
             // Si el usuario es administrador, agregamos el rol de administrador
             Optional<Role> adminRoleOptional = roleRepository.findByName("ROLE_ADMIN");
@@ -182,7 +173,6 @@ public class UserServiceImpl implements UserService {
             Optional<Role> userRoleOptional = roleRepository.findByName("ROLE_USER");
             userRoleOptional.ifPresent(roles::add);
         }
-
         return roles;
     }
 
@@ -193,5 +183,4 @@ public class UserServiceImpl implements UserService {
         }
         return optionalUser.get();
     }
-
 }

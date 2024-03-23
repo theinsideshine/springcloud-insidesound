@@ -1,9 +1,5 @@
 package com.theinsideshine.insidesound.backend.users.services;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import com.theinsideshine.insidesound.backend.users.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,16 +11,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
 
 
     private final UserRepository repository;
+
     @Autowired
     public JpaUserDetailsService(UserRepository repository) {
         this.repository = repository;
     }
-
 
 
     @Override
@@ -38,10 +38,10 @@ public class JpaUserDetailsService implements UserDetailsService {
         }
         com.theinsideshine.insidesound.backend.users.models.entities.User user = o.orElseThrow();
 
-            List<GrantedAuthority> authorities = user.getRoles()
-                    .stream()
-                    .map(r -> new SimpleGrantedAuthority(r.getName()))
-                    .collect(Collectors.toList());
+        List<GrantedAuthority> authorities = user.getRoles()
+                .stream()
+                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .collect(Collectors.toList());
 
         return new User(
                 user.getUsername(),

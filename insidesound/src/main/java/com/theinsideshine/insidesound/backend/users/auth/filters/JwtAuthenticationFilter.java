@@ -35,71 +35,70 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
 
-    
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
 
-                User user = null;
-                String username = null;
-                String password = null;
-                
-                try {
-                    user = new ObjectMapper().readValue(request.getInputStream(), User.class);
-                    username = user.getUsername();
-                    password = user.getPassword();
-        
-                    logger.info("Username desde request InputStream (raw) " + username);
-                    logger.info("Password desde request InputStream (raw) " + password);
-        
-                } catch (StreamReadException e) {
-                    e.printStackTrace();
-                } catch (DatabindException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
-                return authenticationManager.authenticate(authToken);
-            }
+        User user = null;
+        String username = null;
+        String password = null;
 
-           
-            @Override
-            protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                    Authentication authResult) throws IOException, ServletException {
-        
-                String username = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal())
-                        .getUsername();                
+        try {
+            user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+            username = user.getUsername();
+            password = user.getPassword();
 
-                Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
-                boolean isAdmin = roles.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
-                Claims claims = Jwts.claims();
-                claims.put("authorities", new ObjectMapper().writeValueAsString(roles));
-                claims.put("isAdmin", isAdmin);
-                claims.put("username", username);
+            logger.info("Username desde request InputStream (raw) " + username);
+            logger.info("Password desde request InputStream (raw) " + password);
 
-                LocalDateTime currentDateTime = LocalDateTime.now();
-                LocalDateTime expirationDateTime = currentDateTime.plusHours(1);
-        
-                String token = Jwts.builder()
-                        .setClaims(claims)
-                        .setSubject(username)
-                        .signWith(SECRET_KEY)
-                        .setIssuedAt(java.sql.Timestamp.valueOf(currentDateTime))
-                        .setExpiration(java.sql.Timestamp.valueOf(expirationDateTime))
-                        .compact();
-                response.addHeader(HEADER_AUTHORIZATION, PREFIX_TOKEN + token);
-        
-                Map<String, Object> body = new HashMap<>();
-                body.put("token", token);
-                body.put("message", String.format("Hola %s, has iniciado sesion con exito!", username));
-                body.put("username", username);
-                response.getWriter().write(new ObjectMapper().writeValueAsString(body));
-                response.setStatus(200);
-                response.setContentType("application/json");
-            }
+        } catch (StreamReadException e) {
+            e.printStackTrace();
+        } catch (DatabindException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
+        return authenticationManager.authenticate(authToken);
+    }
+
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+                                            Authentication authResult) throws IOException, ServletException {
+
+        String username = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal())
+                .getUsername();
+
+        Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
+        boolean isAdmin = roles.stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+        Claims claims = Jwts.claims();
+        claims.put("authorities", new ObjectMapper().writeValueAsString(roles));
+        claims.put("isAdmin", isAdmin);
+        claims.put("username", username);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDateTime expirationDateTime = currentDateTime.plusHours(1);
+
+        String token = Jwts.builder()
+                .setClaims(claims)
+                .setSubject(username)
+                .signWith(SECRET_KEY)
+                .setIssuedAt(java.sql.Timestamp.valueOf(currentDateTime))
+                .setExpiration(java.sql.Timestamp.valueOf(expirationDateTime))
+                .compact();
+        response.addHeader(HEADER_AUTHORIZATION, PREFIX_TOKEN + token);
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("token", token);
+        body.put("message", String.format("Hola %s, has iniciado sesion con exito!", username));
+        body.put("username", username);
+        response.getWriter().write(new ObjectMapper().writeValueAsString(body));
+        response.setStatus(200);
+        response.setContentType("application/json");
+    }
 
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-    AuthenticationException failed) throws IOException, ServletException {
+                                              AuthenticationException failed) throws IOException, ServletException {
 
         Map<String, Object> body = new HashMap<>();
         body.put("message", "Error en la autenticacion username o password incorrecto!");
@@ -109,6 +108,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setStatus(401);
         response.setContentType("application/json");
     }
-    
-    
+
+
 }

@@ -11,6 +11,7 @@ public class SwaggerConfig {
 
     @Value("${openapi.version}")
     private String openApiVersion;
+
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()

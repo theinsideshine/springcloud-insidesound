@@ -1,12 +1,11 @@
 package com.theinsideshine.insidesound.backend.users.repositories;
 
-import java.util.Optional;
-
+import com.theinsideshine.insidesound.backend.users.models.entities.Role;
 import org.springframework.data.repository.CrudRepository;
 
-import com.theinsideshine.insidesound.backend.users.models.entities.Role;
+import java.util.Optional;
 
 public interface RoleRepository
         extends CrudRepository<Role, Long> {
-        Optional<Role> findByName(String name);
+    Optional<Role> findByName(String name);
 }

@@ -4,12 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-
 @SpringBootApplication
 public class InsidesoundAppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(InsidesoundAppApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(InsidesoundAppApplication.class, args);
+    }
 
 }

@@ -13,7 +13,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-#Este fija el tamaño del request permitido por tomcat, se configura superior a los limites validados
+  #Este fija el tamaño del request permitido por tomcat, se configura superior a los limites validados
   servlet:
     multipart:
       max-file-size: 20MB
