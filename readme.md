@@ -28,4 +28,8 @@ ISound.Migration of the ecosystems to a monolithic service that meets the design
 ISound.Migration of the ecosystems to a monolithic service that meets the design guidelines-Part 2
 [![exception system](images/video-exceptions.png)](https://youtu.be/QD6uFNF494M)
 
+Openapi and junit implementation
+[![exception system](images/video-junit.png)](https://youtu.be/K6f2Vdxc4_8)
+
+
 FrontEnd repository: https://github.com/theinsideshine/react-insideSound
